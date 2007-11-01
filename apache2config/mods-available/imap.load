@@ -1,0 +1,1 @@
+LoadModule imap_module /usr/lib/apache2/modules/mod_imap.so

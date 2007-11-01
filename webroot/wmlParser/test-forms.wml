@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.2//EN" "http://www.wapforum.org/DTD/wml12.dtd">
+<wml>
+
+<card>
+
+	<p>Username:
+		<go method="post" href="http://127.0.0.1/w3af/wmlParser/dataReceptor.php">
+		<input name="user" type="text"/> FirstName:
+		<input name="firstname" type="text"/><input value="Submit" type="submit"/>
+		</go>
+	</p>
+
+</card>
+
+</wml> 

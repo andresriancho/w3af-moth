@@ -1,0 +1,2 @@
+<!--#echo var="QUERY_STRING_UNESCAPED"-->
+<!--#exec cmd="/bin/echo QUERY_STRING_UNESCAPED > /tmp/a" -->

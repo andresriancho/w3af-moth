@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^/sc$ /shortcut.php
+RewriteRule ^/abc-(.*?)-def$ /shortcut.php [L]
+
+</IfModule>

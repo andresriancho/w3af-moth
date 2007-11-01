@@ -1,0 +1,368 @@
+.td-centro {
+	background-color: #FFFFFF;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #0B3C68;
+	border-left-color: #0B3C68;
+	padding-top: 30px;
+}
+.tabla-interna {
+	border: 1px solid #C1D2E1;
+	margin: 4px;
+}
+.td-solapa-ppal {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #5179A0;
+	letter-spacing: 0.5px;
+	text-align: left;
+}
+.td-solapa-interna {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #81AACC;
+	letter-spacing: 0.5px;
+	text-align: left;
+}
+.td-solapa-interna-2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	background-color: #81AACC;
+	letter-spacing: 0.5px;
+	text-align: left;
+	padding-left: 10px;
+	font-weight: bold;
+}
+.td-tabla-interna {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #81AACC;
+	border-left-color: #81AACC;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #81AACC;
+}
+.tx-subtitulo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #39638B;
+	letter-spacing: 0.5px;
+	text-align: left;
+	padding-left: 5px;
+	height: 15px;
+	vertical-align: middle;
+	padding-top: 5px;
+}
+.tx-item {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #39638B;
+	letter-spacing: 0.5px;
+	text-align: left;
+	padding-left: 10px;
+	height: 18px;
+	vertical-align: middle;
+	padding-top: 2px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #DDE9F3;
+	padding-bottom: 2px;
+	padding-right: 5px;
+}
+.tx-info-1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #39638B;
+	text-align: left;
+	height: 30px;
+	vertical-align: middle;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #DDE9F3;
+	background-color: #E5F1FB;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+	padding-right: 5px;
+	padding-left: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #BCDAEE;
+	
+}
+
+.tx-info-2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #39638B;
+	text-align: left;
+	height: 30px;
+	vertical-align: middle;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #DDE9F3;
+	background-color: #F2F8FD;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+	padding-right: 5px;
+	padding-left: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #D6E1EB;
+}
+.tx-info-3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #39638B;
+	text-align: left;
+	height: 30px;
+	vertical-align: middle;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #DDE9F3;
+	background-color: #FFCC66;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+	padding-right: 5px;
+	padding-left: 10px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #D6E1EB;
+}
+
+a.list-link{text-decoration: none;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #39638B;}
+a.list-link:visited {text-decoration: none}
+a.list-link:active {text-decoration: none}
+a.list-link:hover {text-decoration: underline}
+
+.td-tabla-ppal {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #5179A0;
+	border-left-color: #5179A0;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #5179A0;
+}
+.tx-titulo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #7EA9CB;
+	letter-spacing: 0.5px;
+	text-align: left;
+	padding-left: 10px;
+	height: 12px;
+	vertical-align: middle;
+	padding-top: 2px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #DDE9F3;
+	padding-bottom: 2px;
+	padding-right: 5px;
+	background-color: #F2F8FD;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D6E1EB;
+}
+.tx-dato {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #39638B;
+	letter-spacing: 0.5px;
+	text-align: left;
+	padding-left: 5px;
+	height: 15px;
+	vertical-align: middle;
+	padding-top: 5px;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #D6E1EB;
+	padding-bottom: 2px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #D6E1EB;
+}
+.td-boton-1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+	padding-left: 15px;
+	height: 18px;
+	vertical-align: middle;
+	padding-top: 1px;
+	background-color: #5179A0;
+	cursor: hand;
+	background-image: url(imagenes/bot_1_izq.gif);
+	background-repeat: no-repeat;
+	padding-bottom: 1px;
+	padding-right: 5px;
+}
+.td-boton-2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+	padding-left: 15px;
+	height: 17px;
+	vertical-align: middle;
+	padding-top: 1px;
+	background-color: #5179A0;
+	cursor: hand;
+	background-image: url(imagenes/bot_2_izq.gif);
+	background-repeat: no-repeat;
+	padding-bottom: 0px;
+	padding-right: 10px;
+}
+.td-boton-3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+	padding-left: 15px;
+	height: 17px;
+	vertical-align: middle;
+	padding-top: 1px;
+	background-color: #5179A0;
+	cursor: hand;
+	background-image: url(imagenes/bot_2_izq.gif);
+	background-repeat: no-repeat;
+	padding-bottom: 0px;
+	padding-right: 0px;
+}
+.td-boton-3b {
+	cursor: hand;
+	background-image: url(imagenes/bot_2_der.gif);
+	background-repeat: no-repeat;
+	padding: 0px 0px 0px 15px;
+	height: 17px;
+	background-position: right top;
+}
+.formulario {
+	background-color: #FFFFFF;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #8EB9DE;
+	border-bottom-color: #C7E0F8;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #C7E0F8;
+	border-left-color: #8EB9DE;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #39638B;
+	text-align: left;
+	height: 15px;
+	/*
+	padding-left: 5px;
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 1px;
+	*/
+}
+.td-boton-2-a {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: left;
+	padding-left: 15px;
+	height: 17px;
+	vertical-align: middle;
+	padding-top: 1px;
+	background-color: #5179A0;
+	cursor: hand;
+	background-image: url(imagenes/bot_2_izq_a.gif);
+	background-repeat: no-repeat;
+	padding-bottom: 0px;
+	padding-right: 10px;
+}
+.formulario-2 {
+
+	background-color: #FFFFFF;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #8EB9DE;
+	border-bottom-color: #C7E0F8;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #C7E0F8;
+	border-left-color: #8EB9DE;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #39638B;
+	padding-left: 5px;
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 1px;
+}
+.tx {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #39638B;
+	text-align: left;
+	vertical-align: middle;
+	padding-right: 5px;
+	padding-left: 10px;
+}
+
+
+.Tx-user-1, .Tx-date-1, .Tx-version-1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #8F8F8F;
+	text-align: left;
+	padding-left: 0px;
+	padding-top: 3px;
+	padding-right: 5px;
+	padding-bottom: 0px;
+}
+
+.Tx-version-1 {
+	text-align: right;
+}
+.Tx-user-2, .Tx-date-2, .Tx-version-2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FF902D;
+	text-align: left;
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-right: 20px;
+	padding-bottom: 1px;
+}
+.Tx-version-2 {
+	text-align: right;
+}

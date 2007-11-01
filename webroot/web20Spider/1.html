@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>getElementsByTagName(*) demo</title>
+
+<style type="text/css"><!--
+*
+{
+	font-family: Verdana, Arial, sans-serif;
+}
+body
+{
+	width: 50em;
+	font-size: medium;
+}
+code
+{
+	font-family: "Courier New", Courier, monospace;
+}
+div#wrapper
+{
+	font-size: small;
+}
+div#wrapper,
+div#wrapper *
+{
+	margin: 1ex;
+	padding: 1ex;
+	border: 5px solid #000;
+	color: #000;
+}
+div#wrapper
+{
+	border-color: #000;
+}
+div#wrapper ol
+{
+	padding-left: 3ex;
+}
+.getElementsByTagName
+{
+	color: #F00;
+}
+.childNodes
+{
+	color: #0F0;
+}
+--></style>
+
+<script type="text/javascript">
+
+function GetChildren()
+{
+	if (DOMcheck)
+	{
+		ReportElements(document.getElementById("wrapper").childNodes, "childNodes()", "#0F0");
+	}
+}
+function GetAllTags()
+{
+	if (DOMcheck)
+	{
+		ReportElements(document.getElementById("wrapper").getElementsByTagName("*"), "getElementsByTagName(\"*\")", "#F00");
+	}
+}
+
+
+function ReportElements(aEls, sText, sColor)
+{
+	var sMsg = sText + " reports " + aEls.length + " elements:";
+
+	for (var iEl = 0; iEl < aEls.length; iEl++)
+	{
+		sMsg += "\n" + (iEl+1) + ": ";
+			if (aEls[iEl].style)
+			{
+				aEls[iEl].style.color = sColor;
+				aEls[iEl].style.borderColor = sColor;
+			}
+			if (aEls[iEl].tagName) sMsg += aEls[iEl].tagName;
+			if (aEls[iEl].id) sMsg += "#" + aEls[iEl].id;
+	}
+	alert(sMsg);
+}
+
+function DOMcheck()
+{
+	var sMsg = "";
+	
+		if (!document.getElementById) sMsg += "This browser doesn't support getElementById";
+		if (!document.childNodes) sMsg += "This browser doesn't support childNodes";
+		if (!document.getElementsByTagName) sMsg += "This browser doesn't support getElementsByTagName";
+
+		if (sMsg != "")
+		{
+			alert(sMsg);
+			return false;
+		}else{
+			return true;
+		}
+}
+</script>
+
+</head>
+<body>
+
+<h1>Getting all elements</h1>
+
+<p class="getElementsByTagName"><button onclick="GetAllTags();" ID="Button5">getElementsByTagName("*")</button> returns all tagged elements regardless of their nest level and no white-space.  This should locate all elements within the wrapper div.</p>
+
+<p class="childNodes"><button onclick="GetChildren();" ID="Button6">childNodes()</button> returns only first-generation children and includes non-tagged text elements.  Mozilla returns text elements consisting only of white-space, while IE excludes first-generation elements that contain white-space only.</p>
+<!--
+<p class="getElementsByTagName"><button onclick="GetAllTags();" ID="Button1">getElementsByTagName("*")</button> turns all elements it finds red.</p>
+<p class="childNodes"><button onclick="GetChildren();" ID="Button2">childNodes()</button> turns all elements it finds green.</p>
+-->
+
+<p><a href="?">Reset Colors</a></p>
+
+<div id="wrapper">DIV#wrapper
+ 
+	<div>1st-generation DIV
+		<h1>2nd-generation H1</h1>
+
+	</div>
+
+	1st-generation OL:
+	<ol>
+		<li>2nd-generation LI <a href="#">3rd-generation A</a></li>
+		<li>2nd-generation LI <a href="#">3rd-generation A</a></li>
+	</ol>
+
+	<p>1st-generation P
+		<a href="#">2nd-generation A</a>
+		<span>2nd-generation SPAN</span>
+	</p>
+</div>
+
+<p>Please <a href="mailto:paul at novitski software dot com">let me know</a> if this demo doesn't behave in your browser.</p>
+
+</body>
+</html>

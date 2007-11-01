@@ -1,0 +1,78 @@
+<!-- Generales -->
+A:link {text-decoration: none; color: #000000;}
+A:visited {text-decoration: none; color: #000000;}
+A:active {text-decoration: none; color: #000000;}
+A:hover {text-decoration: underline; color: #000000;}
+body { behavior:url(#default#homePage) }
+input{font: 8pt Arial;}
+textarea{font: 8pt Arial;}
+select{font: 9pt Verdana;}
+
+<!-- Especiales -->
+.toInput {  font-family:Tahoma; 
+            color: #00000; font-size: 14px; font-weight: normal; 
+            font-style: bold}
+
+.titulosNaranja { font-family:Tahoma; 
+                color: #00000; font-size: 14px; font-weight: normal; 
+                font-style: bold}
+
+.toInputNaranja {  border-left:1px solid #000000; 
+            border-top:1px solid #000000; 
+            border-bottom:1px solid #000000; 
+            font-family:Verdana; font-size:8pt; color:#000000; 
+            background-color:#F8A21A; border-right-color:#000000;
+            font-style: bold;
+            border-right-width:1px}
+
+.toInputAmarillo {  border-left:1px solid #000000; 
+            border-top:1px solid #000000; 
+            border-bottom:1px solid #000000; 
+            font-style: bold;
+            font-family:Verdana; font-size:8pt; color:#000000; 
+            background-color:#E9D73A; border-right-color:#000000;            
+            border-right-width:1px}
+
+.toInputGris {  border-left:1px solid #000000; 
+            border-top:1px solid #000000; 
+            border-bottom:1px solid #000000; 
+            font-family:Verdana; font-size:8pt; color:#000000; 
+            border-right-color:#000000; border-right-width:1px}
+
+
+A.negro:link {  text-decoration: none; color: #000000; 
+                font-family:Verdana, Arial, Helvetica, sans-serif; 
+                font-size: 10px; font-weight: normal; 
+                font-style: bold    }
+A.negro:visited {   text-decoration: none; color: #000000;
+                    font-family:Verdana, Arial, Helvetica, sans-serif; 
+                    font-size: 10px; font-weight: normal; 
+                    font-style: bold    }
+A.negro:active {  text-decoration: none; color: #000000;
+                  font-family:Verdana, Arial, Helvetica, sans-serif; 
+                  font-size: 10px; font-weight: normal; 
+                  font-style: bold }
+A.negro:hover {  text-decoration: underline; color: #000000;
+                 font-family:Verdana, Arial, Helvetica, sans-serif; 
+                 font-size: 10px; font-weight: normal; 
+                 font-style: bold   }
+
+A.rojo:link {text-decoration: none; color: #FF0000}
+A.rojo:visited {text-decoration: none; color: #FF0000}
+A.rojo:active {text-decoration: none; color: #FF0000}
+A.rojo:hover {text-decoration: underline; color: #FF0000}
+
+A.naranja:link {text-decoration: none; color: #FF9900}
+A.naranja:visited {text-decoration: none; color: #FF9900}
+A.naranja:active {text-decoration: none; color: #FF9900}
+A.naranja:hover {text-decoration: underline; color: #FF9900}
+
+A.azul:link {text-decoration: none; color: #0000FF}
+A.azul:visited {text-decoration: none; color: #0000FF}
+A.azul:active {text-decoration: none; color: #0000FF}
+A.azul:hover {text-decoration: underline; color: #0000FF}
+
+<!-- Textos -->
+.texto11 { font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 11px}
+.texto10 { font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 10px}
+.texto8 { font-family:Verdana, Arial, Helvetica, sans-serif; font-size: 8px}

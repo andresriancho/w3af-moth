@@ -1,0 +1,47 @@
+<html>
+<head>
+</head>
+
+<body>
+<script src="json.js"></script>
+
+<script>
+function getData()
+{
+    if(request.readyState == 4 && request.status == 200)
+        {
+		alert(request.responseText);
+		document.body.innerHTML = request.responseText;
+        }
+}
+
+var request = false;
+try {
+  request = new XMLHttpRequest();
+  } catch (trymicrosoft) {
+    try {
+        request = new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (othermicrosoft) {
+    	try {
+        	request = new ActiveXObject("Microsoft.XMLHTTP");
+        } catch (failed) {
+                request = false;
+        }
+    }
+}
+
+var url = "1.php?timeStamp=" + new Date().getTime();
+request.open("POST", url, true);
+request.setRequestHeader("Content-Type","text/html");
+request.onreadystatechange = getData;
+
+input = document.body.getElementsByTagName('*');
+request.send('abcedf'.toJSONString());
+
+</script>
+<input name="input1" value='hola mundo'/>
+
+
+</body>
+
+</html>

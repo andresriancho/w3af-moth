@@ -1,0 +1,6415 @@
+<html>
+<head>
+<script>
+var $wnd = parent;
+var $doc = $wnd.document;
+var $moduleName = "JSONRPCExample";
+</script>
+</head>
+<body onload="if (parent && parent.__pygwt_webModeFrameOnLoad) parent.__pygwt_webModeFrameOnLoad(window, 'JSONRPCExample');">
+<font face='arial' size='-1'>This script is part of module</font> <code>JSONRPCExample</code>
+<script><!--
+
+
+StopIteration = function () {};
+StopIteration.prototype = new Error();
+StopIteration.name = 'StopIteration';
+StopIteration.message = 'StopIteration';
+
+KeyError = function () {};
+KeyError.prototype = new Error();
+KeyError.name = 'KeyError';
+KeyError.message = 'KeyError';
+
+function pyjslib_String_find(sub, start, end) {
+    var pos=this.indexOf(sub, start);
+    if (pyjslib_isUndefined(end)) return pos;
+
+    if (pos + sub.length>end) return -1;
+    return pos;
+}
+    
+function pyjslib_String_join(data) {
+    var text="";
+    
+    if (pyjslib_isArray(data)) {
+        return data.join(this);
+    }
+    else if (pyjslib_isIteratable(data)) {
+        var iter=data.__iter__();
+        try {
+            text+=iter.next();
+            while (true) {
+                var item=iter.next();
+                text+=this + item;
+            }
+        }
+        catch (e) {
+            if (e != StopIteration) throw e;
+        }
+    }
+
+    return text;
+}
+
+function pyjslib_String_replace(old, replace, count) {
+    var do_max=false;
+    var start=0;
+    var new_str="";
+    var pos=0;
+    
+    if (!pyjslib_isString(old)) return this.__replace(old, replace);
+    if (!pyjslib_isUndefined(count)) do_max=true;
+    
+    while (start<this.length) {
+        if (do_max && !count--) break;
+        
+        pos=this.indexOf(old, start);
+        if (pos<0) break;
+        
+        new_str+=this.substring(start, pos) + replace;
+        start=pos+old.length;
+    }
+    if (start<this.length) new_str+=this.substring(start);
+
+    return new_str;
+}
+
+function pyjslib_String_split(sep, maxsplit) {
+    var items=new pyjslib_List();
+    var do_max=false;
+    var subject=this;
+    var start=0;
+    var pos=0;
+    
+    if (pyjslib_isUndefined(sep) || pyjslib_isNull(sep)) {
+        sep=" ";
+        subject=subject.strip();
+        subject=subject.replace(/\s+/g, sep);
+    }
+    else if (!pyjslib_isUndefined(maxsplit)) do_max=true;
+
+    while (start<subject.length) {
+        if (do_max && !maxsplit--) break;
+    
+        pos=subject.indexOf(sep, start);
+        if (pos<0) break;
+        
+        items.append(subject.substring(start, pos));
+        start=pos+sep.length;
+    }
+    if (start<subject.length) items.append(subject.substring(start));
+    
+    return items;
+}
+
+function pyjslib_String_strip(chars) {
+    return this.lstrip(chars).rstrip(chars);
+}
+
+function pyjslib_String_lstrip(chars) {
+    if (pyjslib_isUndefined(chars)) return this.replace(/^\s+/, "");
+
+    return this.replace(new RegExp("^[" + chars + "]+"), "");
+}
+
+function pyjslib_String_rstrip(chars) {
+    if (pyjslib_isUndefined(chars)) return this.replace(/\s+$/, "");
+
+    return this.replace(new RegExp("[" + chars + "]+$"), "");
+}
+
+function pyjslib_String_startswith(prefix, start) {
+    if (pyjslib_isUndefined(start)) start = 0;
+
+    if (this.substring(start, prefix.length) == prefix) return true;
+    return false;
+}
+
+String.prototype.upper = String.prototype.toUpperCase;
+String.prototype.lower = String.prototype.toLowerCase;
+String.prototype.find=pyjslib_String_find;
+String.prototype.join=pyjslib_String_join;
+
+String.prototype.__replace=String.prototype.replace;
+String.prototype.replace=pyjslib_String_replace;
+
+String.prototype.split=pyjslib_String_split;
+String.prototype.strip=pyjslib_String_strip;
+String.prototype.lstrip=pyjslib_String_lstrip;
+String.prototype.rstrip=pyjslib_String_rstrip;
+String.prototype.startswith=pyjslib_String_startswith;
+
+function pyjs_extend(klass, base) {
+	function inherit() {}
+	inherit.prototype = base.prototype;
+	klass.prototype = new inherit();
+	klass.prototype.constructor = klass;
+
+	for (var i in base.prototype) {
+		v = base.prototype[i];
+		if (typeof v != "function") klass[i] = v;
+	}
+}
+
+__pyjslib_List.prototype.__class__ = "pyjslib_List";
+function pyjslib_List(data) {
+    return new __pyjslib_List(data);
+}
+function __pyjslib_List(data) {
+    if (typeof data == 'undefined') data=null;
+
+        this.l = [];
+        
+        if (pyjslib_isArray(data)) {
+            for (var i in data) {
+                this.l[i]=data[i];
+                }
+            }
+        else if (pyjslib_isIteratable(data)) {
+            var iter=data.__iter__();
+            var i=0;
+            try {
+                while (true) {
+                    item=iter.next();
+                    this.i[i++]=item;
+                    }
+                }
+            catch (e) {
+                if (e != StopIteration) throw e;
+                }
+            }
+        
+}
+__pyjslib_List.prototype.append = function(item) {
+    this.l[this.l.length] = item;
+};
+__pyjslib_List.prototype.remove = function(value) {
+
+        var index=this.index(value);
+        if (index<0) return false;
+        this.l.splice(index, 1);
+        return true;
+        
+};
+__pyjslib_List.prototype.index = function(value, start) {
+    if (typeof start == 'undefined') start=0;
+
+        var length=this.l.length;
+        for (var i=start; i<length; i++) {
+            if (this.l[i]==value) {
+                return i;
+                }
+            }
+        return -1;
+        
+};
+__pyjslib_List.prototype.insert = function(index, value) {
+    var a = this.l; this.l=a.slice(value, index).concat(value, a.slice(index));
+};
+__pyjslib_List.prototype.slice = function(lower, upper) {
+    return this.l.slice(lower, upper);
+};
+__pyjslib_List.prototype.__getitem__ = function(index) {
+    return this.l[index];
+};
+__pyjslib_List.prototype.__setitem__ = function(index, value) {
+    this.l[index]=value;
+};
+__pyjslib_List.prototype.__delitem__ = function(index) {
+    this.l.splice(index, 1);
+};
+__pyjslib_List.prototype.__len__ = function() {
+    return this.l.length;
+};
+__pyjslib_List.prototype.__contains__ = function(value) {
+    return (this.index(value)>=0) ? true : false;
+};
+__pyjslib_List.prototype.__iter__ = function() {
+
+        var i = 0;
+        var l = this.l;
+        
+        return {
+            'next': function() {
+                if (i >= l.length) {
+                    throw StopIteration;
+                }
+                return l[i++];
+            }
+        };
+        
+};
+__pyjslib_Dict.prototype.__class__ = "pyjslib_Dict";
+function pyjslib_Dict(data) {
+    return new __pyjslib_Dict(data);
+}
+function __pyjslib_Dict(data) {
+    if (typeof data == 'undefined') data=null;
+
+        this.d = {};
+
+        if (pyjslib_isArray(data)) {
+            for (var i in data) {
+                var item=data[i];
+                this.d[item[0]]=item[1];
+                }
+            }
+        else if (pyjslib_isIteratable(data)) {
+            var iter=data.__iter__();
+            try {
+                while (true) {
+                    var item=iter.next();
+                    this.d[item.__getitem__(0)]=item.__getitem__(1);
+                    }
+                }
+            catch (e) {
+                if (e != StopIteration) throw e;
+                }
+            }
+        else if (pyjslib_isObject(data)) {
+            for (var key in data) {
+                this.d[key]=data[key];
+                }
+            }
+        
+}
+__pyjslib_Dict.prototype.__setitem__ = function(key, value) {
+ this.d[key]=value;
+};
+__pyjslib_Dict.prototype.__getitem__ = function(key) {
+
+        var value=this.d[key];
+        // if (pyjslib_isUndefined(value)) throw KeyError;
+        return value;
+        
+};
+__pyjslib_Dict.prototype.__len__ = function() {
+
+        var size=0;
+        for (var i in this.d) size++;
+        return size;
+        
+};
+__pyjslib_Dict.prototype.has_key = function(key) {
+
+        if (pyjslib_isUndefined(this.d[key])) return false;
+        return true;
+        
+};
+__pyjslib_Dict.prototype.__delitem__ = function(key) {
+ delete this.d[key];
+};
+__pyjslib_Dict.prototype.__contains__ = function(key) {
+    return (pyjslib_isUndefined(this.d[key])) ? false : true;
+};
+__pyjslib_Dict.prototype.keys = function() {
+
+        var keys=new pyjslib_List();
+        for (var key in this.d) keys.append(key);
+        return keys;
+        
+};
+__pyjslib_Dict.prototype.values = function() {
+
+        var keys=new pyjslib_List();
+        for (var key in this.d) keys.append(this.d[key]);
+        return keys;
+        
+};
+__pyjslib_Dict.prototype.__iter__ = function() {
+
+        return this.keys().__iter__();
+        
+};
+__pyjslib_Dict.prototype.iterkeys = function() {
+
+        return this.keys().__iter__();
+        
+};
+__pyjslib_Dict.prototype.itervalues = function() {
+
+        return this.values().__iter__();
+        
+};
+__pyjslib_Dict.prototype.iteritems = function() {
+
+        var d = this.d;
+        var iter=this.keys().__iter__();
+        
+        return {
+            '__iter__': function() {
+                return this;
+            },
+
+            'next': function() {
+                while (key=iter.next()) {
+                    var item=new pyjslib_List();
+                    item.append(key);
+                    item.append(d[key]);
+                    return item;
+                }
+            }
+        };
+        
+};
+function pyjslib_range() {
+
+    var start = 0;
+    var stop = 0;
+    var step = 1;
+
+    if (arguments.length == 2) {
+        start = arguments[0];
+        stop = arguments[1];
+        }
+    else if (arguments.length == 3) {
+        start = arguments[0];
+        stop = arguments[1];
+        step = arguments[2];
+        }
+    else if (arguments.length>0) stop = arguments[0];
+
+    return {
+        'next': function() {
+            if ((step > 0 && start >= stop) || (step < 0 && start <= stop)) throw StopIteration;
+            var rval = start;
+            start += step;
+            return rval;
+            },
+        '__iter__': function() {
+            return this;
+            }
+        }
+    
+}
+
+
+function pyjslib_slice(object, lower, upper) {
+
+    if (pyjslib_isString(object)) {
+        if (pyjslib_isNull(upper)) upper=object.length;
+        return object.substring(lower, upper);
+        }
+    if (pyjslib_isObject(object) && object.slice) return object.slice(lower, upper);
+    
+    return null;
+    
+}
+
+
+function pyjslib_str(text) {
+
+    return String(text);
+    
+}
+
+
+function pyjslib_int(text, radix) {
+
+    return parseInt(text, radix);
+    
+}
+
+
+function pyjslib_len(object) {
+
+    if (object==null) return 0;
+    if (pyjslib_isObject(object) && object.__len__) return object.__len__();
+    return object.length;
+    
+}
+
+
+function pyjslib_getattr(obj, method) {
+
+    if (!pyjslib_isObject(obj)) return null;
+    if (!pyjslib_isFunction(obj[method])) return obj[method];
+
+    return function() {
+        obj[method].call(obj);
+        }
+    
+}
+
+
+function pyjslib_hasattr(obj, method) {
+
+    if (!pyjslib_isObject(obj)) return false;
+    if (pyjslib_isUndefined(obj[method])) return false;
+
+    return true;
+    
+}
+
+
+function pyjslib_dir(obj) {
+
+    var properties=new pyjslib_List();
+    for (property in obj) properties.append(property);
+    return properties;
+    
+}
+
+
+function pyjslib_filter(obj, method, sequence) {
+    var items = new pyjslib_List([]);
+    if ((sequence == null)) {
+    var sequence = method;
+    var method = obj;
+
+        var __item = sequence.__iter__();
+        try {
+            while (true) {
+                var item = __item.next();
+                
+        
+    if (method(item)) {
+    items.append(item);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else {
+
+        var __item = sequence.__iter__();
+        try {
+            while (true) {
+                var item = __item.next();
+                
+        
+    if (method.call(obj, item)) {
+    items.append(item);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    return items;
+}
+
+
+function pyjslib_map(obj, method, sequence) {
+    var items = new pyjslib_List([]);
+    if ((sequence == null)) {
+    var sequence = method;
+    var method = obj;
+
+        var __item = sequence.__iter__();
+        try {
+            while (true) {
+                var item = __item.next();
+                
+        
+    items.append(method(item));
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else {
+
+        var __item = sequence.__iter__();
+        try {
+            while (true) {
+                var item = __item.next();
+                
+        
+    items.append(method.call(obj, item));
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    return items;
+}
+
+
+function pyjslib_isObject(a) {
+
+    return (a && typeof a == 'object') || pyjslib_isFunction(a);
+    
+}
+
+
+function pyjslib_isFunction(a) {
+
+    return typeof a == 'function';
+    
+}
+
+
+function pyjslib_isString(a) {
+
+    return typeof a == 'string';
+    
+}
+
+
+function pyjslib_isNull(a) {
+
+    return typeof a == 'object' && !a;
+    
+}
+
+
+function pyjslib_isArray(a) {
+
+    return pyjslib_isObject(a) && a.constructor == Array;
+    
+}
+
+
+function pyjslib_isUndefined(a) {
+
+    return typeof a == 'undefined';
+    
+}
+
+
+function pyjslib_isIteratable(a) {
+
+    return pyjslib_isObject(a) && a.__iter__;
+    
+}
+
+
+function pyjslib_isNumber(a) {
+
+    return typeof a == 'number' && isFinite(a);
+    
+}
+
+
+
+var pygwt_sNextHashId = 0;
+function pygwt_getNextHashId() {
+    pygwt_sNextHashId += 1;
+    return pygwt_sNextHashId;
+}
+
+
+function pygwt_getHashCode(o) {
+
+    return (o!=null?(o.$H?o.$H:o.$H=pygwt_getNextHashId()):0);
+    
+}
+
+
+function pygwt_getModuleName() {
+
+    return $moduleName;
+    
+}
+
+
+function pygwt_getModuleBaseURL() {
+
+    // this is intentionally not using $doc, because we want the module's own url
+    var s = document.location.href;
+    
+    // Pull off any hash.
+    var i = s.indexOf('#');
+    if (i != -1)
+        s = s.substring(0, i);
+    
+    // Pull off any query string.
+    i = s.indexOf('?');
+    if (i != -1)
+        s = s.substring(0, i);
+    
+    // Rip off everything after the last slash.
+    i = s.lastIndexOf('/');
+    if (i != -1)
+        s = s.substring(0, i);
+    return s;
+    
+}
+
+
+__HTTPRequest_HTTPRequest.prototype.__class__ = "HTTPRequest_HTTPRequest";
+function HTTPRequest_HTTPRequest() {
+    return new __HTTPRequest_HTTPRequest();
+}
+function __HTTPRequest_HTTPRequest() {
+}
+__HTTPRequest_HTTPRequest.prototype.asyncPost = function(url, postData, handler) {
+    var moduleName = pygwt_getModuleName();
+    return this.asyncPostImpl(null, null, url, postData, handler, moduleName);
+};
+__HTTPRequest_HTTPRequest.prototype.asyncGet = function(url, handler) {
+    var moduleName = pygwt_getModuleName();
+    return this.asyncGetImpl(null, null, url, handler, moduleName);
+};
+__HTTPRequest_HTTPRequest.prototype.doCreateXmlHTTPRequest = function() {
+
+        return new ActiveXObject("Msxml2.XMLHTTP");
+        
+};
+__HTTPRequest_HTTPRequest.prototype.asyncPostImpl = function(user, pwd, url, postData, handler, moduleName) {
+
+        var xmlHttp = this.doCreateXmlHTTPRequest();
+        try {
+            xmlHttp.open("POST", url, true);
+            xmlHttp.setRequestHeader("Content-Type", "text/plain; charset=utf-8");
+            if (moduleName) {
+                xmlHttp.setRequestHeader("X-PYGWTCallingModule", moduleName);
+            }
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4) {
+                    handler.onCompletion(xmlHttp.responseText);
+                    xmlHttp = null;
+                }
+            };
+            xmlHttp.send(postData);
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+        
+};
+__HTTPRequest_HTTPRequest.prototype.asyncGetImpl = function(user, pwd, url, handler, moduleName) {
+
+        var xmlHttp = this.doCreateXmlHTTPRequest();
+        try {
+            xmlHttp.open("GET", url, true);
+            xmlHttp.setRequestHeader("Content-Type", "text/plain; charset=utf-8");
+            if (moduleName) {
+                xmlHttp.setRequestHeader("X-PYGWTCallingModule", moduleName);
+            }
+            xmlHttp.onreadystatechange = function() {
+                if (xmlHttp.readyState == 4) {
+                    handler.onCompletion(xmlHttp.responseText);
+                    xmlHttp = null;
+                }
+            };
+            xmlHttp.send('');
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+        
+};
+
+/*
+JSONEncode:
+    +---------------+-------------------+---------------+
+    | PYGWT         | Python            | JSON          |
+    +===============+===================+===============+
+    | pyjslib_Dict  | dict              | object        |
+    +---------------+-------------------+---------------+
+    | pyjslib_List  | list, tuple       | array         |
+    +---------------+-------------------+---------------+
+    | string        | str, unicode      | string        |
+    +---------------+-------------------+---------------+
+    | number        | int, long, float  | number        |
+    +---------------+-------------------+---------------+
+    | true          | True              | true          |
+    +---------------+-------------------+---------------+
+    | false         | False             | false         |
+    +---------------+-------------------+---------------+
+    | null          | None              | null          |
+    +---------------+-------------------+---------------+
+
+
+JSONDecode:
+    +---------------+-------------------+--------------+
+    | JSON          | Python            | PYGWT        |
+    +===============+===================+==============+
+    | object        | dict              | pyjslib_Dict |
+    +---------------+-------------------+--------------+
+    | array         | list              | pyjslib_List |
+    +---------------+-------------------+--------------+
+    | string        | unicode           | string       |
+    +---------------+-------------------+--------------+
+    | number (int)  | int, long         | number       |
+    +---------------+-------------------+--------------+
+    | number (real) | float             | number       |
+    +---------------+-------------------+--------------+
+    | true          | True              | true         |
+    +---------------+-------------------+--------------+
+    | false         | False             | false        |
+    +---------------+-------------------+--------------+
+    | null          | None              | null         |
+    +---------------+-------------------+--------------+
+*/
+
+__JSONParser_JSONParser.prototype.__class__ = "JSONParser_JSONParser";
+function JSONParser_JSONParser() {
+    return new __JSONParser_JSONParser();
+}
+function __JSONParser_JSONParser() {
+}
+__JSONParser_JSONParser.prototype.decode = function(str) {
+    return this.jsObjectToPy(this.parseJSON(str));
+};
+__JSONParser_JSONParser.prototype.decodeAsObject = function(str) {
+    return this.jsObjectToPyObject(this.parseJSON(str));
+};
+__JSONParser_JSONParser.prototype.encode = function(obj) {
+    return this.toJSONString(obj);
+};
+__JSONParser_JSONParser.prototype.jsObjectToPy = function(obj) {
+
+        if (pyjslib_isArray(obj)) {
+            for (var i in obj) obj[i] = this.jsObjectToPy(obj[i]);
+            obj=new pyjslib_List(obj);
+            }
+        else if (pyjslib_isObject(obj)) {
+            for (var i in obj) obj[i]=this.jsObjectToPy(obj[i]);
+            obj=new pyjslib_Dict(obj);
+            }
+        
+        return obj;
+        
+};
+__JSONParser_JSONParser.prototype.jsObjectToPyObject = function(obj) {
+
+        if (pyjslib_isArray(obj)) {
+            for (var i in obj) obj[i] = this.jsObjectToPyObject(obj[i]);
+            obj=new pyjslib_List(obj);
+            }
+        else if (pyjslib_isObject(obj)) {
+            if (obj["__jsonclass__"]) {
+                var class_name = obj["__jsonclass__"][0];
+                class_name = class_name.replace(".", "_");
+                
+                var new_obj = eval("new " + class_name + "()");
+                delete obj["__jsonclass__"];
+                for (var i in obj) new_obj[i] = this.jsObjectToPyObject(obj[i]);
+                obj = new_obj;
+                }
+            else {
+                for (var i in obj) obj[i]=this.jsObjectToPyObject(obj[i]);
+                obj=new pyjslib_Dict(obj);
+                }       
+            }
+        
+        return obj;
+        
+};
+__JSONParser_JSONParser.prototype.toJSONString = function(obj) {
+
+   var m = {
+            '\b': '\\b',
+            '\t': '\\t',
+            '\n': '\\n',
+            '\f': '\\f',
+            '\r': '\\r',
+            '"' : '\\"',
+            '\\': '\\\\'
+        },
+        s = {
+            array: function (x) {
+                var a = ['['], b, f, i, l = x.length, v;
+                for (i = 0; i < l; i += 1) {
+                    v = x[i];
+                    f = s[typeof v];
+                    if (f) {
+                        v = f(v);
+                        if (typeof v == 'string') {
+                            if (b) {
+                                a[a.length] = ',';
+                            }
+                            a[a.length] = v;
+                            b = true;
+                        }
+                    }
+                }
+                a[a.length] = ']';
+                return a.join('');
+            },
+            'boolean': function (x) {
+                return String(x);
+            },
+            'null': function (x) {
+                return "null";
+            },
+            number: function (x) {
+                return isFinite(x) ? String(x) : 'null';
+            },
+            object: function (x) {
+                if (x) {
+                    if (x instanceof Array) {
+                        return s.array(x);
+                    }
+                    if (x instanceof __pyjslib_List) {
+                        return s.array(x.l);
+                    }
+                    if (x instanceof __pyjslib_Dict) {
+                        return s.object(x.d);
+                    }
+                    var a = ['{'], b, f, i, v;
+                    for (i in x) {
+                        v = x[i];
+                        f = s[typeof v];
+                        if (f) {
+                            v = f(v);
+                            if (typeof v == 'string') {
+                                if (b) {
+                                    a[a.length] = ',';
+                                }
+                                a.push(s.string(i), ':', v);
+                                b = true;
+                            }
+                        }
+                    }
+                    a[a.length] = '}';
+                    return a.join('');
+                }
+                return 'null';
+            },
+            string: function (x) {
+                if (/["\\\x00-\x1f]/.test(x)) {
+                    x = x.replace(/([\x00-\x1f\\"])/g, function(a, b) {
+                        var c = m[b];
+                        if (c) {
+                            return c;
+                        }
+                        c = b.charCodeAt();
+                        return '\\u00' +
+                            Math.floor(c / 16).toString(16) +
+                            (c % 16).toString(16);
+                    });
+                }
+                return '"' + x + '"';
+            }
+        };
+
+        f=s[typeof obj];
+        return f(obj);
+        
+};
+__JSONParser_JSONParser.prototype.parseJSON = function(str) {
+
+        try {
+            return (/^("(\\.|[^"\\\n\r])*?"|[,:{}\[\]0-9.\-+Eaeflnr-u \n\r\t])+?$/.test(str)) &&
+                eval('(' + str + ')');
+        } catch (e) {
+            return false;
+        }
+        
+};
+__JSONService_JSONService.prototype.__class__ = "JSONService_JSONService";
+function JSONService_JSONService(url, handler) {
+    return new __JSONService_JSONService(url, handler);
+}
+function __JSONService_JSONService(url, handler) {
+    if (typeof handler == 'undefined') handler=null;
+    this.parser = JSONParser_JSONParser();
+    this.url = url;
+    this.handler = handler;
+}
+__JSONService_JSONService.prototype.callMethod = function(method, params, handler) {
+    if (typeof handler == 'undefined') handler=null;
+    if ((handler == null)) {
+    var handler = this.handler;
+    }
+    if ((handler == null)) {
+    return this.__sendNotify(method, params);
+    }
+    else {
+    return this.__sendRequest(method, params, handler);
+    }
+};
+__JSONService_JSONService.prototype.onCompletion = function() {
+};
+__JSONService_JSONService.prototype.__sendNotify = function(method, params) {
+    var msg = new pyjslib_Dict([["id", null], ["method", method], ["params", params]]);
+    var msg_data = this.parser.encode(msg);
+    if (!(HTTPRequest_HTTPRequest().asyncPost(this.url, msg_data, this))) {
+    return -1;
+    }
+    return 1;
+};
+__JSONService_JSONService.prototype.__sendRequest = function(method, params, handler) {
+    var id = pygwt_getNextHashId();
+    var msg = new pyjslib_Dict([["id", id], ["method", method], ["params", params]]);
+    var msg_data = this.parser.encode(msg);
+    var request_info = JSONService_JSONRequestInfo(id, method, handler);
+    if (!(HTTPRequest_HTTPRequest().asyncPost(this.url, msg_data, JSONService_JSONResponseTextHandler(request_info)))) {
+    return -1;
+    }
+    return id;
+};
+__JSONService_JSONRequestInfo.prototype.__class__ = "JSONService_JSONRequestInfo";
+function JSONService_JSONRequestInfo(id, method, handler) {
+    return new __JSONService_JSONRequestInfo(id, method, handler);
+}
+function __JSONService_JSONRequestInfo(id, method, handler) {
+    this.id = id;
+    this.method = method;
+    this.handler = handler;
+}
+__JSONService_JSONResponseTextHandler.prototype.__class__ = "JSONService_JSONResponseTextHandler";
+function JSONService_JSONResponseTextHandler(request) {
+    return new __JSONService_JSONResponseTextHandler(request);
+}
+function __JSONService_JSONResponseTextHandler(request) {
+    this.request = request;
+}
+__JSONService_JSONResponseTextHandler.prototype.onCompletion = function(json_str) {
+    var response = JSONParser_JSONParser().decodeAsObject(json_str);
+    if (!(response)) {
+    this.request.handler.onRemoteError(0, "Server Error or Invalid Response", this.request);
+    }
+    else if (response.__getitem__("error")) {
+    var error = response.__getitem__("error");
+    this.request.handler.onRemoteError(error.__getitem__("code"), error.__getitem__("message"), this.request);
+    }
+    else {
+    this.request.handler.onRemoteResponse(response.__getitem__("result"), this.request);
+    }
+};
+pyjs_extend(__JSONService_JSONProxy, __JSONService_JSONService);
+__JSONService_JSONProxy.prototype.__class__ = "JSONService_JSONProxy";
+function JSONService_JSONProxy(url, methods) {
+    return new __JSONService_JSONProxy(url, methods);
+}
+function __JSONService_JSONProxy(url, methods) {
+    if (typeof methods == 'undefined') methods=null;
+    __JSONService_JSONService.call(this, url);
+    if (methods) {
+    this.__registerMethods(methods);
+    }
+}
+__JSONService_JSONProxy.prototype.__registerMethods = function(methods) {
+
+        methods=methods.l;
+        for (var i in methods) {
+            var method = methods[i];
+            this[method]=function() {
+                var params = [];
+                for (var n=0; n<arguments.length; n++) { params.push(arguments[n]); }
+                if (params[params.length-1].onRemoteResponse) {
+                    var handler=params.pop();
+                    return this.__sendRequest(method, params, handler);
+                    }
+                else {
+                    return this.__sendNotify(method, params);
+                    }
+                }
+            }
+        
+};
+var Timer_timers = new pyjslib_List([]);
+__Timer_Timer.prototype.__class__ = "Timer_Timer";
+__Timer_Timer.MAX_PERIOD = __Timer_Timer.prototype.MAX_PERIOD =  (  (  (  ( 1000 * 60 )  * 60 )  * 24 )  * 365 ) ;
+__Timer_Timer.MIN_PERIOD = __Timer_Timer.prototype.MIN_PERIOD = 1;
+function Timer_Timer(delay, object) {
+    return new __Timer_Timer(delay, object);
+}
+function __Timer_Timer(delay, object) {
+    if (typeof delay == 'undefined') delay=0;
+    if (typeof object == 'undefined') object=null;
+    this.isRepeating = false;
+    this.timerId = 0;
+    this.listener = object;
+    if ((delay >= __Timer_Timer.MIN_PERIOD)) {
+    this.schedule(delay);
+    }
+}
+__Timer_Timer.prototype.clearInterval = function(id) {
+
+        $wnd.clearInterval(id);
+        
+};
+__Timer_Timer.prototype.clearTimeout = function(id) {
+
+        $wnd.clearTimeout(id);
+        
+};
+__Timer_Timer.prototype.createInterval = function(timer, period) {
+
+        return $wnd.setInterval(function() { timer.fire(); }, period);
+        
+};
+__Timer_Timer.prototype.createTimeout = function(timer, delay) {
+
+        return $wnd.setTimeout(function() { timer.fire(); }, delay);
+        
+};
+__Timer_Timer.prototype.hookWindowClosing = function() {
+};
+__Timer_Timer.prototype.cancel = function() {
+    if (this.isRepeating) {
+    this.clearInterval(this.timerId);
+    }
+    else {
+    this.clearTimeout(this.timerId);
+    }
+    Timer_timers.remove(this);
+};
+__Timer_Timer.prototype.run = function() {
+    if (this.listener) {
+    this.listener.onTimer(this.timerId);
+    }
+};
+__Timer_Timer.prototype.schedule = function(delayMillis) {
+    if ((delayMillis < __Timer_Timer.MIN_PERIOD) || (delayMillis >= __Timer_Timer.MAX_PERIOD)) {
+    alert( ( "Timer delay must be positive and less than " + __Timer_Timer.MAX_PERIOD ) );
+    }
+    this.cancel();
+    this.isRepeating = false;
+    this.timerId = this.createTimeout(this, delayMillis);
+    Timer_timers.append(this);
+};
+__Timer_Timer.prototype.fire = function() {
+    this.fireImpl();
+};
+__Timer_Timer.prototype.fireImpl = function() {
+    if (!(this.isRepeating)) {
+    Timer_timers.remove(this);
+    }
+    this.run();
+};
+__Timer_Timer.prototype.getID = function() {
+    return this.timerId;
+};
+var DeferredCommand_deferredCommands = new pyjslib_List([]);
+var DeferredCommand_timerIsActive = false;
+__DeferredCommand_DeferredCommand.prototype.__class__ = "DeferredCommand_DeferredCommand";
+function DeferredCommand_DeferredCommand() {
+    return new __DeferredCommand_DeferredCommand();
+}
+function __DeferredCommand_DeferredCommand() {
+}
+__DeferredCommand_DeferredCommand.prototype.add = function(cmd) {
+    DeferredCommand_deferredCommands.append(cmd);
+    this.maybeSetDeferredCommandTimer();
+};
+__DeferredCommand_DeferredCommand.prototype.flushDeferredCommands = function() {
+
+        var __i = pyjslib_range(pyjslib_len(DeferredCommand_deferredCommands)).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var current = DeferredCommand_deferredCommands.__getitem__(0);
+    DeferredCommand_deferredCommands.__delitem__(0);
+    if ((current == null)) {
+    return;
+    }
+    else {
+    current.execute();
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__DeferredCommand_DeferredCommand.prototype.maybeSetDeferredCommandTimer = function() {
+    if (!(DeferredCommand_timerIsActive) && !((pyjslib_len(DeferredCommand_deferredCommands) == 0))) {
+    Timer_Timer(1, this);
+    DeferredCommand_timerIsActive = true;
+    }
+};
+__DeferredCommand_DeferredCommand.prototype.onTimer = function() {
+    this.flushDeferredCommands();
+    DeferredCommand_timerIsActive = false;
+    this.maybeSetDeferredCommandTimer();
+};
+var History_historyListeners = new pyjslib_List([]);
+    History_init();
+function History_init() {
+
+    // Check for existence of the history frame.
+    var historyFrame = $doc.getElementById('__pygwt_historyFrame');
+    if (!historyFrame)
+        return false;
+
+    // Get the initial token from the url's hash component.
+    var hash = $wnd.location.hash;
+    if (hash.length > 0)
+        $wnd.__historyToken = hash.substring(1);
+    else
+        $wnd.__historyToken = '';
+
+    // Initialize the history iframe.  If '__historyToken' already exists, then
+    // we're probably backing into the app, so _don't_ set the iframe's location.
+    var tokenElement = null;
+    if (historyFrame.contentWindow) {
+        var doc = historyFrame.contentWindow.document;
+        tokenElement = doc ? doc.getElementById('__historyToken') : null;
+    }
+
+    if (tokenElement)
+        $wnd.__historyToken = tokenElement.value;
+    else
+        historyFrame.src = 'history.html?' + $wnd.__historyToken;
+
+    // Expose the '__onHistoryChanged' function, which will be called by
+    // the history frame when it loads.
+    $wnd.__onHistoryChanged = function(token) {
+        // Change the URL and notify the application that its history frame
+        // is changing.  Note that setting location.hash does _not_ add a history
+        // frame on IE, so we don't have to do a 'location.replace()'.
+        if (token != $wnd.__historyToken) {
+            $wnd.__historyToken = token;
+            $wnd.location.hash = token;
+            // TODO - move init back into History
+            // this.onHistoryChanged(token);
+            var h = new __History_History();
+            h.onHistoryChanged(token);
+        }
+    };
+
+    // This is the URL check timer.  It detects when an unexpected change
+    // occurs in the document's URL (e.g. when the user enters one manually
+    // or selects a 'favorite', but only the #hash part changes).  When this
+    // occurs, we _must_ reload the page.  This is because IE has a really
+    // nasty bug that totally mangles its history stack and causes the location
+    // bar in the UI to stop working under these circumstances.
+    var urlChecker = function() {
+        var hash = $wnd.location.hash;
+        if (hash.length > 0) {
+            var token = hash.substring(1);
+            if ($wnd.__historyToken && (token != $wnd.__historyToken))
+                $wnd.location.reload();
+        }
+        $wnd.setTimeout(urlChecker, 250);
+    };
+    urlChecker();
+
+    return true;
+    
+}
+
+
+__History_History.prototype.__class__ = "History_History";
+function History_History() {
+    return new __History_History();
+}
+function __History_History() {
+}
+__History_History.prototype.addHistoryListener = function(listener) {
+    History_historyListeners.append(listener);
+};
+__History_History.prototype.back = function() {
+
+        $wnd.history.back();
+        
+};
+__History_History.prototype.forward = function() {
+
+        $wnd.history.forward();
+        
+};
+__History_History.prototype.getToken = function() {
+
+        return $wnd.__historyToken;
+        
+};
+__History_History.prototype.newItem = function(historyToken) {
+
+        var iframe = $doc.getElementById('__pygwt_historyFrame');
+        iframe.contentWindow.location.href = 'history.html?' + historyToken;
+        
+};
+__History_History.prototype.onHistoryChanged = function(historyToken) {
+    this.fireHistoryChangedImpl(historyToken);
+};
+__History_History.prototype.fireHistoryChangedAndCatch = function() {
+};
+__History_History.prototype.fireHistoryChangedImpl = function(historyToken) {
+
+        var __listener = History_historyListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onHistoryChanged(historyToken);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__History_History.prototype.removeHistoryListener = function(listener) {
+    History_historyListeners.remove(listener);
+};
+var DOM_sCaptureElem = null;
+var DOM_sEventPreviewStack = new pyjslib_List([]);
+    DOM_init();
+function DOM_init() {
+
+    // Set up event dispatchers.
+    $wnd.__dispatchEvent = function() {
+        if ($wnd.event.returnValue == undefined) {
+            $wnd.event.returnValue = true;
+            if (!DOM_previewEvent($wnd.event))
+                return;
+        }
+
+        var listener, curElem = this;
+        while (curElem && !(listener = curElem.__listener))
+            curElem = curElem.parentElement;
+    
+        if (listener)
+            DOM_dispatchEvent($wnd.event, curElem, listener);
+    };
+
+    $wnd.__dispatchDblClickEvent = function() {
+        var newEvent = $doc.createEventObject();
+        this.fireEvent('onclick', newEvent);
+        if (this.__eventBits & 2)
+            $wnd.__dispatchEvent();
+    };
+
+    $doc.body.onclick       =
+    $doc.body.onmousedown   =
+    $doc.body.onmouseup     =
+    $doc.body.onmousemove   =
+    $doc.body.onkeydown     =
+    $doc.body.onkeypress    =
+    $doc.body.onkeyup       =
+    $doc.body.onfocus       =
+    $doc.body.onblur        =
+    $doc.body.ondblclick    = $wnd.__dispatchEvent;
+    
+}
+
+
+function DOM_addEventPreview(preview) {
+    DOM_sEventPreviewStack.append(preview);
+}
+
+
+function DOM_appendChild(parent, child) {
+
+    parent.appendChild(child);
+    
+}
+
+
+function DOM_compare(elem1, elem2) {
+
+    if (!elem1 && !elem2)
+        return true;
+    else if (!elem1 || !elem2)
+        return false;
+    return (elem1.uniqueID == elem2.uniqueID);
+    
+}
+
+
+function DOM_createAnchor() {
+    return DOM_createElement("A");
+}
+
+
+function DOM_createButton() {
+    return DOM_createElement("button");
+}
+
+
+function DOM_createCol() {
+    return DOM_createElement("col");
+}
+
+
+function DOM_createDiv() {
+    return DOM_createElement("div");
+}
+
+
+function DOM_createElement(tag) {
+
+    return $doc.createElement(tag);
+    
+}
+
+
+function DOM_createFieldSet() {
+    return DOM_createElement("fieldset");
+}
+
+
+function DOM_createIFrame() {
+    return DOM_createElement("iframe");
+}
+
+
+function DOM_createImg() {
+    return DOM_createElement("img");
+}
+
+
+function DOM_createInputCheck() {
+    return DOM_createInputElement("checkbox");
+}
+
+
+function DOM_createInputElement(elementType) {
+
+    var e = $doc.createElement("INPUT");
+    e.type = elementType;
+    return e;
+    
+}
+
+
+function DOM_createInputPassword() {
+    return DOM_createInputElement("password");
+}
+
+
+function DOM_createInputRadio(group) {
+
+    return $doc.createElement("<INPUT type='RADIO' name='" + group + "'>");
+    
+}
+
+
+function DOM_createInputText() {
+    return DOM_createInputElement("text");
+}
+
+
+function DOM_createLabel() {
+    return DOM_createElement("label");
+}
+
+
+function DOM_createLegend() {
+    return DOM_createElement("legend");
+}
+
+
+function DOM_createOptions() {
+    return DOM_createElement("options");
+}
+
+
+function DOM_createSelect() {
+    return DOM_createElement("select");
+}
+
+
+function DOM_createSpan() {
+    return DOM_createElement("span");
+}
+
+
+function DOM_createTable() {
+    return DOM_createElement("table");
+}
+
+
+function DOM_createTBody() {
+    return DOM_createElement("tbody");
+}
+
+
+function DOM_createTD() {
+    return DOM_createElement("td");
+}
+
+
+function DOM_createTextArea() {
+    return DOM_createElement("textarea");
+}
+
+
+function DOM_createTH() {
+    return DOM_createElement("th");
+}
+
+
+function DOM_createTR() {
+    return DOM_createElement("tr");
+}
+
+
+function DOM_eventCancelBubble(evt, cancel) {
+    evt.cancelBubble = cancel;
+}
+
+
+function DOM_eventGetAltKey(evt) {
+
+    return evt.altKey;
+    
+}
+
+
+function DOM_eventGetButton(evt) {
+
+    return evt.button;
+    
+}
+
+
+function DOM_eventGetClientX(evt) {
+
+    return evt.clientX;
+    
+}
+
+
+function DOM_eventGetClientY(evt) {
+
+    return evt.clientY;
+    
+}
+
+
+function DOM_eventGetCtrlKey(evt) {
+
+    return evt.ctrlKey;
+    
+}
+
+
+function DOM_eventGetFromElement(evt) {
+
+    return evt.fromElement ? evt.fromElement : null;
+    
+}
+
+
+function DOM_eventGetKeyCode(evt) {
+
+    return evt.keyCode;
+    
+}
+
+
+function DOM_eventGetRepeat(evt) {
+
+    return evt.repeat;
+    
+}
+
+
+function DOM_eventGetScreenX(evt) {
+
+    return evt.screenX;
+    
+}
+
+
+function DOM_eventGetScreenY(evt) {
+
+    return evt.screenY;
+    
+}
+
+
+function DOM_eventGetShiftKey(evt) {
+
+    return evt.shiftKey;
+    
+}
+
+
+function DOM_eventGetTarget(evt) {
+
+    var elem = evt.srcElement;
+    return elem ? elem : null;
+    
+}
+
+
+function DOM_eventGetToElement(evt) {
+
+    return evt.toElement ? evt.toElement : null;
+    
+}
+
+
+function DOM_eventGetType(event) {
+
+    return event.type;
+    
+}
+
+
+function DOM_eventGetTypeInt(event) {
+
+    switch (event.type) {
+      case "blur": return 0x01000;
+      case "change": return 0x00400;
+      case "click": return 0x00001;
+      case "dblclick": return 0x00002;
+      case "focus": return 0x00800;
+      case "keydown": return 0x00080;
+      case "keypress": return 0x00100;
+      case "keyup": return 0x00200;
+      case "load": return 0x08000;
+      case "losecapture": return 0x02000;
+      case "mousedown": return 0x00004;
+      case "mousemove": return 0x00040;
+      case "mouseout": return 0x00020;
+      case "mouseover": return 0x00010;
+      case "mouseup": return 0x00008;
+      case "scroll": return 0x04000;
+      case "error": return 0x10000;
+    }
+    
+}
+
+
+function DOM_eventGetTypeString(event) {
+    return DOM_eventGetType(event);
+}
+
+
+function DOM_eventPreventDefault(evt) {
+
+    evt.returnValue = false;
+    
+}
+
+
+function DOM_eventSetKeyCode(evt, key) {
+
+    evt.keyCode = key;
+    
+}
+
+
+function DOM_eventToString(evt) {
+
+    if (evt.toString) return evt.toString();
+    return "[object Event]";
+    
+}
+
+
+function DOM_iframeGetSrc(elem) {
+
+    return elem.src;
+    
+}
+
+
+function DOM_getAbsoluteLeft(elem) {
+
+    var left = 0;
+    while (elem) {
+      left += elem.offsetLeft - elem.scrollLeft;
+      elem = elem.offsetParent;
+    }
+    return left + $doc.body.scrollLeft;
+    
+}
+
+
+function DOM_getAbsoluteTop(elem) {
+
+    var top = 0;
+    while (elem) {
+      top += elem.offsetTop - elem.scrollTop;
+      elem = elem.offsetParent;
+    }
+    return top + $doc.body.scrollTop;
+    
+}
+
+
+function DOM_getAttribute(elem, attr) {
+
+    var ret = elem[attr];
+    return (ret === undefined) ? null : String(ret);
+    
+}
+
+
+function DOM_getCaptureElement() {
+    return DOM_sCaptureElem;
+}
+
+
+function DOM_getChild(elem, index) {
+
+    var child = elem.children[index];
+    return child ? child : null;
+    
+}
+
+
+function DOM_getChildCount(elem) {
+
+    return elem.children.length;
+    
+}
+
+
+function DOM_getChildIndex(parent, child) {
+
+    var count = parent.children.length;
+    for (var i = 0; i < count; ++i) {
+        if (child.uniqueID == parent.children[i].uniqueID)
+            return i;
+    }
+    return -1;
+    
+}
+
+
+function DOM_getElementById(id) {
+
+    var elem = $doc.getElementById(id);
+    return elem ? elem : null;
+    
+}
+
+
+function DOM_getEventsSunk(element) {
+
+    return element.__eventBits ? element.__eventBits : 0;
+    
+}
+
+
+function DOM_getFirstChild(elem) {
+
+    var child = elem.firstChild;
+    return child ? child : null;
+    
+}
+
+
+function DOM_getInnerHTML(element) {
+
+    var ret = element.innerHTML;
+    return (ret === undefined) ? null : ret;
+    
+}
+
+
+function DOM_getInnerText(elem) {
+
+    var ret = elem.innerText;
+    return (ret === undefined) ? null : ret;
+    
+}
+
+
+function DOM_getIntAttribute(elem, attr) {
+
+    return parseInt(elem[attr]);
+    
+}
+
+
+function DOM_getIntStyleAttribute(elem, attr) {
+
+    var i = parseInt(elem.style[attr]);
+    if (!i)
+        return 0;
+    return i;
+    
+}
+
+
+function DOM_getNextSibling(elem) {
+
+    var sib = elem.nextSibling;
+    return sib ? sib : null;
+    
+}
+
+
+function DOM_getParent(elem) {
+
+    var parent = elem.parentElement;
+    return parent ? parent : null;
+    
+}
+
+
+function DOM_getStyleAttribute(elem, attr) {
+
+    var ret = elem.style[attr];
+    return (ret === undefined) ? null : ret;
+    
+}
+
+
+function DOM_insertChild(parent, child, index) {
+
+    if (index == parent.children.length)
+        parent.appendChild(child);
+    else
+        parent.insertBefore(child, parent.children[index]);
+    
+}
+
+
+function DOM_isOrHasChild(parent, child) {
+
+    while (child) {
+        if (parent.uniqueID == child.uniqueID)
+            return true;
+        child = child.parentElement;
+    }
+    return false;
+    
+}
+
+
+function DOM_releaseCapture(elem) {
+
+    elem.releaseCapture();
+    
+}
+
+
+function DOM_removeChild(parent, child) {
+
+    parent.removeChild(child);
+    
+}
+
+
+function DOM_removeEventPreview(preview) {
+    DOM_sEventPreviewStack.remove(preview);
+}
+
+
+function DOM_setAttribute(element, attribute, value) {
+
+    element[attribute] = value;
+    
+}
+
+
+function DOM_setCapture(elem) {
+
+    elem.setCapture();
+    
+}
+
+
+function DOM_setEventListener(element, listener) {
+
+    element.__listener = listener;
+    
+}
+
+
+function DOM_setInnerHTML(element, html) {
+
+    if (!html) {
+        html = "";
+    }
+    element.innerHTML = html;
+    
+}
+
+
+function DOM_setInnerText(elem, text) {
+
+    if (!text)
+        text = '';
+    elem.innerText = text;
+    
+}
+
+
+function DOM_setIntAttribute(element, attribute, value) {
+    DOM_setAttribute(element, attribute, pyjslib_str(value));
+}
+
+
+function DOM_setIntStyleAttribute(element, attr, value) {
+    DOM_setStyleAttribute(element, attr, pyjslib_str(value));
+}
+
+
+function DOM_setStyleAttribute(element, name, value) {
+
+    element.style[name] = value;
+    
+}
+
+
+function DOM_sinkEvents(elem, bits) {
+
+    elem.__eventBits = bits;
+
+    elem.onclick       = (bits & 0x00001) ? $wnd.__dispatchEvent : null;
+    elem.ondblclick    = (bits & 0x00002) ? $wnd.__dispatchDblClickEvent : null;
+    elem.onmousedown   = (bits & 0x00004) ? $wnd.__dispatchEvent : null;
+    elem.onmouseup     = (bits & 0x00008) ? $wnd.__dispatchEvent : null;
+    elem.onmouseover   = (bits & 0x00010) ? $wnd.__dispatchEvent : null;
+    elem.onmouseout    = (bits & 0x00020) ? $wnd.__dispatchEvent : null;
+    elem.onmousemove   = (bits & 0x00040) ? $wnd.__dispatchEvent : null;
+    elem.onkeydown     = (bits & 0x00080) ? $wnd.__dispatchEvent : null;
+    elem.onkeypress    = (bits & 0x00100) ? $wnd.__dispatchEvent : null;
+    elem.onkeyup       = (bits & 0x00200) ? $wnd.__dispatchEvent : null;
+    elem.onchange      = (bits & 0x00400) ? $wnd.__dispatchEvent : null;
+    elem.onfocus       = (bits & 0x00800) ? $wnd.__dispatchEvent : null;
+    elem.onblur        = (bits & 0x01000) ? $wnd.__dispatchEvent : null;
+    elem.onlosecapture = (bits & 0x02000) ? $wnd.__dispatchEvent : null;
+    elem.onscroll      = (bits & 0x04000) ? $wnd.__dispatchEvent : null;
+    elem.onload        = (bits & 0x08000) ? $wnd.__dispatchEvent : null;
+    elem.onerror       = (bits & 0x10000) ? $wnd.__dispatchEvent : null;
+    
+}
+
+
+function DOM_toString(elem) {
+
+    return elem.outerHTML;
+    
+}
+
+
+function DOM_dispatchEvent(event, element, listener) {
+    DOM_dispatchEventImpl(event, element, listener);
+}
+
+
+function DOM_previewEvent(evt) {
+    var ret = true;
+    if ((pyjslib_len(DOM_sEventPreviewStack) > 0)) {
+    var preview = DOM_sEventPreviewStack.__getitem__( ( pyjslib_len(DOM_sEventPreviewStack) - 1 ) );
+    var ret = preview.onEventPreview(evt);
+    if (!(ret)) {
+    DOM_eventCancelBubble(evt, true);
+    DOM_eventPreventDefault(evt);
+    }
+    }
+    return ret;
+}
+
+
+function DOM_dispatchEventAndCatch(evt, elem, listener, handler) {
+}
+
+
+function DOM_dispatchEventImpl(event, element, listener) {
+    if ((element == DOM_sCaptureElem)) {
+    if ((DOM_eventGetType(event) == "losecapture")) {
+    DOM_sCaptureElem = null;
+    }
+    }
+    listener.onBrowserEvent(event);
+}
+
+
+__ui_Event.prototype.__class__ = "ui_Event";
+function ui_Event() {
+    return new __ui_Event();
+}
+function __ui_Event() {
+}
+__ui_Event.FOCUSEVENTS = __ui_Event.prototype.FOCUSEVENTS = 6144;
+__ui_Event.KEYEVENTS = __ui_Event.prototype.KEYEVENTS = 896;
+__ui_Event.MOUSEEVENTS = __ui_Event.prototype.MOUSEEVENTS = 124;
+__ui_Event.ONBLUR = __ui_Event.prototype.ONBLUR = 4096;
+__ui_Event.ONCHANGE = __ui_Event.prototype.ONCHANGE = 1024;
+__ui_Event.ONCLICK = __ui_Event.prototype.ONCLICK = 1;
+__ui_Event.ONDBLCLICK = __ui_Event.prototype.ONDBLCLICK = 2;
+__ui_Event.ONERROR = __ui_Event.prototype.ONERROR = 65536;
+__ui_Event.ONFOCUS = __ui_Event.prototype.ONFOCUS = 2048;
+__ui_Event.ONKEYDOWN = __ui_Event.prototype.ONKEYDOWN = 128;
+__ui_Event.ONKEYPRESS = __ui_Event.prototype.ONKEYPRESS = 256;
+__ui_Event.ONKEYUP = __ui_Event.prototype.ONKEYUP = 512;
+__ui_Event.ONLOAD = __ui_Event.prototype.ONLOAD = 32768;
+__ui_Event.ONLOSECAPTURE = __ui_Event.prototype.ONLOSECAPTURE = 8192;
+__ui_Event.ONMOUSEDOWN = __ui_Event.prototype.ONMOUSEDOWN = 4;
+__ui_Event.ONMOUSEMOVE = __ui_Event.prototype.ONMOUSEMOVE = 64;
+__ui_Event.ONMOUSEOUT = __ui_Event.prototype.ONMOUSEOUT = 32;
+__ui_Event.ONMOUSEOVER = __ui_Event.prototype.ONMOUSEOVER = 16;
+__ui_Event.ONMOUSEUP = __ui_Event.prototype.ONMOUSEUP = 8;
+__ui_Event.ONSCROLL = __ui_Event.prototype.ONSCROLL = 16384;
+__ui_FocusListener.prototype.__class__ = "ui_FocusListener";
+function ui_FocusListener() {
+    return new __ui_FocusListener();
+}
+function __ui_FocusListener() {
+}
+__ui_FocusListener.prototype.fireFocusEvent = function(listeners, sender, event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "focus")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onFocus(sender, DOM_eventGetKeyCode(event), modifiers);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "blur")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onLostFocus(sender, DOM_eventGetKeyCode(event), modifiers);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+};
+__ui_KeyboardListener.prototype.__class__ = "ui_KeyboardListener";
+function ui_KeyboardListener() {
+    return new __ui_KeyboardListener();
+}
+function __ui_KeyboardListener() {
+}
+__ui_KeyboardListener.KEY_ALT = __ui_KeyboardListener.prototype.KEY_ALT = 18;
+__ui_KeyboardListener.KEY_BACKSPACE = __ui_KeyboardListener.prototype.KEY_BACKSPACE = 8;
+__ui_KeyboardListener.KEY_CTRL = __ui_KeyboardListener.prototype.KEY_CTRL = 17;
+__ui_KeyboardListener.KEY_DELETE = __ui_KeyboardListener.prototype.KEY_DELETE = 46;
+__ui_KeyboardListener.KEY_DOWN = __ui_KeyboardListener.prototype.KEY_DOWN = 40;
+__ui_KeyboardListener.KEY_END = __ui_KeyboardListener.prototype.KEY_END = 35;
+__ui_KeyboardListener.KEY_ENTER = __ui_KeyboardListener.prototype.KEY_ENTER = 13;
+__ui_KeyboardListener.KEY_ESCAPE = __ui_KeyboardListener.prototype.KEY_ESCAPE = 27;
+__ui_KeyboardListener.KEY_HOME = __ui_KeyboardListener.prototype.KEY_HOME = 36;
+__ui_KeyboardListener.KEY_LEFT = __ui_KeyboardListener.prototype.KEY_LEFT = 37;
+__ui_KeyboardListener.KEY_PAGEDOWN = __ui_KeyboardListener.prototype.KEY_PAGEDOWN = 34;
+__ui_KeyboardListener.KEY_PAGEUP = __ui_KeyboardListener.prototype.KEY_PAGEUP = 33;
+__ui_KeyboardListener.KEY_RIGHT = __ui_KeyboardListener.prototype.KEY_RIGHT = 39;
+__ui_KeyboardListener.KEY_SHIFT = __ui_KeyboardListener.prototype.KEY_SHIFT = 16;
+__ui_KeyboardListener.KEY_TAB = __ui_KeyboardListener.prototype.KEY_TAB = 9;
+__ui_KeyboardListener.KEY_UP = __ui_KeyboardListener.prototype.KEY_UP = 38;
+__ui_KeyboardListener.MODIFIER_ALT = __ui_KeyboardListener.prototype.MODIFIER_ALT = 4;
+__ui_KeyboardListener.MODIFIER_CTRL = __ui_KeyboardListener.prototype.MODIFIER_CTRL = 2;
+__ui_KeyboardListener.MODIFIER_SHIFT = __ui_KeyboardListener.prototype.MODIFIER_SHIFT = 1;
+__ui_KeyboardListener.prototype.getKeyboardModifiers = function(event) {
+    var shift = 0;
+    var ctrl = 0;
+    var alt = 0;
+    if (DOM_eventGetShiftKey(event)) {
+    var shift = __ui_KeyboardListener.MODIFIER_SHIFT;
+    }
+    if (DOM_eventGetCtrlKey(event)) {
+    var ctrl = __ui_KeyboardListener.MODIFIER_CTRL;
+    }
+    if (DOM_eventGetAltKey(event)) {
+    var alt = __ui_KeyboardListener.MODIFIER_ALT;
+    }
+    return shift | ctrl | alt;
+};
+__ui_KeyboardListener.prototype.fireKeyboardEvent = function(listeners, sender, event) {
+    var modifiers = __ui_KeyboardListener.prototype.getKeyboardModifiers.call(this, event);
+    var type = DOM_eventGetType(event);
+    if ((type == "keydown")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onKeyDown(sender, DOM_eventGetKeyCode(event), modifiers);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "keyup")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onKeyUp(sender, DOM_eventGetKeyCode(event), modifiers);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "keypress")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onKeyPress(sender, DOM_eventGetKeyCode(event), modifiers);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+};
+__ui_MouseListener.prototype.__class__ = "ui_MouseListener";
+function ui_MouseListener() {
+    return new __ui_MouseListener();
+}
+function __ui_MouseListener() {
+}
+__ui_MouseListener.prototype.fireMouseEvent = function(listeners, sender, event) {
+    var x =  ( DOM_eventGetClientX(event) - DOM_getAbsoluteLeft(sender.getElement()) ) ;
+    var y =  ( DOM_eventGetClientY(event) - DOM_getAbsoluteTop(sender.getElement()) ) ;
+    var type = DOM_eventGetType(event);
+    if ((type == "mousedown")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onMouseDown(sender, x, y);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "mouseup")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onMouseUp(sender, x, y);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "mousemove")) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onMouseMove(sender, x, y);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "mouseover")) {
+    var from_element = DOM_eventGetFromElement(event);
+    if (!(DOM_isOrHasChild(sender.getElement(), from_element))) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onMouseEnter(sender);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    }
+    else if ((type == "mouseout")) {
+    var to_element = DOM_eventGetToElement(event);
+    if (!(DOM_isOrHasChild(sender.getElement(), to_element))) {
+
+        var __listener = listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onMouseLeave(sender);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    }
+};
+__ui_UIObject.prototype.__class__ = "ui_UIObject";
+function ui_UIObject() {
+    return new __ui_UIObject();
+}
+function __ui_UIObject() {
+}
+__ui_UIObject.prototype.getAbsoluteLeft = function() {
+    return DOM_getAbsoluteLeft(this.getElement());
+};
+__ui_UIObject.prototype.getAbsoluteTop = function() {
+    return DOM_getAbsoluteTop(this.getElement());
+};
+__ui_UIObject.prototype.getElement = function() {
+    return this.element;
+};
+__ui_UIObject.prototype.getOffsetHeight = function() {
+    return DOM_getIntAttribute(this.element, "offsetHeight");
+};
+__ui_UIObject.prototype.getOffsetWidth = function() {
+    return DOM_getIntAttribute(this.element, "offsetWidth");
+};
+__ui_UIObject.prototype.getStyleName = function() {
+    return DOM_getAttribute(this.element, "className");
+};
+__ui_UIObject.prototype.setElement = function(element) {
+    this.element = element;
+};
+__ui_UIObject.prototype.setHeight = function(height) {
+    DOM_setStyleAttribute(this.element, "height", height);
+};
+__ui_UIObject.prototype.setPixelSize = function(width, height) {
+    if ((width >= 0)) {
+    DOM_setIntStyleAttribute(this.element, "width", width);
+    }
+    if ((height >= 0)) {
+    DOM_setIntStyleAttribute(this.element, "height", height);
+    }
+};
+__ui_UIObject.prototype.setSize = function(width, height) {
+    this.setWidth(width);
+    this.setHeight(height);
+};
+__ui_UIObject.prototype.addStyleName = function(style) {
+    this.setStyleName(this.element, style, true);
+};
+__ui_UIObject.prototype.removeStyleName = function(style) {
+    this.setStyleName(this.element, style, false);
+};
+__ui_UIObject.prototype.setStyleName = function(element, style, add) {
+    if (typeof style == 'undefined') style=null;
+    if (typeof add == 'undefined') add=true;
+    if ((style == null)) {
+    var style = element;
+    var element = this.element;
+    }
+    var oldStyle = DOM_getAttribute(element, "className");
+    if ((oldStyle == null)) {
+    var oldStyle = "";
+    }
+    var idx = oldStyle.find(style);
+    if (add) {
+    if ((idx == -1)) {
+    DOM_setAttribute(element, "className",  (  ( oldStyle + " " )  + style ) );
+    }
+    }
+    else {
+    if ((idx != -1)) {
+    var begin = pyjslib_slice(oldStyle, null, idx);
+    var end = pyjslib_slice(oldStyle,  ( idx + pyjslib_len(style) ) , null);
+    DOM_setAttribute(element, "className",  ( begin + end ) );
+    }
+    }
+};
+__ui_UIObject.prototype.setWidth = function(width) {
+    DOM_setStyleAttribute(this.element, "width", width);
+};
+__ui_UIObject.prototype.sinkEvents = function(eventBitsToAdd) {
+    if (this.element) {
+    DOM_sinkEvents(this.getElement(), eventBitsToAdd | DOM_getEventsSunk(this.getElement()));
+    }
+};
+__ui_UIObject.prototype.isVisible = function(element) {
+    if (typeof element == 'undefined') element=null;
+    if (!(element)) {
+    var element = this.element;
+    }
+    return (element.style.display != "none");
+};
+__ui_UIObject.prototype.setVisible = function(element, visible) {
+    if (typeof visible == 'undefined') visible=null;
+    if ((visible == null)) {
+    var visible = element;
+    var element = this.element;
+    }
+    if (visible) {
+    element.style.display = "";
+    }
+    else {
+    element.style.display = "none";
+    }
+};
+__ui_UIObject.prototype.unsinkEvents = function(eventBitsToRemove) {
+    DOM_sinkEvents(this.getElement(), ~eventBitsToRemove & DOM_getEventsSunk(this.getElement()));
+};
+pyjs_extend(__ui_Widget, __ui_UIObject);
+__ui_Widget.prototype.__class__ = "ui_Widget";
+function ui_Widget() {
+    return new __ui_Widget();
+}
+function __ui_Widget() {
+    this.attached = false;
+    this.parent = null;
+    this.layoutData = null;
+}
+__ui_Widget.prototype.getLayoutData = function() {
+    return this.layoutData;
+};
+__ui_Widget.prototype.getParent = function() {
+    return this.parent;
+};
+__ui_Widget.prototype.isAttached = function() {
+    return this.attached;
+};
+__ui_Widget.prototype.onBrowserEvent = function(event) {
+};
+__ui_Widget.prototype.onLoad = function() {
+};
+__ui_Widget.prototype.onAttach = function() {
+    if (this.attached) {
+    return;
+    }
+    this.attached = true;
+    DOM_setEventListener(this.getElement(), this);
+    this.onLoad();
+};
+__ui_Widget.prototype.onDetach = function() {
+    if (!(this.attached)) {
+    return;
+    }
+    this.attached = false;
+    DOM_setEventListener(this.getElement(), null);
+};
+__ui_Widget.prototype.setLayoutData = function(layoutData) {
+    this.layoutData = layoutData;
+};
+__ui_Widget.prototype.setParent = function(parent) {
+    this.parent = parent;
+    if ((parent == null)) {
+    this.onDetach();
+    }
+    else if (parent.attached) {
+    this.onAttach();
+    }
+};
+pyjs_extend(__ui_FocusWidget, __ui_Widget);
+__ui_FocusWidget.prototype.__class__ = "ui_FocusWidget";
+function ui_FocusWidget(element) {
+    return new __ui_FocusWidget(element);
+}
+function __ui_FocusWidget(element) {
+    __ui_Widget.call(this);
+    this.clickListeners = new pyjslib_List([]);
+    this.focusListeners = new pyjslib_List([]);
+    this.keyboardListeners = new pyjslib_List([]);
+    this.setElement(element);
+    this.sinkEvents(__ui_Event.FOCUSEVENTS | __ui_Event.KEYEVENTS);
+}
+__ui_FocusWidget.prototype.addClickListener = function(listener) {
+    this.clickListeners.append(listener);
+};
+__ui_FocusWidget.prototype.addFocusListener = function(listener) {
+    this.focusListeners.append(listener);
+};
+__ui_FocusWidget.prototype.addKeyboardListener = function(listener) {
+    this.keyboardListeners.append(listener);
+};
+__ui_FocusWidget.prototype.getTabIndex = function() {
+    return __ui_Focus.prototype.getTabIndex.call(this, this.getElement());
+};
+__ui_FocusWidget.prototype.isEnabled = function() {
+    return (DOM_getAttribute(this.getElement(), "disabled") != "true");
+};
+__ui_FocusWidget.prototype.onBrowserEvent = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "click")) {
+
+        var __listener = this.clickListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onClick) {
+    listener.onClick(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "blur") || (type == "focus")) {
+    __ui_FocusListener.prototype.fireFocusEvent.call(this, this.focusListeners, this, event);
+    }
+    else if ((type == "keydown") || (type == "keypress") || (type == "keyup")) {
+    __ui_KeyboardListener.prototype.fireKeyboardEvent.call(this, this.keyboardListeners, this, event);
+    }
+};
+__ui_FocusWidget.prototype.removeClickListener = function(listener) {
+    this.clickListeners.remove(listener);
+};
+__ui_FocusWidget.prototype.removeFocusListener = function(listener) {
+    this.focusListeners.remove(listener);
+};
+__ui_FocusWidget.prototype.removeKeyboardListener = function(listener) {
+    this.keyboardListeners.remove(listener);
+};
+__ui_FocusWidget.prototype.setAccessKey = function(key) {
+    DOM_setAttribute(this.getElement(), "accessKey",  ( "" + key ) );
+};
+__ui_FocusWidget.prototype.setEnabled = function(enabled) {
+    if (enabled) {
+    var value = "";
+    }
+    else {
+    var value = "true";
+    }
+    DOM_setAttribute(this.getElement(), "disabled", value);
+};
+__ui_FocusWidget.prototype.setFocus = function(focused) {
+    if (focused) {
+    __ui_Focus.prototype.focus.call(this, this.getElement());
+    }
+    else {
+    __ui_Focus.prototype.blur.call(this, this.getElement());
+    }
+};
+__ui_FocusWidget.prototype.setTabIndex = function(index) {
+    __ui_Focus.prototype.setTabIndex.call(this, this.getElement(), index);
+};
+pyjs_extend(__ui_ButtonBase, __ui_FocusWidget);
+__ui_ButtonBase.prototype.__class__ = "ui_ButtonBase";
+function ui_ButtonBase(element) {
+    return new __ui_ButtonBase(element);
+}
+function __ui_ButtonBase(element) {
+    __ui_FocusWidget.call(this, element);
+    this.sinkEvents(__ui_Event.ONCLICK);
+}
+__ui_ButtonBase.prototype.getHTML = function() {
+    return DOM_getInnerHTML(this.getElement());
+};
+__ui_ButtonBase.prototype.getText = function() {
+    return DOM_getInnerText(this.getElement());
+};
+__ui_ButtonBase.prototype.setHTML = function(html) {
+    DOM_setInnerHTML(this.getElement(), html);
+};
+__ui_ButtonBase.prototype.setText = function(text) {
+    DOM_setInnerText(this.getElement(), text);
+};
+pyjs_extend(__ui_Button, __ui_ButtonBase);
+__ui_Button.prototype.__class__ = "ui_Button";
+function ui_Button(html, listener) {
+    return new __ui_Button(html, listener);
+}
+function __ui_Button(html, listener) {
+    if (typeof html == 'undefined') html=null;
+    if (typeof listener == 'undefined') listener=null;
+    __ui_ButtonBase.call(this, DOM_createButton());
+    this.setStyleName("gwt-Button");
+    if (html) {
+    this.setHTML(html);
+    }
+    if (listener) {
+    this.addClickListener(listener);
+    }
+}
+__ui_Button.prototype.click = function() {
+    this.getElement().click();
+};
+pyjs_extend(__ui_CheckBox, __ui_ButtonBase);
+__ui_CheckBox.prototype.__class__ = "ui_CheckBox";
+function ui_CheckBox(label, asHTML) {
+    return new __ui_CheckBox(label, asHTML);
+}
+function __ui_CheckBox(label, asHTML) {
+    if (typeof label == 'undefined') label=null;
+    if (typeof asHTML == 'undefined') asHTML=false;
+    this.initElement(DOM_createInputCheck());
+    this.setStyleName("gwt-CheckBox");
+    if (label) {
+    if (asHTML) {
+    this.setHTML(label);
+    }
+    else {
+    this.setText(label);
+    }
+    }
+}
+__ui_CheckBox.prototype.initElement = function(element) {
+    __ui_ButtonBase.call(this, DOM_createSpan());
+    this.inputElem = element;
+    this.labelElem = DOM_createLabel();
+    DOM_appendChild(this.getElement(), this.inputElem);
+    DOM_appendChild(this.getElement(), this.labelElem);
+    var uid =  ( "check" + this.getUniqueID() ) ;
+    DOM_setAttribute(this.inputElem, "id", uid);
+    DOM_setAttribute(this.labelElem, "htmlFor", uid);
+};
+__ui_CheckBox.prototype.getUniqueID = function() {
+
+        _CheckBox_unique_id++;
+        return _CheckBox_unique_id;
+        };
+        var _CheckBox_unique_id=0;
+        {
+        
+};
+__ui_CheckBox.prototype.getHTML = function() {
+    return DOM_getInnerHTML(this.labelElem);
+};
+__ui_CheckBox.prototype.getText = function() {
+    return DOM_getInnerText(this.labelElem);
+};
+__ui_CheckBox.prototype.setChecked = function(checked) {
+    if (checked) {
+    var value = "true";
+    }
+    else {
+    var value = "";
+    }
+    DOM_setAttribute(this.inputElem, "checked", value);
+    DOM_setAttribute(this.inputElem, "defaultChecked", value);
+};
+__ui_CheckBox.prototype.isChecked = function() {
+    if (this.attached) {
+    var propName = "checked";
+    }
+    else {
+    var propName = "defaultChecked";
+    }
+    var value = DOM_getAttribute(this.inputElem, propName);
+    return (value == "true") || (value == "-1");
+};
+__ui_CheckBox.prototype.isEnabled = function() {
+    return (DOM_getAttribute(this.inputElem, "disabled") != "true");
+};
+__ui_CheckBox.prototype.setEnabled = function(enabled) {
+    if (enabled) {
+    var value = "";
+    }
+    else {
+    var value = "true";
+    }
+    DOM_setAttribute(this.inputElem, "disabled", value);
+};
+__ui_CheckBox.prototype.setHTML = function(html) {
+    DOM_setInnerHTML(this.labelElem, html);
+};
+__ui_CheckBox.prototype.setText = function(text) {
+    DOM_setInnerText(this.labelElem, text);
+};
+pyjs_extend(__ui_RadioButton, __ui_CheckBox);
+__ui_RadioButton.prototype.__class__ = "ui_RadioButton";
+function ui_RadioButton(group, label, asHTML) {
+    return new __ui_RadioButton(group, label, asHTML);
+}
+function __ui_RadioButton(group, label, asHTML) {
+    if (typeof label == 'undefined') label=null;
+    if (typeof asHTML == 'undefined') asHTML=false;
+    this.initElement(DOM_createInputRadio(group));
+    this.setStyleName("gwt-RadioButton");
+    if (label) {
+    if (asHTML) {
+    this.setHTML(label);
+    }
+    else {
+    this.setText(label);
+    }
+    }
+}
+pyjs_extend(__ui_Composite, __ui_Widget);
+__ui_Composite.prototype.__class__ = "ui_Composite";
+function ui_Composite() {
+    return new __ui_Composite();
+}
+function __ui_Composite() {
+    __ui_Widget.call(this);
+}
+__ui_Composite.prototype.onAttach = function() {
+    __ui_Widget.prototype.onAttach.call(this);
+    this.widget.onAttach();
+};
+__ui_Composite.prototype.onDetach = function() {
+    __ui_Widget.prototype.onDetach.call(this);
+    this.widget.onDetach();
+};
+__ui_Composite.prototype.setWidget = function(widget) {
+    this.widget = widget;
+    this.setElement(widget.getElement());
+};
+__ui_Composite.prototype.setParent = function(parent) {
+    __ui_Widget.prototype.setParent.call(this, parent);
+    this.widget.setParent(parent);
+};
+pyjs_extend(__ui_Panel, __ui_Widget);
+__ui_Panel.prototype.__class__ = "ui_Panel";
+function ui_Panel() {
+    return new __ui_Panel();
+}
+function __ui_Panel() {
+    __ui_Widget.call(this);
+    this.children = new pyjslib_List([]);
+}
+__ui_Panel.prototype.clear = function() {
+};
+__ui_Panel.prototype.disown = function(widget) {
+    widget.setParent(null);
+};
+__ui_Panel.prototype.adopt = function(widget) {
+    widget.setParent(this);
+};
+__ui_Panel.prototype.remove = function(widget) {
+};
+__ui_Panel.prototype.onAttach = function() {
+    __ui_Widget.prototype.onAttach.call(this);
+
+        var __child = this.__iter__();
+        try {
+            while (true) {
+                var child = __child.next();
+                
+        
+    child.onAttach();
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_Panel.prototype.onDetach = function() {
+    __ui_Widget.prototype.onDetach.call(this);
+
+        var __child = this.__iter__();
+        try {
+            while (true) {
+                var child = __child.next();
+                
+        
+    child.onDetach();
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_Panel.prototype.__iter__ = function() {
+    return this.children.__iter__();
+};
+__ui_CellFormatter.prototype.__class__ = "ui_CellFormatter";
+function ui_CellFormatter(outer) {
+    return new __ui_CellFormatter(outer);
+}
+function __ui_CellFormatter(outer) {
+    this.outer = outer;
+}
+__ui_CellFormatter.prototype.addStyleName = function(row, column, styleName) {
+    this.outer.prepareCell(row, column);
+    this.outer.setStyleName(this.getElement(row, column), styleName, true);
+};
+__ui_CellFormatter.prototype.getElement = function(row, column) {
+    this.outer.checkCellBounds(row, column);
+    return DOM_getChild(this.outer.rowFormatter.getElement(row), column);
+};
+__ui_CellFormatter.prototype.getStyleName = function(row, column) {
+    return DOM_getAttribute(this.getElement(row, column), "className");
+};
+__ui_CellFormatter.prototype.removeStyleName = function(row, column, styleName) {
+    this.checkCellBounds(row, column);
+    this.outer.setStyleName(this.getElement(row, column), styleName, false);
+};
+__ui_CellFormatter.prototype.setAlignment = function(row, column, hAlign, vAlign) {
+    this.outer.prepareCell(row, column);
+    this.setHorizontalAlignment(row, column, hAlign);
+    this.setVerticalAlignment(row, column, vAlign);
+};
+__ui_CellFormatter.prototype.setHeight = function(row, column, height) {
+    this.outer.prepareCell(row, column);
+    DOM_setAttribute(this.getCellElement(this.outer.tableElem, row, column), "height", height);
+};
+__ui_CellFormatter.prototype.setHorizontalAlignment = function(row, column, align) {
+    this.outer.prepareCell(row, column);
+    DOM_setStyleAttribute(this.getCellElement(this.outer.tableElem, row, column), "textAlign", align);
+};
+__ui_CellFormatter.prototype.setStyleName = function(row, column, styleName) {
+    this.outer.prepareCell(row, column);
+    this.setAttr(row, column, "className", styleName);
+};
+__ui_CellFormatter.prototype.setVerticalAlignment = function(row, column, align) {
+    this.outer.prepareCell(row, column);
+    DOM_setStyleAttribute(this.getCellElement(this.tableElem, row, column), "verticalAlign", align);
+};
+__ui_CellFormatter.prototype.setWidth = function(row, column, width) {
+    this.outer.prepareCell(row, column);
+    DOM_setAttribute(this.getCellElement(this.outer.tableElem, row, column), "width", width);
+};
+__ui_CellFormatter.prototype.setWordWrap = function(row, column, wrap) {
+    this.outer.prepareCell(row, column);
+    if (wrap) {
+    var wrap_str = "";
+    }
+    else {
+    var wrap_str = "nowrap";
+    }
+    DOM_setStyleAttribute(this.getElement(row, column), "whiteSpace", wrap_str);
+};
+__ui_CellFormatter.prototype.ensureElement = function(row, column) {
+    this.outer.prepareCell(row, column);
+    return DOM_getChild(this.outer.rowFormatter.ensureElement(row), column);
+};
+__ui_CellFormatter.prototype.getAttr = function(row, column, attr) {
+    var elem = this.getElement(row, column);
+    return DOM_getAttribute(elem, attr);
+};
+__ui_CellFormatter.prototype.setAttr = function(row, column, attrName, value) {
+    var elem = this.getElement(row, column);
+    DOM_setAttribute(elem, attrName, value);
+};
+__ui_CellFormatter.prototype.getCellElement = function(table, row, col) {
+
+        return table.rows[row].cells[col];
+        
+};
+__ui_CellFormatter.prototype.getRawElement = function(row, column) {
+    return this.getCellElement(this.outer.tableElem, row, column);
+};
+__ui_RowFormatter.prototype.__class__ = "ui_RowFormatter";
+function ui_RowFormatter(outer) {
+    return new __ui_RowFormatter(outer);
+}
+function __ui_RowFormatter(outer) {
+    this.outer = outer;
+}
+__ui_RowFormatter.prototype.addStyleName = function(row, styleName) {
+    this.outer.setStyleName(this.ensureElement(row), styleName, true);
+};
+__ui_RowFormatter.prototype.getElement = function(row) {
+    this.outer.checkRowBounds(row);
+    return DOM_getChild(this.outer.bodyElem, row);
+};
+__ui_RowFormatter.prototype.getStyleName = function(row) {
+    return DOM_getAttribute(this.getElement(row), "className");
+};
+__ui_RowFormatter.prototype.removeStyleName = function(row, styleName) {
+    this.outer.setStyleName(this.getElement(row), styleName, false);
+};
+__ui_RowFormatter.prototype.setStyleName = function(row, styleName) {
+    var elem = this.ensureElement(row);
+    DOM_setAttribute(elem, "className", styleName);
+};
+__ui_RowFormatter.prototype.setVerticalAlign = function(row, align) {
+    DOM_setStyleAttribute(this.ensureElement(row), "verticalAlign", align);
+};
+__ui_RowFormatter.prototype.ensureElement = function(row) {
+    this.outer.prepareRow(row);
+    return DOM_getChild(this.outer.bodyElem, row);
+};
+pyjs_extend(__ui_HTMLTable, __ui_Panel);
+__ui_HTMLTable.prototype.__class__ = "ui_HTMLTable";
+function ui_HTMLTable() {
+    return new __ui_HTMLTable();
+}
+function __ui_HTMLTable() {
+    __ui_Panel.call(this);
+    this.cellFormatter = ui_CellFormatter();
+    this.rowFormatter = ui_RowFormatter();
+    this.tableListeners = new pyjslib_List([]);
+    this.widgetMap = new pyjslib_Dict([]);
+    this.tableElem = DOM_createTable();
+    this.bodyElem = DOM_createTBody();
+    DOM_appendChild(this.tableElem, this.bodyElem);
+    this.setElement(this.tableElem);
+    this.sinkEvents(__ui_Event.ONCLICK);
+}
+__ui_HTMLTable.prototype.add = function(widget) {
+    return false;
+};
+__ui_HTMLTable.prototype.addTableListener = function(listener) {
+    this.tableListeners.append(listener);
+};
+__ui_HTMLTable.prototype.clear = function() {
+
+        var __row = pyjslib_range(this.getRowCount()).__iter__();
+        try {
+            while (true) {
+                var row = __row.next();
+                
+        
+
+        var __col = this.getCellCount(row).__iter__();
+        try {
+            while (true) {
+                var col = __col.next();
+                
+        
+    var child = this.getWidget(row, col);
+    if ((child != null)) {
+    this.removeWidget(row, col, child);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_HTMLTable.prototype.clearCell = function(row, column) {
+    var td = this.cellFormatter.getElement(row, column);
+    return this.internalClearCell(row, column, td);
+};
+__ui_HTMLTable.prototype.getCellCount = function(row) {
+    return 0;
+};
+__ui_HTMLTable.prototype.getCellFormatter = function() {
+    return this.cellFormatter;
+};
+__ui_HTMLTable.prototype.getCellPadding = function() {
+    return DOM_getIntAttribute(this.tableElem, "cellPadding");
+};
+__ui_HTMLTable.prototype.getCellSpacing = function() {
+    return DOM_getIntAttribute(this.tableElem, "cellSpacing");
+};
+__ui_HTMLTable.prototype.getHTML = function(row, column) {
+    var element = this.cellFormatter.getElement(row, column);
+    return DOM_getInnerHTML(element);
+};
+__ui_HTMLTable.prototype.getRowCount = function() {
+    return 0;
+};
+__ui_HTMLTable.prototype.getRowFormatter = function() {
+    return this.rowFormatter;
+};
+__ui_HTMLTable.prototype.getText = function(row, column) {
+    this.checkCellBounds(row, column);
+    var element = this.cellFormatter.getElement(row, column);
+    return DOM_getInnerText(element);
+};
+__ui_HTMLTable.prototype.getWidget = function(row, column) {
+    this.checkCellBounds(row, column);
+    var key = this.computeKey(row, column);
+    return this.widgetMap.__getitem__(key);
+};
+__ui_HTMLTable.prototype.isCellPresent = function(row, column) {
+    if ((row >= this.getRowCount()) || (row < 0)) {
+    return false;
+    }
+    if ((column < 0) || (column >= this.getCellCount(row))) {
+    return false;
+    }
+    return true;
+};
+__ui_HTMLTable.prototype.__iter__ = function() {
+    return this.widgetMap.itervalues();
+};
+__ui_HTMLTable.prototype.onBrowserEvent = function(event) {
+    if ((DOM_eventGetType(event) == "click")) {
+    var td = this.getEventTargetCell(event);
+    if (!(td)) {
+    return;
+    }
+    var tr = DOM_getParent(td);
+    var body = DOM_getParent(tr);
+    var row = DOM_getChildIndex(body, tr);
+    var column = DOM_getChildIndex(tr, td);
+
+        var __listener = this.tableListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onCellClicked) {
+    listener.onCellClicked(this, row, column);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+};
+__ui_HTMLTable.prototype.remove = function(widget) {
+    if ((widget.getParent() != this)) {
+    return false;
+    }
+    var td = DOM_getParent(widget.getElement());
+    var tr = DOM_getParent(td);
+    var row = DOM_getChildIndex(this.bodyElem, tr);
+    var column = DOM_getChildIndex(tr, td);
+    this.removeWidget(row, column, widget);
+    return true;
+};
+__ui_HTMLTable.prototype.removeTableListener = function(listener) {
+    this.tableListeners.remove(listener);
+};
+__ui_HTMLTable.prototype.setBorderWidth = function(width) {
+    DOM_setAttribute(this.tableElem, "border", width);
+};
+__ui_HTMLTable.prototype.setCellPadding = function(padding) {
+    DOM_setIntAttribute(this.tableElem, "cellPadding", padding);
+};
+__ui_HTMLTable.prototype.setCellSpacing = function(spacing) {
+    DOM_setIntAttribute(this.tableElem, "cellSpacing", spacing);
+};
+__ui_HTMLTable.prototype.setHTML = function(row, column, html) {
+    this.prepareCell(row, column);
+    var td = this.cleanCell(row, column);
+    DOM_setInnerHTML(td, html);
+};
+__ui_HTMLTable.prototype.setText = function(row, column, text) {
+    this.prepareCell(row, column);
+    var td = this.cleanCell(row, column);
+    DOM_setInnerText(td, text);
+};
+__ui_HTMLTable.prototype.setWidget = function(row, column, widget) {
+    this.prepareCell(row, column);
+    var td = this.cleanCell(row, column);
+    DOM_appendChild(td, widget.getElement());
+    this.widgetMap.__setitem__(this.computeKey(row, column), widget);
+    this.adopt(widget);
+};
+__ui_HTMLTable.prototype.checkCellBounds = function(row, column) {
+    this.checkRowBounds(row);
+    var cellSize = this.getCellCount(row);
+};
+__ui_HTMLTable.prototype.checkRowBounds = function(row) {
+    var rowSize = this.getRowCount();
+};
+__ui_HTMLTable.prototype.computeKey = function(row, column) {
+    return  (  ( row + "-" )  + column ) ;
+};
+__ui_HTMLTable.prototype.createCell = function() {
+    return DOM_createTD();
+};
+__ui_HTMLTable.prototype.getBodyElement = function() {
+    return this.bodyElem;
+};
+__ui_HTMLTable.prototype.getDOMCellCount = function(row) {
+    return DOM_getChildCount(DOM_getChild(this.bodyElem, row));
+};
+__ui_HTMLTable.prototype.getDOMRowCount = function() {
+    return DOM_getChildCount(this.bodyElem);
+};
+__ui_HTMLTable.prototype.insertCell = function(row, column) {
+    var tr = DOM_getChild(this.bodyElem, row);
+    var td = this.createCell();
+    DOM_insertChild(tr, td, column);
+};
+__ui_HTMLTable.prototype.insertCells = function(row, column, count) {
+    var tr = DOM_getChild(this.bodyElem, row);
+
+        var __i = pyjslib_range(column,  ( column + count ) ).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var td = this.createCell();
+    DOM_insertChild(tr, td, i);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_HTMLTable.prototype.insertRow = function(beforeRow) {
+    if ((beforeRow != this.getRowCount())) {
+    this.checkRowBounds(beforeRow);
+    }
+    var tr = DOM_createTR();
+    DOM_insertChild(this.bodyElem, tr, beforeRow);
+    return beforeRow;
+};
+__ui_HTMLTable.prototype.internalClearCell = function(row, column, td) {
+    var widget = this.widgetMap.__getitem__(this.computeKey(row, column));
+    if ((widget != null)) {
+    this.removeWidget(row, column, widget);
+    return true;
+    }
+    DOM_setInnerHTML(td, "");
+    return false;
+};
+__ui_HTMLTable.prototype.prepareCell = function(row, column) {
+};
+__ui_HTMLTable.prototype.prepareRow = function(row) {
+};
+__ui_HTMLTable.prototype.removeCell = function(row, column) {
+    this.checkCellBounds(row, column);
+    var td = this.cleanCell(row, column);
+    var tr = DOM_getChild(this.bodyElem, row);
+    DOM_removeChild(tr, td);
+};
+__ui_HTMLTable.prototype.removeRow = function(row) {
+
+        var __column = pyjslib_range(this.getCellCount(row)).__iter__();
+        try {
+            while (true) {
+                var column = __column.next();
+                
+        
+    this.cleanCell(row, column);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    DOM_removeChild(this.bodyElem, DOM_getChild(this.bodyElem, row));
+};
+__ui_HTMLTable.prototype.setCellFormatter = function(cellFormatter) {
+    this.cellFormatter = cellFormatter;
+};
+__ui_HTMLTable.prototype.setRowFormatter = function(rowFormatter) {
+    this.rowFormatter = rowFormatter;
+};
+__ui_HTMLTable.prototype.cleanCell = function(row, column) {
+    var td = this.cellFormatter.getRawElement(row, column);
+    this.internalClearCell(row, column, td);
+    return td;
+};
+__ui_HTMLTable.prototype.getEventTargetCell = function(event) {
+    var td = DOM_eventGetTarget(event);
+    while ((DOM_getAttribute(td, "tagName").lower() != "td")) {
+    if ((td == null) || DOM_compare(td, this.getElement())) {
+    return;
+    }
+    var td = DOM_getParent(td);
+    }
+    return td;
+};
+__ui_HTMLTable.prototype.removeWidget = function(row, column, widget) {
+    this.disown(widget);
+    var key = this.computeKey(row, column);
+    this.widgetMap.__delitem__(key);
+    var td = this.cellFormatter.getRawElement(row, column);
+    var child = widget.getElement();
+    DOM_removeChild(td, child);
+    return true;
+};
+pyjs_extend(__ui_Grid, __ui_HTMLTable);
+__ui_Grid.prototype.__class__ = "ui_Grid";
+function ui_Grid(rows, columns) {
+    return new __ui_Grid(rows, columns);
+}
+function __ui_Grid(rows, columns) {
+    if (typeof rows == 'undefined') rows=0;
+    if (typeof columns == 'undefined') columns=0;
+    __ui_HTMLTable.call(this);
+    this.cellFormatter = ui_CellFormatter(this);
+    this.rowFormatter = ui_RowFormatter(this);
+    this.numColumns = 0;
+    this.numRows = 0;
+    if ((rows > 0) || (columns > 0)) {
+    this.resize(rows, columns);
+    }
+}
+__ui_Grid.prototype.resize = function(rows, columns) {
+    this.resizeColumns(columns);
+    this.resizeRows(rows);
+};
+__ui_Grid.prototype.resizeColumns = function(columns) {
+    if ((this.numColumns == columns)) {
+    return;
+    }
+    if ((this.numColumns > columns)) {
+
+        var __i = pyjslib_range(0, this.numRows).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+
+        var __j = pyjslib_range( ( this.numColumns - 1 ) ,  ( columns - 1 ) , -1).__iter__();
+        try {
+            while (true) {
+                var j = __j.next();
+                
+        
+    this.removeCell(i, j);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else {
+
+        var __i = pyjslib_range(this.numRows).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+
+        var __j = pyjslib_range(this.numColumns, columns).__iter__();
+        try {
+            while (true) {
+                var j = __j.next();
+                
+        
+    this.insertCell(i, j);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    this.numColumns = columns;
+};
+__ui_Grid.prototype.resizeRows = function(rows) {
+    if ((this.numRows == rows)) {
+    return;
+    }
+    if ((this.numRows > rows)) {
+    var i =  ( this.numRows - 1 ) ;
+    while ((i >= rows)) {
+    this.removeRow(i);
+    i -= 1;
+    }
+    }
+    else {
+    var i = this.numRows;
+    while ((i < rows)) {
+    this.insertRow(i);
+    this.insertCells(i, 0, this.numColumns);
+    i += 1;
+    }
+    }
+    this.numRows = rows;
+};
+__ui_Grid.prototype.createCell = function() {
+    var td = __ui_HTMLTable.prototype.createCell.call(this);
+    DOM_setInnerHTML(td, "&nbsp;");
+    return td;
+};
+__ui_Grid.prototype.clearCell = function(row, column) {
+    var ret = __ui_HTMLTable.prototype.clearCell.call(this, row, column);
+    DOM_setInnerHTML(this.cellFormatter.getElement(row, column), "&nbsp;");
+    return ret;
+};
+__ui_Grid.prototype.prepareCell = function(row, column) {
+};
+__ui_Grid.prototype.prepareRow = function(row) {
+};
+__ui_Grid.prototype.getCellCount = function(row) {
+    return this.numColumns;
+};
+__ui_Grid.prototype.getColumnCount = function() {
+    return this.numColumns;
+};
+__ui_Grid.prototype.getRowCount = function() {
+    return this.numRows;
+};
+pyjs_extend(__ui_FlexCellFormatter, __ui_CellFormatter);
+__ui_FlexCellFormatter.prototype.__class__ = "ui_FlexCellFormatter";
+function ui_FlexCellFormatter(outer) {
+    return new __ui_FlexCellFormatter(outer);
+}
+function __ui_FlexCellFormatter(outer) {
+    __ui_CellFormatter.call(this, outer);
+}
+__ui_FlexCellFormatter.prototype.getColSpan = function(row, column) {
+    return DOM_getIntAttribute(this.getElement(row, column), "colSpan");
+};
+__ui_FlexCellFormatter.prototype.getRowSpan = function(row, column) {
+    return DOM_getIntAttribute(this.getElement(row, column), "rowSpan");
+};
+__ui_FlexCellFormatter.prototype.setColSpan = function(row, column, colSpan) {
+    DOM_setIntAttribute(this.ensureElement(row, column), "colSpan", colSpan);
+};
+__ui_FlexCellFormatter.prototype.setRowSpan = function(row, column, rowSpan) {
+    DOM_setIntAttribute(this.ensureElement(row, column), "rowSpan", rowSpan);
+};
+pyjs_extend(__ui_FlexTable, __ui_HTMLTable);
+__ui_FlexTable.prototype.__class__ = "ui_FlexTable";
+function ui_FlexTable() {
+    return new __ui_FlexTable();
+}
+function __ui_FlexTable() {
+    __ui_HTMLTable.call(this);
+    this.cellFormatter = ui_FlexCellFormatter(this);
+    this.rowFormatter = ui_RowFormatter(this);
+}
+__ui_FlexTable.prototype.addCell = function(row) {
+    this.insertCell(row, this.getCellCount(row));
+};
+__ui_FlexTable.prototype.getCellCount = function(row) {
+    this.checkRowBounds(row);
+    return this.getDOMCellCount(row);
+};
+__ui_FlexTable.prototype.getFlexCellFormatter = function() {
+    return this.getCellFormatter();
+};
+__ui_FlexTable.prototype.getRowCount = function() {
+    return this.getDOMRowCount();
+};
+__ui_FlexTable.prototype.removeCells = function(row, column, num) {
+
+        var __i = pyjslib_range(i).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    this.removeCell(row, column);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_FlexTable.prototype.prepareCell = function(row, column) {
+    this.prepareRow(row);
+    var cellCount = this.getCellCount(row);
+
+        var __i = pyjslib_range(cellCount,  ( column + 1 ) ).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    this.addCell(row);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_FlexTable.prototype.prepareRow = function(row) {
+    var rowCount = this.getRowCount();
+
+        var __i = pyjslib_range(rowCount,  ( row + 1 ) ).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    this.insertRow(i);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+pyjs_extend(__ui_ComplexPanel, __ui_Panel);
+__ui_ComplexPanel.prototype.__class__ = "ui_ComplexPanel";
+function ui_ComplexPanel() {
+    return new __ui_ComplexPanel();
+}
+function __ui_ComplexPanel() {
+    __ui_Panel.call(this);
+    this.children = new pyjslib_List([]);
+}
+__ui_ComplexPanel.prototype.add = function(widget) {
+    this.children.append(widget);
+    widget.setParent(this);
+    return true;
+};
+__ui_ComplexPanel.prototype.clear = function() {
+
+        var __widget = this.children.__iter__();
+        try {
+            while (true) {
+                var widget = __widget.next();
+                
+        
+    this.remove(widget);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_ComplexPanel.prototype.getWidget = function(index) {
+    return this.children.__getitem__(index);
+};
+__ui_ComplexPanel.prototype.getWidgetCount = function() {
+    return pyjslib_len(this.children);
+};
+__ui_ComplexPanel.prototype.getWidgets = function() {
+    return this.children;
+};
+__ui_ComplexPanel.prototype.getWidgetIndex = function(child) {
+    return children.index(child);
+};
+__ui_ComplexPanel.prototype.insert = function(widget, beforeIndex) {
+    if ((beforeIndex > pyjslib_len(this.children))) {
+    return false;
+    }
+    this.children.insert(beforeIndex, widget);
+    widget.setParent(this);
+    return true;
+};
+__ui_ComplexPanel.prototype.remove = function(widget) {
+    widget.setParent(null);
+    return this.children.remove(widget);
+};
+pyjs_extend(__ui_AbsolutePanel, __ui_ComplexPanel);
+__ui_AbsolutePanel.prototype.__class__ = "ui_AbsolutePanel";
+function ui_AbsolutePanel() {
+    return new __ui_AbsolutePanel();
+}
+function __ui_AbsolutePanel() {
+    __ui_ComplexPanel.call(this);
+    this.setElement(DOM_createDiv());
+    DOM_setStyleAttribute(this.getElement(), "overflow", "hidden");
+}
+__ui_AbsolutePanel.prototype.add = function(widget, left, top) {
+    if (typeof left == 'undefined') left=null;
+    if (typeof top == 'undefined') top=null;
+    __ui_ComplexPanel.prototype.add.call(this, widget);
+    DOM_appendChild(this.getElement(), widget.getElement());
+    if ((left != null)) {
+    this.setWidgetPosition(widget, left, top);
+    }
+    return true;
+};
+__ui_AbsolutePanel.prototype.remove = function(widget) {
+    if (__ui_ComplexPanel.prototype.remove.call(this, widget)) {
+    DOM_removeChild(this.getElement(), widget.getElement());
+    }
+    return true;
+};
+__ui_AbsolutePanel.prototype.setWidgetPosition = function(widget, left, top) {
+    var h = widget.getElement();
+    if ((left == -1) && (top == -1)) {
+    DOM_setStyleAttribute(h, "left", "");
+    DOM_setStyleAttribute(h, "top", "");
+    DOM_setStyleAttribute(h, "position", "static");
+    }
+    else {
+    DOM_setStyleAttribute(h, "position", "absolute");
+    DOM_setStyleAttribute(h, "left", left);
+    DOM_setStyleAttribute(h, "top", top);
+    }
+};
+pyjs_extend(__ui_Label, __ui_Widget);
+__ui_Label.prototype.__class__ = "ui_Label";
+function ui_Label(text, wordWrap) {
+    return new __ui_Label(text, wordWrap);
+}
+function __ui_Label(text, wordWrap) {
+    if (typeof text == 'undefined') text=null;
+    if (typeof wordWrap == 'undefined') wordWrap=true;
+    __ui_Widget.call(this);
+    this.horzAlign = "";
+    this.clickListeners = new pyjslib_List([]);
+    this.mouseListeners = new pyjslib_List([]);
+    this.setElement(DOM_createDiv());
+    this.sinkEvents(__ui_Event.ONCLICK | __ui_Event.MOUSEEVENTS);
+    this.setStyleName("gwt-Label");
+    if (text) {
+    this.setText(text);
+    }
+    this.setWordWrap(wordWrap);
+}
+__ui_Label.prototype.addClickListener = function(listener) {
+    this.clickListeners.append(listener);
+};
+__ui_Label.prototype.addMouseListener = function(listener) {
+    this.mouseListeners.append(listener);
+};
+__ui_Label.prototype.getHorizontalAlignment = function() {
+    return this.horzAlign;
+};
+__ui_Label.prototype.getText = function() {
+    return DOM_getInnerText(this.getElement());
+};
+__ui_Label.prototype.getWordWrap = function() {
+    return !((DOM_getStyleAttribute(this.getElement(), "whiteSpace") == "nowrap"));
+};
+__ui_Label.prototype.onBrowserEvent = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "click")) {
+
+        var __listener = this.clickListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onClick) {
+    listener.onClick(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "mousedown") || (type == "mouseup") || (type == "mousemove") || (type == "mouseover") || (type == "mouseout")) {
+    __ui_MouseListener.prototype.fireMouseEvent.call(this, this.mouseListeners, this, event);
+    }
+};
+__ui_Label.prototype.removeClickListener = function(listener) {
+    this.clickListeners.remove(listener);
+};
+__ui_Label.prototype.removeMouseListener = function(listener) {
+    this.mouseListeners.remove(listener);
+};
+__ui_Label.prototype.setHorizontalAlignment = function(align) {
+    this.horzAlign = align;
+    DOM_setStyleAttribute(this.getElement(), "textAlign", align);
+};
+__ui_Label.prototype.setText = function(text) {
+    DOM_setInnerText(this.getElement(), text);
+};
+__ui_Label.prototype.setWordWrap = function(wrap) {
+    if (wrap) {
+    var style = "normal";
+    }
+    else {
+    var style = "nowrap";
+    }
+    DOM_setStyleAttribute(this.getElement(), "whiteSpace", style);
+};
+pyjs_extend(__ui_HTML, __ui_Label);
+__ui_HTML.prototype.__class__ = "ui_HTML";
+function ui_HTML(html, wordWrap) {
+    return new __ui_HTML(html, wordWrap);
+}
+function __ui_HTML(html, wordWrap) {
+    if (typeof html == 'undefined') html=null;
+    if (typeof wordWrap == 'undefined') wordWrap=true;
+    __ui_Label.call(this);
+    this.horzAlign = "";
+    this.clickListeners = new pyjslib_List([]);
+    this.mouseListeners = new pyjslib_List([]);
+    this.setElement(DOM_createDiv());
+    this.sinkEvents(__ui_Event.ONCLICK | __ui_Event.MOUSEEVENTS);
+    this.setStyleName("gwt-HTML");
+    if (html) {
+    this.setHTML(html);
+    }
+    this.setWordWrap(wordWrap);
+}
+__ui_HTML.prototype.setHTML = function(html) {
+    DOM_setInnerHTML(this.getElement(), html);
+};
+__ui_HasHorizontalAlignment.prototype.__class__ = "ui_HasHorizontalAlignment";
+function ui_HasHorizontalAlignment() {
+    return new __ui_HasHorizontalAlignment();
+}
+function __ui_HasHorizontalAlignment() {
+}
+__ui_HasHorizontalAlignment.ALIGN_LEFT = __ui_HasHorizontalAlignment.prototype.ALIGN_LEFT = "left";
+__ui_HasHorizontalAlignment.ALIGN_CENTER = __ui_HasHorizontalAlignment.prototype.ALIGN_CENTER = "center";
+__ui_HasHorizontalAlignment.ALIGN_RIGHT = __ui_HasHorizontalAlignment.prototype.ALIGN_RIGHT = "right";
+__ui_HasVerticalAlignment.prototype.__class__ = "ui_HasVerticalAlignment";
+function ui_HasVerticalAlignment() {
+    return new __ui_HasVerticalAlignment();
+}
+function __ui_HasVerticalAlignment() {
+}
+__ui_HasVerticalAlignment.ALIGN_TOP = __ui_HasVerticalAlignment.prototype.ALIGN_TOP = "top";
+__ui_HasVerticalAlignment.ALIGN_MIDDLE = __ui_HasVerticalAlignment.prototype.ALIGN_MIDDLE = "middle";
+__ui_HasVerticalAlignment.ALIGN_BOTTOM = __ui_HasVerticalAlignment.prototype.ALIGN_BOTTOM = "bottom";
+__ui_HasAlignment.prototype.__class__ = "ui_HasAlignment";
+function ui_HasAlignment() {
+    return new __ui_HasAlignment();
+}
+function __ui_HasAlignment() {
+}
+__ui_HasAlignment.ALIGN_BOTTOM = __ui_HasAlignment.prototype.ALIGN_BOTTOM = "bottom";
+__ui_HasAlignment.ALIGN_MIDDLE = __ui_HasAlignment.prototype.ALIGN_MIDDLE = "middle";
+__ui_HasAlignment.ALIGN_TOP = __ui_HasAlignment.prototype.ALIGN_TOP = "top";
+__ui_HasAlignment.ALIGN_CENTER = __ui_HasAlignment.prototype.ALIGN_CENTER = "center";
+__ui_HasAlignment.ALIGN_LEFT = __ui_HasAlignment.prototype.ALIGN_LEFT = "left";
+__ui_HasAlignment.ALIGN_RIGHT = __ui_HasAlignment.prototype.ALIGN_RIGHT = "right";
+pyjs_extend(__ui_CellPanel, __ui_ComplexPanel);
+__ui_CellPanel.prototype.__class__ = "ui_CellPanel";
+function ui_CellPanel() {
+    return new __ui_CellPanel();
+}
+function __ui_CellPanel() {
+    __ui_ComplexPanel.call(this);
+    this.table = DOM_createTable();
+    this.setElement(this.table);
+}
+__ui_CellPanel.prototype.getTable = function() {
+    return this.table;
+};
+__ui_CellPanel.prototype.setBorderWidth = function(width) {
+    DOM_setAttribute(this.table, "border",  ( "" + width ) );
+};
+__ui_CellPanel.prototype.getSpacing = function() {
+    return this.spacing;
+};
+__ui_CellPanel.prototype.setSpacing = function(spacing) {
+    this.spacing = spacing;
+    DOM_setIntAttribute(this.table, "cellSpacing", spacing);
+};
+pyjs_extend(__ui_HorizontalPanel, __ui_CellPanel);
+__ui_HorizontalPanel.prototype.__class__ = "ui_HorizontalPanel";
+function ui_HorizontalPanel() {
+    return new __ui_HorizontalPanel();
+}
+function __ui_HorizontalPanel() {
+    __ui_CellPanel.call(this);
+    this.horzAlign = __ui_HasHorizontalAlignment.ALIGN_LEFT;
+    this.vertAlign = __ui_HasVerticalAlignment.ALIGN_TOP;
+    var body = DOM_createTBody();
+    this.tableRow = DOM_createTR();
+    DOM_appendChild(this.getTable(), body);
+    DOM_appendChild(body, this.tableRow);
+    DOM_setAttribute(this.getTable(), "cellSpacing", "0");
+    DOM_setAttribute(this.getTable(), "cellPadding", "0");
+    this.setElement(this.getTable());
+}
+__ui_HorizontalPanel.prototype.add = function(widget) {
+    return this.insert(widget, this.getWidgetCount());
+};
+__ui_HorizontalPanel.prototype.getHorizontalAlignment = function() {
+    return this.horzAlign;
+};
+__ui_HorizontalPanel.prototype.getVerticalAlignment = function() {
+    return this.vertAlign;
+};
+__ui_HorizontalPanel.prototype.insert = function(widget, beforeIndex) {
+    if (!(__ui_CellPanel.prototype.insert.call(this, widget, beforeIndex))) {
+    return false;
+    }
+    var td = DOM_createTD();
+    DOM_insertChild(this.tableRow, td, beforeIndex);
+    DOM_appendChild(td, widget.getElement());
+    DOM_setStyleAttribute(widget.getElement(), "position", "static");
+    this.setCellHorizontalAlignment(widget, this.horzAlign);
+    this.setCellVerticalAlignment(widget, this.vertAlign);
+    return true;
+};
+__ui_HorizontalPanel.prototype.remove = function(widget) {
+    if ((widget.getParent() != this)) {
+    return false;
+    }
+    var td = DOM_getParent(widget.getElement());
+    DOM_removeChild(tableRow, td);
+    __ui_CellPanel.prototype.remove.call(widget);
+    return true;
+};
+__ui_HorizontalPanel.prototype.setHorizontalAlignment = function(align) {
+    this.horzAlign = align;
+};
+__ui_HorizontalPanel.prototype.setVerticalAlignment = function(align) {
+    this.vertAlign = align;
+};
+__ui_HorizontalPanel.prototype.setCellHorizontalAlignment = function(widget, align) {
+    var td = this.getWidgetTd(widget);
+    if (td) {
+    DOM_setAttribute(td, "align", align);
+    }
+};
+__ui_HorizontalPanel.prototype.setCellVerticalAlignment = function(widget, align) {
+    var td = this.getWidgetTd(widget);
+    if (td) {
+    DOM_setStyleAttribute(td, "verticalAlign", align);
+    }
+};
+__ui_HorizontalPanel.prototype.setCellHeight = function(widget, height) {
+    var td = DOM_getParent(widget.getElement());
+    DOM_setAttribute(td, "height", height);
+};
+__ui_HorizontalPanel.prototype.setCellWidth = function(widget, width) {
+    var td = DOM_getParent(widget.getElement());
+    DOM_setAttribute(td, "width", width);
+};
+__ui_HorizontalPanel.prototype.getWidgetTd = function(widget) {
+    if ((widget.parent != this)) {
+    return;
+    }
+    return DOM_getParent(widget.getElement());
+};
+pyjs_extend(__ui_VerticalPanel, __ui_CellPanel);
+__ui_VerticalPanel.prototype.__class__ = "ui_VerticalPanel";
+function ui_VerticalPanel() {
+    return new __ui_VerticalPanel();
+}
+function __ui_VerticalPanel() {
+    __ui_CellPanel.call(this);
+    this.horzAlign = __ui_HasHorizontalAlignment.ALIGN_LEFT;
+    this.vertAlign = __ui_HasVerticalAlignment.ALIGN_TOP;
+    this.body = DOM_createTBody();
+    DOM_appendChild(this.getTable(), this.body);
+    DOM_setAttribute(this.getTable(), "cellSpacing", "0");
+    DOM_setAttribute(this.getTable(), "cellPadding", "0");
+    this.setElement(this.getTable());
+}
+__ui_VerticalPanel.prototype.add = function(widget) {
+    return this.insert(widget, this.getWidgetCount());
+};
+__ui_VerticalPanel.prototype.getHorizontalAlignment = function() {
+    return this.horzAlign;
+};
+__ui_VerticalPanel.prototype.getVerticalAlignment = function() {
+    return this.vertAlign;
+};
+__ui_VerticalPanel.prototype.insert = function(widget, beforeIndex) {
+    if (!(__ui_CellPanel.prototype.insert.call(this, widget, beforeIndex))) {
+    return false;
+    }
+    var tr = DOM_createTR();
+    var td = DOM_createTD();
+    DOM_insertChild(this.body, tr, beforeIndex);
+    DOM_appendChild(tr, td);
+    DOM_appendChild(td, widget.getElement());
+    DOM_setStyleAttribute(widget.getElement(), "position", "static");
+    this.setCellHorizontalAlignment(widget, this.horzAlign);
+    this.setCellVerticalAlignment(widget, this.vertAlign);
+    return true;
+};
+__ui_VerticalPanel.prototype.remove = function(widget) {
+    if ((widget.getParent() != this)) {
+    return false;
+    }
+    var td = DOM_getParent(widget.getElement());
+    var tr = DOM_getParent(td);
+    DOM_removeChild(this.body, tr);
+    __ui_CellPanel.prototype.remove.call(this, widget);
+    return true;
+};
+__ui_VerticalPanel.prototype.setHorizontalAlignment = function(align) {
+    this.horzAlign = align;
+};
+__ui_VerticalPanel.prototype.setVerticalAlignment = function(align) {
+    this.vertAlign = align;
+};
+__ui_VerticalPanel.prototype.setCellHorizontalAlignment = function(widget, align) {
+    var td = this.getWidgetTd(widget);
+    if (td) {
+    DOM_setAttribute(td, "align", align);
+    }
+};
+__ui_VerticalPanel.prototype.setCellVerticalAlignment = function(widget, align) {
+    var td = this.getWidgetTd(widget);
+    if (td) {
+    DOM_setStyleAttribute(td, "verticalAlign", align);
+    }
+};
+__ui_VerticalPanel.prototype.setCellHeight = function(widget, height) {
+    var td = DOM_getParent(widget.getElement());
+    DOM_setAttribute(td, "height", height);
+};
+__ui_VerticalPanel.prototype.setCellWidth = function(widget, width) {
+    var td = DOM_getParent(widget.getElement());
+    DOM_setAttribute(td, "width", width);
+};
+__ui_VerticalPanel.prototype.getWidgetTd = function(widget) {
+    if ((widget.parent != this)) {
+    return;
+    }
+    return DOM_getParent(widget.getElement());
+};
+__ui_LayoutData.prototype.__class__ = "ui_LayoutData";
+function ui_LayoutData(direction) {
+    return new __ui_LayoutData(direction);
+}
+function __ui_LayoutData(direction) {
+    this.direction = direction;
+    this.hAlign = "left";
+    this.height = "";
+    this.td = null;
+    this.vAlign = "top";
+    this.width = "";
+}
+pyjs_extend(__ui_DockPanel, __ui_CellPanel);
+__ui_DockPanel.prototype.__class__ = "ui_DockPanel";
+__ui_DockPanel.CENTER = __ui_DockPanel.prototype.CENTER = "center";
+__ui_DockPanel.EAST = __ui_DockPanel.prototype.EAST = "east";
+__ui_DockPanel.NORTH = __ui_DockPanel.prototype.NORTH = "north";
+__ui_DockPanel.SOUTH = __ui_DockPanel.prototype.SOUTH = "south";
+__ui_DockPanel.WEST = __ui_DockPanel.prototype.WEST = "west";
+function ui_DockPanel() {
+    return new __ui_DockPanel();
+}
+function __ui_DockPanel() {
+    __ui_CellPanel.call(this);
+    this.horzAlign = __ui_HasHorizontalAlignment.ALIGN_LEFT;
+    this.vertAlign = __ui_HasVerticalAlignment.ALIGN_TOP;
+    this.dirty = true;
+    this.bodyElement = DOM_createTBody();
+    DOM_appendChild(this.getElement(), this.bodyElement);
+    DOM_setIntAttribute(this.getElement(), "cellSpacing", 0);
+    DOM_setIntAttribute(this.getElement(), "cellPadding", 0);
+    this.setElement(this.getElement());
+}
+__ui_DockPanel.prototype.add = function(widget, direction) {
+    if (typeof direction == 'undefined') direction="north";
+    if ((this.getWidgetCount() > 0)) {
+    var last = this.getWidget( ( this.getWidgetCount() - 1 ) );
+    var data = last.getLayoutData();
+    if ((data.direction == this.CENTER)) {
+    return false;
+    }
+    }
+    __ui_CellPanel.prototype.add.call(this, widget);
+    widget.setLayoutData(ui_LayoutData(direction));
+    this.setCellHorizontalAlignment(widget, this.horzAlign);
+    this.setCellVerticalAlignment(widget, this.vertAlign);
+    this.deferRealize();
+    return true;
+};
+__ui_DockPanel.prototype.getHorizontalAlignment = function() {
+    return this.horzAlign;
+};
+__ui_DockPanel.prototype.getVerticalAlignment = function() {
+    return this.vertAlign;
+};
+__ui_DockPanel.prototype.remove = function(widget) {
+    var ret = __ui_CellPanel.prototype.remove.call(this, widget);
+    if (ret) {
+    this.deferRealize();
+    }
+    return ret;
+};
+__ui_DockPanel.prototype.setHorizontalAlignment = function(align) {
+    this.horzAlign = align;
+};
+__ui_DockPanel.prototype.setVerticalAlignment = function(align) {
+    this.vertAlign = align;
+};
+__ui_DockPanel.prototype.setCellHeight = function(widget, height) {
+    var data = widget.getLayoutData();
+    data.height = height;
+    if (data.td) {
+    DOM_setStyleAttribute(data.td, "height", data.height);
+    }
+};
+__ui_DockPanel.prototype.setCellHorizontalAlignment = function(widget, align) {
+    var data = widget.getLayoutData();
+    data.hAlign = align;
+    if (data.td) {
+    DOM_setAttribute(data.td, "align", data.hAlign);
+    }
+};
+__ui_DockPanel.prototype.setCellVerticalAlignment = function(widget, align) {
+    var data = widget.getLayoutData();
+    data.vAlign = align;
+    if (data.td) {
+    DOM_setStyleAttribute(data.td, "verticalAlign", data.vAlign);
+    }
+};
+__ui_DockPanel.prototype.setCellWidth = function(widget, width) {
+    var data = widget.getLayoutData();
+    data.width = width;
+    if (data.td) {
+    DOM_setStyleAttribute(data.td, "width", data.width);
+    }
+};
+__ui_DockPanel.prototype.onLoad = function() {
+    this.realizeTable();
+};
+__ui_DockPanel.prototype.deferRealize = function() {
+    if (this.dirty) {
+    return;
+    }
+    this.dirty = true;
+    this.realizeTable();
+};
+__ui_DockPanel.prototype.execute = function() {
+    this.realizeTable();
+};
+__ui_DockPanel.prototype.realizeTable = function() {
+    if (!(this.dirty)) {
+    return;
+    }
+    this.dirty = false;
+    while ((DOM_getChildCount(this.bodyElement) > 0)) {
+    DOM_removeChild(this.bodyElement, DOM_getChild(this.bodyElement, 0));
+    }
+    var rowCount = 1;
+    var colCount = 1;
+
+        var __i = pyjslib_range(this.getWidgetCount()).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var data = this.getWidget(i).getLayoutData();
+    var dir = data.direction;
+    if ((dir == this.NORTH) || (dir == this.SOUTH)) {
+    rowCount += 1;
+    }
+    else if ((dir == this.EAST) || (dir == this.WEST)) {
+    colCount += 1;
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    var rows = new pyjslib_List([]);
+
+        var __i = pyjslib_range(rowCount).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    rows.__setitem__(i, ui_DockPanelTmpRow());
+    rows.__getitem__(i).tr = DOM_createTR();
+    DOM_appendChild(this.bodyElement, rows.__getitem__(i).tr);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    var westCol = 0;
+    var eastCol =  ( colCount - 1 ) ;
+    var northRow = 0;
+    var southRow =  ( rowCount - 1 ) ;
+
+        var __i = pyjslib_range(this.getWidgetCount()).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var child = this.getWidget(i);
+    var layout = child.getLayoutData();
+    var td = DOM_createTD();
+    DOM_appendChild(td, child.getElement());
+    layout.td = td;
+    DOM_setAttribute(layout.td, "align", layout.hAlign);
+    DOM_setStyleAttribute(layout.td, "verticalAlign", layout.vAlign);
+    DOM_setAttribute(layout.td, "width", layout.width);
+    DOM_setAttribute(layout.td, "height", layout.height);
+    if ((layout.direction == this.NORTH)) {
+    DOM_insertChild(rows.__getitem__(northRow).tr, td, rows.__getitem__(northRow).center);
+    DOM_setIntAttribute(td, "colSpan",  (  ( eastCol - westCol )  + 1 ) );
+    northRow += 1;
+    }
+    else if ((layout.direction == this.SOUTH)) {
+    DOM_insertChild(rows.__getitem__(southRow).tr, td, rows.__getitem__(southRow).center);
+    DOM_setIntAttribute(td, "colSpan",  (  ( eastCol - westCol )  + 1 ) );
+    southRow -= 1;
+    }
+    else if ((layout.direction == this.WEST)) {
+    var row = rows.__getitem__(northRow);
+    DOM_insertChild(row.tr, td, row.center);
+    row.center += 1;
+    DOM_setIntAttribute(td, "rowSpan",  (  ( southRow - northRow )  + 1 ) );
+    westCol += 1;
+    }
+    else if ((layout.direction == this.EAST)) {
+    var row = rows.__getitem__(northRow);
+    DOM_insertChild(row.tr, td, row.center);
+    DOM_setIntAttribute(td, "rowSpan",  (  ( southRow - northRow )  + 1 ) );
+    eastCol -= 1;
+    }
+    else if ((layout.direction == this.CENTER)) {
+    var row = rows.__getitem__(northRow);
+    DOM_insertChild(row.tr, td, row.center);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_DockPanelTmpRow.prototype.__class__ = "ui_DockPanelTmpRow";
+function ui_DockPanelTmpRow() {
+    return new __ui_DockPanelTmpRow();
+}
+function __ui_DockPanelTmpRow() {
+}
+__ui_DockPanelTmpRow.center = __ui_DockPanelTmpRow.prototype.center = 0;
+__ui_DockPanelTmpRow.tr = __ui_DockPanelTmpRow.prototype.tr = null;
+var ui_rootPanels = new pyjslib_Dict([]);
+pyjs_extend(__ui_RootPanel, __ui_AbsolutePanel);
+__ui_RootPanel.prototype.__class__ = "ui_RootPanel";
+function ui_RootPanel(element) {
+    return new __ui_RootPanel(element);
+}
+function __ui_RootPanel(element) {
+    if (typeof element == 'undefined') element=null;
+    if (pyjslib_isString(element)) {
+    return this.get(element);
+    }
+    __ui_AbsolutePanel.call(this);
+    if (element) {
+    while ((DOM_getChildCount(element) > 0)) {
+    DOM_removeChild(element, DOM_getChild(element, 0));
+    }
+    }
+    else {
+    var element = this.getBodyElement();
+    }
+    this.setElement(element);
+    this.onAttach();
+}
+__ui_RootPanel.prototype.getBodyElement = function() {
+
+        return $doc.body;
+        
+};
+__ui_RootPanel.prototype.get = function(id) {
+    if (typeof id == 'undefined') id=null;
+    if (ui_rootPanels.has_key(id)) {
+    return ui_rootPanels.__getitem__(id);
+    }
+    var element = null;
+    if (id) {
+    var element = DOM_getElementById(id);
+    if (!(element)) {
+    return;
+    }
+    }
+    if ((pyjslib_len(ui_rootPanels) < 1)) {
+    this.hookWindowClosing();
+    }
+    var panel = ui_RootPanel(element);
+    ui_rootPanels.__setitem__(id, panel);
+    return panel;
+};
+__ui_RootPanel.prototype.hookWindowClosing = function() {
+};
+pyjs_extend(__ui_Hyperlink, __ui_Widget);
+__ui_Hyperlink.prototype.__class__ = "ui_Hyperlink";
+function ui_Hyperlink(text, asHTML, targetHistoryToken) {
+    return new __ui_Hyperlink(text, asHTML, targetHistoryToken);
+}
+function __ui_Hyperlink(text, asHTML, targetHistoryToken) {
+    if (typeof text == 'undefined') text="";
+    if (typeof asHTML == 'undefined') asHTML=false;
+    if (typeof targetHistoryToken == 'undefined') targetHistoryToken="";
+    __ui_Widget.call(this);
+    this.clickListeners = new pyjslib_List([]);
+    this.targetHistoryToken = "";
+    this.setElement(DOM_createDiv());
+    this.anchorElem = DOM_createAnchor();
+    DOM_appendChild(this.getElement(), this.anchorElem);
+    this.sinkEvents(__ui_Event.ONCLICK);
+    if (asHTML) {
+    this.setHTML(text);
+    }
+    else {
+    this.setText(text);
+    }
+    if (targetHistoryToken) {
+    this.setTargetHistoryToken(targetHistoryToken);
+    }
+}
+__ui_Hyperlink.prototype.addClickListener = function(listener) {
+    this.clickListeners.append(listener);
+};
+__ui_Hyperlink.prototype.getHTML = function() {
+    return DOM_getInnerHTML(this.anchorElem);
+};
+__ui_Hyperlink.prototype.getTargetHistoryToken = function() {
+    return this.targetHistoryToken;
+};
+__ui_Hyperlink.prototype.getText = function() {
+    return DOM_getInnerText(this.anchorElem);
+};
+__ui_Hyperlink.prototype.onBrowserEvent = function(event) {
+    if ((DOM_eventGetType(event) == "click")) {
+
+        var __listener = this.clickListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onClick) {
+    listener.onClick(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    History_History().newItem(this.targetHistoryToken);
+    DOM_eventPreventDefault(event);
+    }
+};
+__ui_Hyperlink.prototype.removeClickListener = function(listener) {
+    this.clickListeners.remove(listener);
+};
+__ui_Hyperlink.prototype.setHTML = function(html) {
+    DOM_setInnerHTML(this.anchorElem, html);
+};
+__ui_Hyperlink.prototype.setTargetHistoryToken = function(targetHistoryToken) {
+    this.targetHistoryToken = targetHistoryToken;
+    DOM_setAttribute(this.anchorElem, "href",  ( "#" + targetHistoryToken ) );
+};
+__ui_Hyperlink.prototype.setText = function(text) {
+    DOM_setInnerText(this.anchorElem, text);
+};
+pyjs_extend(__ui_Image, __ui_Widget);
+__ui_Image.prototype.__class__ = "ui_Image";
+function ui_Image(url) {
+    return new __ui_Image(url);
+}
+function __ui_Image(url) {
+    if (typeof url == 'undefined') url="";
+    __ui_Widget.call(this);
+    this.clickListeners = new pyjslib_List([]);
+    this.loadListeners = new pyjslib_List([]);
+    this.mouseListeners = new pyjslib_List([]);
+    this.setElement(DOM_createImg());
+    this.sinkEvents(__ui_Event.ONCLICK | __ui_Event.MOUSEEVENTS | __ui_Event.ONLOAD | __ui_Event.ONERROR);
+    if (url) {
+    this.setUrl(url);
+    }
+}
+__ui_Image.prototype.setPrefetchImages = function(key, value) {
+
+        _Image_prefetchImages[key]=value;
+        };
+        var _Image_prefetchImages=new Object();
+        {
+        
+};
+__ui_Image.prototype.addClickListener = function(listener) {
+    this.clickListeners.append(listener);
+};
+__ui_Image.prototype.addLoadListener = function(listener) {
+    this.loadListeners.append(listener);
+};
+__ui_Image.prototype.addMouseListener = function(listener) {
+    this.mouseListeners.append(listener);
+};
+__ui_Image.prototype.getUrl = function() {
+    return DOM_getAttribute(this.getElement(), "src");
+};
+__ui_Image.prototype.onBrowserEvent = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "click")) {
+
+        var __listener = this.clickListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onClick) {
+    listener.onClick(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "mousedown") || (type == "mouseup") || (type == "mousemove") || (type == "mouseover") || (type == "mouseout")) {
+    __ui_MouseListener.prototype.fireMouseEvent.call(this, this.mouseListeners, this, event);
+    }
+    else if ((type == "load")) {
+
+        var __listener = this.loadListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onLoad(this);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "error")) {
+
+        var __listener = this.loadListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onError(this);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+};
+__ui_Image.prototype.prefetch = function(url) {
+    var img = DOM_createImg();
+    DOM_setAttribute(img, "src", url);
+    this.setPrefetchImages(url, img);
+};
+__ui_Image.prototype.setUrl = function(url) {
+    DOM_setAttribute(this.getElement(), "src", url);
+};
+pyjs_extend(__ui_FlowPanel, __ui_ComplexPanel);
+__ui_FlowPanel.prototype.__class__ = "ui_FlowPanel";
+function ui_FlowPanel() {
+    return new __ui_FlowPanel();
+}
+function __ui_FlowPanel() {
+    __ui_ComplexPanel.call(this);
+    this.setElement(DOM_createDiv());
+}
+__ui_FlowPanel.prototype.add = function(w) {
+    __ui_ComplexPanel.prototype.add.call(this, w);
+    DOM_appendChild(this.getElement(), w.getElement());
+    DOM_setStyleAttribute(w.getElement(), "display", "inline");
+    return true;
+};
+__ui_FlowPanel.prototype.remove = function(w) {
+    if (!(__ui_ComplexPanel.prototype.remove.call(w))) {
+    return false;
+    }
+    DOM_removeChild(this.getElement(), w.getElement());
+    return true;
+};
+pyjs_extend(__ui_HTMLPanel, __ui_ComplexPanel);
+__ui_HTMLPanel.prototype.__class__ = "ui_HTMLPanel";
+function ui_HTMLPanel(html) {
+    return new __ui_HTMLPanel(html);
+}
+function __ui_HTMLPanel(html) {
+    __ui_ComplexPanel.call(this);
+    this.setElement(DOM_createDiv());
+    DOM_setInnerHTML(this.getElement(), html);
+}
+__ui_HTMLPanel.prototype.add = function(widget, id) {
+    if (typeof id == 'undefined') id=null;
+    if ((id == null)) {
+    return false;
+    }
+    var element = this.getElementById(this.getElement(), id);
+    if ((element == null)) {
+    return false;
+    }
+    DOM_appendChild(element, widget.getElement());
+    __ui_ComplexPanel.prototype.add.call(this, widget);
+    return true;
+};
+__ui_HTMLPanel.prototype.createUniqueId = function() {
+
+        _HTMLPanel_sUid++;
+        return "HTMLPanel_" + _HTMLPanel_sUid;
+        };
+        var _HTMLPanel_sUid=0;
+        {
+        
+};
+__ui_HTMLPanel.prototype.remove = function(widget) {
+    if (!(__ui_ComplexPanel.prototype.remove.call(widget))) {
+    return false;
+    }
+    DOM_removeChild(DOM_getParent(widget.getElement()), widget.getElement());
+    return true;
+};
+__ui_HTMLPanel.prototype.getElementById = function(element, id) {
+    var element_id = DOM_getAttribute(element, "id");
+    if ((element_id != null) && (element_id == id)) {
+    return element;
+    }
+    var child = DOM_getFirstChild(element);
+    while ((child != null)) {
+    var ret = this.getElementById(child, id);
+    if ((ret != null)) {
+    return ret;
+    }
+    var child = DOM_getNextSibling(child);
+    }
+    return;
+};
+pyjs_extend(__ui_DeckPanel, __ui_ComplexPanel);
+__ui_DeckPanel.prototype.__class__ = "ui_DeckPanel";
+function ui_DeckPanel() {
+    return new __ui_DeckPanel();
+}
+function __ui_DeckPanel() {
+    __ui_ComplexPanel.call(this);
+    this.visibleWidget = -1;
+    this.setElement(DOM_createDiv());
+}
+__ui_DeckPanel.prototype.add = function(widget) {
+    return this.insert(widget, this.getWidgetCount());
+};
+__ui_DeckPanel.prototype.getVisibleWidget = function() {
+    return this.visibleWidget;
+};
+__ui_DeckPanel.prototype.insert = function(widget, beforeIndex) {
+    __ui_ComplexPanel.prototype.add.call(this, widget);
+    DOM_appendChild(this.getElement(), widget.getElement());
+    DOM_setStyleAttribute(widget.getElement(), "width", "100%");
+    DOM_setStyleAttribute(widget.getElement(), "height", "100%");
+    this.setVisible(widget.getElement(), false);
+    return true;
+};
+__ui_DeckPanel.prototype.remove = function(widget) {
+    if (!(__ui_ComplexPanel.prototype.remove.call(this, w))) {
+    return false;
+    }
+    DOM_removeChild(this.getElement(), w.getElement());
+    return true;
+};
+__ui_DeckPanel.prototype.showWidget = function(index) {
+    if ((this.visibleWidget != -1)) {
+    var oldWidget = this.getWidget(this.visibleWidget);
+    this.setVisible(oldWidget.getElement(), false);
+    }
+    this.visibleWidget = index;
+    var newWidget = this.getWidget(this.visibleWidget);
+    this.setVisible(newWidget.getElement(), true);
+};
+pyjs_extend(__ui_SimplePanel, __ui_Panel);
+__ui_SimplePanel.prototype.__class__ = "ui_SimplePanel";
+function ui_SimplePanel(element) {
+    return new __ui_SimplePanel(element);
+}
+function __ui_SimplePanel(element) {
+    if (typeof element == 'undefined') element=null;
+    __ui_Panel.call(this);
+    if ((element == null)) {
+    var element = DOM_createDiv();
+    }
+    this.setElement(element);
+}
+__ui_SimplePanel.prototype.add = function(w) {
+    if ((pyjslib_len(this.children) > 0)) {
+    return false;
+    }
+    DOM_appendChild(this.getContainerElement(), w.getElement());
+    this.setWidget(w);
+    return true;
+};
+__ui_SimplePanel.prototype.clear = function() {
+    this.children = new pyjslib_List([]);
+};
+__ui_SimplePanel.prototype.getWidget = function(index) {
+    return this.children.__getitem__(index);
+};
+__ui_SimplePanel.prototype.getWidgetCount = function() {
+    return pyjslib_len(this.children);
+};
+__ui_SimplePanel.prototype.getWidgetIndex = function(child) {
+    var widget = this.children.__getitem__(0);
+    if ((child == widget)) {
+    return 0;
+    }
+    return -1;
+};
+__ui_SimplePanel.prototype.remove = function(w) {
+    var widget = this.children.__getitem__(0);
+    if ((w == widget)) {
+    this.children = new pyjslib_List([w]);
+    DOM_removeChild(this.getContainerElement(), w.getElement());
+    w.setParent(null);
+    return true;
+    }
+    return false;
+};
+__ui_SimplePanel.prototype.getContainerElement = function() {
+    return this.getElement();
+};
+__ui_SimplePanel.prototype.setWidget = function(w) {
+    this.children = new pyjslib_List([w]);
+    w.setParent(this);
+};
+pyjs_extend(__ui_ScrollPanel, __ui_SimplePanel);
+__ui_ScrollPanel.prototype.__class__ = "ui_ScrollPanel";
+function ui_ScrollPanel(child) {
+    return new __ui_ScrollPanel(child);
+}
+function __ui_ScrollPanel(child) {
+    if (typeof child == 'undefined') child=null;
+    __ui_SimplePanel.call(this);
+    this.setAlwaysShowScrollBars(false);
+    if ((child != null)) {
+    this.add(child);
+    }
+}
+__ui_ScrollPanel.prototype.ensureVisible = function(item) {
+    var scroll = this.getElement();
+    var element = item.getElement();
+    this.ensureVisibleImpl(scroll, element);
+};
+__ui_ScrollPanel.prototype.setScrollPosition = function(position) {
+    DOM_setIntAttribute(this.getElement(), "scrollTop", position);
+};
+__ui_ScrollPanel.prototype.getScrollPosition = function() {
+    return DOM_getIntAttribute(this.getElement(), "scrollTop");
+};
+__ui_ScrollPanel.prototype.setAlwaysShowScrollBars = function(alwaysShow) {
+    if (alwaysShow) {
+    var style = "scroll";
+    }
+    else {
+    var style = "auto";
+    }
+    DOM_setStyleAttribute(this.getElement(), "overflow", style);
+};
+__ui_ScrollPanel.prototype.ensureVisibleImpl = function(scroll, e) {
+
+        if (!e) return;
+
+        var item = e;
+        var realOffset = 0;
+        while (item && (item != scroll)) {
+            realOffset += item.offsetTop;
+            item = item.offsetParent;
+            }
+
+        scroll.scrollTop = realOffset - scroll.offsetHeight / 2;
+        
+};
+pyjs_extend(__ui_PopupPanel, __ui_SimplePanel);
+__ui_PopupPanel.prototype.__class__ = "ui_PopupPanel";
+function ui_PopupPanel(autoHide) {
+    return new __ui_PopupPanel(autoHide);
+}
+function __ui_PopupPanel(autoHide) {
+    if (typeof autoHide == 'undefined') autoHide=false;
+    this.popupListeners = new pyjslib_List([]);
+    this.showing = false;
+    this.autoHide = false;
+    __ui_SimplePanel.call(this, this.createElement());
+    if (autoHide) {
+    this.autoHide = autoHide;
+    }
+}
+__ui_PopupPanel.prototype.add = function(widget) {
+    if ((this.getWidgetCount() > 0)) {
+    return false;
+    }
+    this.setChild(this.getElement(), widget.getElement());
+    this.setWidget(widget);
+    return true;
+};
+__ui_PopupPanel.prototype.addPopupListener = function(listener) {
+    this.popupListeners.append(listener);
+};
+__ui_PopupPanel.prototype.addStyleName = function(style) {
+    this.setStyleName(style);
+};
+__ui_PopupPanel.prototype.createElement = function() {
+
+        var outer = $doc.createElement('div');
+        var frame = $doc.createElement('iframe');
+        
+        outer.appendChild(frame);
+        frame.scrolling = 'no';
+        frame.style.zIndex = -1;
+        frame.frameBorder = 0;
+        
+        outer.style.position = 'absolute';
+        frame.style.position = 'absolute';
+        return outer;
+        
+};
+__ui_PopupPanel.prototype.fixup = function(popup) {
+
+        popup.children[0].style.width = popup.children[1].offsetWidth;
+        popup.children[0].style.height = popup.children[1].offsetHeight;
+        
+};
+__ui_PopupPanel.prototype.hide = function(autoClosed) {
+    if (typeof autoClosed == 'undefined') autoClosed=false;
+    if (!(this.showing)) {
+    return;
+    }
+    this.showing = false;
+    DOM_removeEventPreview(this);
+    ui_RootPanel().get().remove(this);
+
+        var __listener = this.popupListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onPopupClosed) {
+    listener.onPopupClosed(this, autoClosed);
+    }
+    else {
+    listener(this, autoClosed);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_PopupPanel.prototype.onEventPreview = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "keydown")) {
+    return this.onKeyDownPreview(DOM_eventGetKeyCode(event), __ui_KeyboardListener.prototype.getKeyboardModifiers.call(this, event));
+    }
+    else if ((type == "keyup")) {
+    return this.onKeyUpPreview(DOM_eventGetKeyCode(event), __ui_KeyboardListener.prototype.getKeyboardModifiers.call(this, event));
+    }
+    else if ((type == "keypress")) {
+    return this.onKeyPressPreview(DOM_eventGetKeyCode(event), __ui_KeyboardListener.prototype.getKeyboardModifiers.call(this, event));
+    }
+    else if ((type == "mousedown") || (type == "mouseup") || (type == "mousemove") || (type == "click") || (type == "dblclick")) {
+    if ((DOM_getCaptureElement() == null)) {
+    var target = DOM_eventGetTarget(event);
+    if (!(DOM_isOrHasChild(this.getElement(), target))) {
+    if (this.autoHide && (type == "click")) {
+    this.hide(true);
+    return true;
+    }
+    return false;
+    }
+    }
+    }
+    return true;
+};
+__ui_PopupPanel.prototype.onKeyDownPreview = function(key, modifiers) {
+    return true;
+};
+__ui_PopupPanel.prototype.onKeyPressPreview = function(key, modifiers) {
+    return true;
+};
+__ui_PopupPanel.prototype.onKeyUpPreview = function(key, modifiers) {
+    return true;
+};
+__ui_PopupPanel.prototype.removePopupListener = function(listener) {
+    this.popupListeners.remove(listener);
+};
+__ui_PopupPanel.prototype.setChild = function(popup, child) {
+
+        if (popup.children.length == 2)
+            popup.removeChild(popup.children[1]);
+        popup.appendChild(child);
+        
+};
+__ui_PopupPanel.prototype.setClassName = function(popup, className) {
+
+        popup.children[1].className = className;
+        
+};
+__ui_PopupPanel.prototype.setHeight = function(height) {
+
+        popup.style.height = popup.children[0].style.height = popup.children[1].style.height = height;
+        
+};
+__ui_PopupPanel.prototype.setPixelSize = function(width, height) {
+    if ((width >= 0)) {
+    this.setWidth( ( "" + width ) );
+    }
+    if ((height >= 0)) {
+    this.setHeight( ( "" + height ) );
+    }
+};
+__ui_PopupPanel.prototype.setPopupPosition = function(left, top) {
+    ui_RootPanel().setWidgetPosition(this, left, top);
+    this.fixup(this.getElement());
+};
+__ui_PopupPanel.prototype.setStyleName = function(style) {
+    this.setClassName(this.getElement(), style);
+};
+__ui_PopupPanel.prototype.setWidth = function(width) {
+
+        popup.style.width = popup.children[0].style.width = popup.children[1].style.width = width;
+        
+};
+__ui_PopupPanel.prototype.show = function() {
+    if (this.showing) {
+    return;
+    }
+    this.showing = true;
+    DOM_addEventPreview(this);
+    ui_RootPanel().get().add(this);
+    this.fixup(this.getElement());
+};
+pyjs_extend(__ui_MenuItem, __ui_UIObject);
+__ui_MenuItem.prototype.__class__ = "ui_MenuItem";
+function ui_MenuItem(text, asHTML, cmd, subMenu) {
+    return new __ui_MenuItem(text, asHTML, cmd, subMenu);
+}
+function __ui_MenuItem(text, asHTML, cmd, subMenu) {
+    if (typeof asHTML == 'undefined') asHTML=false;
+    if (typeof cmd == 'undefined') cmd=null;
+    if (typeof subMenu == 'undefined') subMenu=null;
+    this.command = null;
+    this.parentMenu = null;
+    this.subMenu = null;
+    this.setElement(DOM_createTD());
+    this.sinkEvents(__ui_Event.ONCLICK | __ui_Event.ONMOUSEOVER | __ui_Event.ONMOUSEOUT);
+    this.setSelectionStyle(false);
+    if (asHTML) {
+    this.setHTML(text);
+    }
+    else {
+    this.setText(text);
+    }
+    this.setStyleName("gwt-MenuItem");
+    if ((cmd != null)) {
+    this.setCommand(cmd);
+    }
+    else if ((subMenu != null)) {
+    this.setSubMenu(subMenu);
+    }
+}
+__ui_MenuItem.prototype.getCommand = function() {
+    return this.command;
+};
+__ui_MenuItem.prototype.getParentMenu = function() {
+    return this.parentMenu;
+};
+__ui_MenuItem.prototype.getSubMenu = function() {
+    return this.subMenu;
+};
+__ui_MenuItem.prototype.getText = function() {
+    return DOM_getInnerText(this.getElement());
+};
+__ui_MenuItem.prototype.setCommand = function(cmd) {
+    this.command = cmd;
+};
+__ui_MenuItem.prototype.setHTML = function(html) {
+    DOM_setInnerHTML(this.getElement(), html);
+};
+__ui_MenuItem.prototype.setSubMenu = function(subMenu) {
+    this.subMenu = subMenu;
+};
+__ui_MenuItem.prototype.setText = function(text) {
+    DOM_setInnerText(this.getElement(), text);
+};
+__ui_MenuItem.prototype.setParentMenu = function(parentMenu) {
+    this.parentMenu = parentMenu;
+};
+__ui_MenuItem.prototype.setSelectionStyle = function(selected) {
+    if (selected) {
+    this.addStyleName("gwt-MenuItem-selected");
+    }
+    else {
+    this.removeStyleName("gwt-MenuItem-selected");
+    }
+};
+pyjs_extend(__ui_MenuBar, __ui_Widget);
+__ui_MenuBar.prototype.__class__ = "ui_MenuBar";
+function ui_MenuBar(vertical) {
+    return new __ui_MenuBar(vertical);
+}
+function __ui_MenuBar(vertical) {
+    if (typeof vertical == 'undefined') vertical=false;
+    __ui_Widget.call(this);
+    this.body = null;
+    this.items = new pyjslib_List([]);
+    this.parentMenu = null;
+    this.popup = null;
+    this.selectedItem = null;
+    this.shownChildMenu = null;
+    this.vertical = false;
+    this.autoOpen = false;
+    __ui_Widget.call(this);
+    var table = DOM_createTable();
+    this.body = DOM_createTBody();
+    DOM_appendChild(table, this.body);
+    if (!(vertical)) {
+    var tr = DOM_createTR();
+    DOM_appendChild(this.body, tr);
+    }
+    this.vertical = vertical;
+    var outer = DOM_createDiv();
+    DOM_appendChild(outer, table);
+    this.setElement(outer);
+    this.setStyleName("gwt-MenuBar");
+}
+__ui_MenuBar.prototype.addNewItem = function(text, asHTML, cmd, subMenu) {
+    if (typeof text == 'undefined') text="";
+    if (typeof asHTML == 'undefined') asHTML=false;
+    if (typeof cmd == 'undefined') cmd=null;
+    if (typeof subMenu == 'undefined') subMenu=null;
+    var item = ui_MenuItem(text, asHTML, cmd, subMenu);
+    this.addItem(item);
+    return item;
+};
+__ui_MenuBar.prototype.addItem = function(item) {
+    if (this.vertical) {
+    var tr = DOM_createTR();
+    DOM_appendChild(this.body, tr);
+    }
+    else {
+    var tr = DOM_getChild(this.body, 0);
+    }
+    DOM_appendChild(tr, item.getElement());
+    item.setParentMenu(this);
+    item.setSelectionStyle(false);
+    this.items.append(item);
+};
+__ui_MenuBar.prototype.clearItems = function() {
+    var container = this.getItemContainerElement();
+    while ((DOM_getChildCount(container) > 0)) {
+    DOM_removeChild(container, DOM_getChild(container, 0));
+    }
+    this.items = new pyjslib_List([]);
+};
+__ui_MenuBar.prototype.getAutoOpen = function() {
+    return this.autoOpen;
+};
+__ui_MenuBar.prototype.onBrowserEvent = function(event) {
+    __ui_Widget.prototype.onBrowserEvent.call(this, event);
+    var item = this.findItem(DOM_eventGetTarget(event));
+    if ((item == null)) {
+    return;
+    }
+    var type = DOM_eventGetType(event);
+    if ((type == "click")) {
+    this.doItemAction(item, true);
+    }
+    else if ((type == "mouseover")) {
+    this.itemOver(item);
+    }
+    else if ((type == "mouseout")) {
+    this.itemOver(null);
+    }
+};
+__ui_MenuBar.prototype.onPopupClosed = function(sender, autoClosed) {
+    if (autoClosed) {
+    this.closeAllParents();
+    }
+    this.onHide();
+    this.shownChildMenu = null;
+    this.popup = null;
+};
+__ui_MenuBar.prototype.removeItem = function(item) {
+    var idx = this.items.index(item);
+    if ((idx == -1)) {
+    return;
+    }
+    var container = this.getItemContainerElement();
+    DOM_removeChild(container, DOM_getChild(container, idx));
+    this.items.__delitem__(idx);
+};
+__ui_MenuBar.prototype.setAutoOpen = function(autoOpen) {
+    this.autoOpen = autoOpen;
+};
+__ui_MenuBar.prototype.closeAllParents = function() {
+    var curMenu = this;
+    while ((curMenu != null)) {
+    curMenu.close();
+    if ((curMenu.parentMenu == null) && (curMenu.selectedItem != null)) {
+    curMenu.selectedItem.setSelectionStyle(false);
+    curMenu.selectedItem = null;
+    }
+    var curMenu = curMenu.parentMenu;
+    }
+};
+__ui_MenuBar.prototype.doItemAction = function(item, fireCommand) {
+    if ((this.shownChildMenu != null) && (item.getSubMenu() == this.shownChildMenu)) {
+    return;
+    }
+    if ((this.shownChildMenu != null)) {
+    this.shownChildMenu.onHide();
+    this.popup.hide();
+    }
+    if ((item.getSubMenu() == null)) {
+    if (fireCommand) {
+    this.closeAllParents();
+    }
+    var cmd = item.getCommand();
+    return;
+    }
+    this.selectItem(item);
+    this.popup = ui_MenuBarPopupPanel(item);
+    this.popup.addPopupListener(this);
+    if (this.vertical) {
+    this.popup.setPopupPosition( ( item.getAbsoluteLeft() + item.getOffsetWidth() ) , item.getAbsoluteTop());
+    }
+    else {
+    this.popup.setPopupPosition(item.getAbsoluteLeft(),  ( item.getAbsoluteTop() + item.getOffsetHeight() ) );
+    }
+    this.shownChildMenu = item.getSubMenu();
+    var sub_menu = item.getSubMenu();
+    sub_menu.parentMenu = this;
+    this.popup.show();
+};
+__ui_MenuBar.prototype.onDetach = function() {
+    if ((this.popup != null)) {
+    this.popup.hide();
+    }
+    __ui_Widget.prototype.onDetach.call(this);
+};
+__ui_MenuBar.prototype.itemOver = function(item) {
+    if ((item == null)) {
+    if ((this.selectedItem != null) && (this.shownChildMenu == this.selectedItem.getSubMenu())) {
+    return;
+    }
+    }
+    this.selectItem(item);
+    if ((item != null)) {
+    if ((this.shownChildMenu != null) || (this.parentMenu != null) || this.autoOpen) {
+    this.doItemAction(item, false);
+    }
+    }
+};
+__ui_MenuBar.prototype.close = function() {
+    if ((this.parentMenu != null)) {
+    this.parentMenu.popup.hide();
+    }
+};
+__ui_MenuBar.prototype.findItem = function(hItem) {
+
+        var __item = this.items.__iter__();
+        try {
+            while (true) {
+                var item = __item.next();
+                
+        
+    if (DOM_isOrHasChild(item.getElement(), hItem)) {
+    return item;
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    return;
+};
+__ui_MenuBar.prototype.getItemContainerElement = function() {
+    if (this.vertical) {
+    return this.body;
+    }
+    else {
+    return DOM_getChild(this.body, 0);
+    }
+};
+__ui_MenuBar.prototype.onHide = function() {
+    if ((this.shownChildMenu != null)) {
+    this.shownChildMenu.onHide();
+    this.popup.hide();
+    }
+};
+__ui_MenuBar.prototype.onShow = function() {
+    if ((pyjslib_len(this.items) > 0)) {
+    this.selectItem(this.items.__getitem__(0));
+    }
+};
+__ui_MenuBar.prototype.selectItem = function(item) {
+    if ((item == this.selectedItem)) {
+    return;
+    }
+    if ((this.selectedItem != null)) {
+    this.selectedItem.setSelectionStyle(false);
+    }
+    if ((item != null)) {
+    item.setSelectionStyle(true);
+    }
+    this.selectedItem = item;
+};
+pyjs_extend(__ui_MenuBarPopupPanel, __ui_PopupPanel);
+__ui_MenuBarPopupPanel.prototype.__class__ = "ui_MenuBarPopupPanel";
+function ui_MenuBarPopupPanel(item) {
+    return new __ui_MenuBarPopupPanel(item);
+}
+function __ui_MenuBarPopupPanel(item) {
+    this.item = item;
+    __ui_PopupPanel.call(this, true);
+    this.add(item.getSubMenu());
+    item.getSubMenu().onShow();
+}
+__ui_MenuBarPopupPanel.prototype.onEventPreview = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "click")) {
+    var target = DOM_eventGetTarget(event);
+    var parentMenuElement = this.item.getParentMenu().getElement();
+    if (DOM_isOrHasChild(parentMenuElement, target)) {
+    return false;
+    }
+    }
+    return __ui_PopupPanel.prototype.onEventPreview.call(this, event);
+};
+pyjs_extend(__ui_ListBox, __ui_FocusWidget);
+__ui_ListBox.prototype.__class__ = "ui_ListBox";
+function ui_ListBox() {
+    return new __ui_ListBox();
+}
+function __ui_ListBox() {
+    this.changeListeners = new pyjslib_List([]);
+    __ui_FocusWidget.call(this, DOM_createSelect());
+    this.sinkEvents(__ui_Event.ONCHANGE);
+}
+__ui_ListBox.prototype.addChangeListener = function(listener) {
+    this.changeListeners.append(listener);
+};
+__ui_ListBox.prototype.addItem = function(item) {
+    this.insertItem(item, this.getItemCount());
+};
+__ui_ListBox.prototype.clear = function() {
+    var h = this.getElement();
+    while ((DOM_getChildCount(h) > 0)) {
+    DOM_removeChild(h, DOM_getChild(h, 0));
+    }
+};
+__ui_ListBox.prototype.getItemCount = function() {
+    return DOM_getChildCount(this.getElement());
+};
+__ui_ListBox.prototype.getItemText = function(index) {
+    var child = DOM_getChild(this.getElement(), index);
+    return DOM_getInnerText(child);
+};
+__ui_ListBox.prototype.getSelectedIndex = function() {
+    return DOM_getIntAttribute(this.getElement(), "selectedIndex");
+};
+__ui_ListBox.prototype.isItemSelected = function(itemIndex) {
+    var select = DOM_getChild(this.getElement(), itemIndex);
+    return (DOM_getAttribute(select, "selected") == "true");
+};
+__ui_ListBox.prototype.getVisibleItemCount = function() {
+    return DOM_getIntAttribute(this.getElement(), "size");
+};
+__ui_ListBox.prototype.insertItem = function(item, idx) {
+    var option = DOM_createElement("OPTION");
+    DOM_setInnerText(option, item);
+    DOM_insertChild(this.getElement(), option, idx);
+};
+__ui_ListBox.prototype.isMultipleSelect = function() {
+    return (DOM_getAttribute(this.getElement(), "multiple") == "true");
+};
+__ui_ListBox.prototype.onBrowserEvent = function(event) {
+    if ((DOM_eventGetType(event) == "change")) {
+
+        var __listener = this.changeListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onChange) {
+    listener.onChange(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+};
+__ui_ListBox.prototype.removeChangeListener = function(listener) {
+    this.changeListeners.remove(listener);
+};
+__ui_ListBox.prototype.removeItem = function(idx) {
+    var child = DOM_getChild(this.getElement(), idx);
+    DOM_removeChild(this.getElement(), child);
+};
+__ui_ListBox.prototype.setMultipleSelect = function(multiple) {
+    if (multiple) {
+    var attrib = "true";
+    }
+    else {
+    var attrib = "false";
+    }
+    DOM_setAttribute(this.getElement(), "multiple", attrib);
+};
+__ui_ListBox.prototype.setSelectedIndex = function(index) {
+    DOM_setIntAttribute(this.getElement(), "selectedIndex", index);
+};
+__ui_ListBox.prototype.setVisibleItemCount = function(visibleItems) {
+    DOM_setIntAttribute(this.getElement(), "size", visibleItems);
+};
+pyjs_extend(__ui_DialogBox, __ui_PopupPanel);
+__ui_DialogBox.prototype.__class__ = "ui_DialogBox";
+function ui_DialogBox() {
+    return new __ui_DialogBox();
+}
+function __ui_DialogBox() {
+    __ui_PopupPanel.call(this);
+    this.caption = ui_HTML();
+    this.child = null;
+    this.dragging = false;
+    this.dragStartX = 0;
+    this.dragStartY = 0;
+    this.panel = ui_DockPanel();
+    this.panel.add(this.caption, __ui_DockPanel.NORTH);
+    __ui_PopupPanel.prototype.add.call(this, this.panel);
+    this.setStyleName("gwt-DialogBox");
+    this.caption.setStyleName("Caption");
+    this.caption.addMouseListener(this);
+}
+__ui_DialogBox.prototype.add = function(widget) {
+    if ((this.child != null)) {
+    return false;
+    }
+    this.panel.add(widget, __ui_DockPanel.CENTER);
+    return true;
+};
+__ui_DialogBox.prototype.getHTML = function() {
+    return this.caption.getHTML();
+};
+__ui_DialogBox.prototype.getText = function() {
+    return this.caption.getText();
+};
+__ui_DialogBox.prototype.onMouseDown = function(sender, x, y) {
+    this.dragging = true;
+    DOM_setCapture(this.caption.getElement());
+    this.dragStartX = x;
+    this.dragStartY = y;
+};
+__ui_DialogBox.prototype.onMouseEnter = function(sender) {
+};
+__ui_DialogBox.prototype.onMouseLeave = function(sender) {
+};
+__ui_DialogBox.prototype.onMouseMove = function(sender, x, y) {
+    if (this.dragging) {
+    var absX =  ( x + this.getAbsoluteLeft() ) ;
+    var absY =  ( y + this.getAbsoluteTop() ) ;
+    this.setPopupPosition( ( absX - this.dragStartX ) ,  ( absY - this.dragStartY ) );
+    }
+};
+__ui_DialogBox.prototype.onMouseUp = function(sender, x, y) {
+    this.dragging = false;
+    DOM_releaseCapture(this.caption.getElement());
+};
+__ui_DialogBox.prototype.remove = function(widget) {
+    if ((this.child != widget)) {
+    return false;
+    }
+    this.panel.remove(widget);
+    return true;
+};
+__ui_DialogBox.prototype.setHTML = function(html) {
+    this.caption.setHTML(html);
+};
+__ui_DialogBox.prototype.setText = function(text) {
+    this.caption.setText(text);
+};
+pyjs_extend(__ui_Frame, __ui_FocusWidget);
+__ui_Frame.prototype.__class__ = "ui_Frame";
+function ui_Frame(url) {
+    return new __ui_Frame(url);
+}
+function __ui_Frame(url) {
+    if (typeof url == 'undefined') url="";
+    __ui_FocusWidget.call(this, DOM_createIFrame());
+    if (url) {
+    this.setUrl(url);
+    }
+}
+__ui_Frame.prototype.getUrl = function() {
+    return DOM_getAttribute(this.getElement(), "src");
+};
+__ui_Frame.prototype.setUrl = function(url) {
+    return DOM_setAttribute(this.getElement(), "src", url);
+};
+pyjs_extend(__ui_TabBar, __ui_Composite);
+__ui_TabBar.prototype.__class__ = "ui_TabBar";
+function ui_TabBar() {
+    return new __ui_TabBar();
+}
+function __ui_TabBar() {
+    __ui_Composite.call(this);
+    this.panel = ui_HorizontalPanel();
+    this.selectedTab = -1;
+    this.tabListeners = new pyjslib_List([]);
+    this.setWidget(this.panel);
+    this.sinkEvents(__ui_Event.ONCLICK);
+    this.setStyleName("gwt-TabBar");
+    this.panel.setVerticalAlignment(__ui_HasAlignment.ALIGN_BOTTOM);
+    var first = ui_HTML("&nbsp;", true);
+    var rest = ui_HTML("&nbsp;", true);
+    first.setStyleName("gwt-TabBarFirst");
+    rest.setStyleName("gwt-TabBarRest");
+    first.setHeight("100%");
+    rest.setHeight("100%");
+    this.panel.add(first);
+    this.panel.add(rest);
+    first.setHeight("100%");
+    this.panel.setCellHeight(first, "100%");
+    this.panel.setCellWidth(rest, "100%");
+}
+__ui_TabBar.prototype.addTab = function(text, asHTML) {
+    if (typeof asHTML == 'undefined') asHTML=false;
+    this.insertTab(text, asHTML, this.getTabCount());
+};
+__ui_TabBar.prototype.addTabListener = function(listener) {
+    this.tabListeners.append(listener);
+};
+__ui_TabBar.prototype.getSelectedTab = function() {
+    return this.selectedTab;
+};
+__ui_TabBar.prototype.getTabCount = function() {
+    return  ( this.panel.getWidgetCount() - 2 ) ;
+};
+__ui_TabBar.prototype.getTabHTML = function(index) {
+    if ((index >= this.getTabCount())) {
+    return;
+    }
+    return this.panel.getWidget( ( index - 1 ) ).getHTML();
+};
+__ui_TabBar.prototype.insertTab = function(text, asHTML, beforeIndex) {
+    if (typeof beforeIndex == 'undefined') beforeIndex=null;
+    if ((beforeIndex == null)) {
+    var beforeIndex = asHTML;
+    var asHTML = false;
+    }
+    if (asHTML) {
+    var item = ui_HTML(text);
+    }
+    else {
+    var item = ui_Label(text);
+    }
+    item.addClickListener(this);
+    item.setStyleName("gwt-TabBarItem");
+    this.panel.insert(item,  ( beforeIndex + 1 ) );
+};
+__ui_TabBar.prototype.onClick = function(sender) {
+
+        var __i = pyjslib_range(1,  ( this.panel.getWidgetCount() - 1 ) ).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    if ((this.panel.getWidget(i) == sender)) {
+    this.selectTab( ( i - 1 ) );
+    return;
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_TabBar.prototype.removeTab = function(index) {
+    this.panel.remove(this.panel.getWidget( ( index + 1 ) ));
+};
+__ui_TabBar.prototype.removeTabListener = function(listener) {
+    this.tabListeners.remove(listener);
+};
+__ui_TabBar.prototype.selectTab = function(index) {
+
+        var __listener = this.tabListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (!(listener.onBeforeTabSelected(this, index))) {
+    return false;
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    this.setSelectionStyle(this.selectedTab, false);
+    this.selectedTab = index;
+    this.setSelectionStyle(this.selectedTab, true);
+
+        var __listener = this.tabListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onTabSelected(this, index);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    return true;
+};
+__ui_TabBar.prototype.getItem = function(index) {
+    if ((index < 0) || (index >=  ( this.panel.getWidgetCount() - 2 ) )) {
+    return;
+    }
+    return this.panel.getWidget( ( index + 1 ) );
+};
+__ui_TabBar.prototype.setSelectionStyle = function(tabIndex, selected) {
+    var item = this.getItem(tabIndex);
+    if ((item != null)) {
+    if (selected) {
+    item.addStyleName("gwt-TabBarItem-selected");
+    }
+    else {
+    item.removeStyleName("gwt-TabBarItem-selected");
+    }
+    }
+};
+pyjs_extend(__ui_TabPanel, __ui_Composite);
+__ui_TabPanel.prototype.__class__ = "ui_TabPanel";
+function ui_TabPanel() {
+    return new __ui_TabPanel();
+}
+function __ui_TabPanel() {
+    __ui_Composite.call(this);
+    this.deck = ui_DeckPanel();
+    this.tabBar = ui_TabBar();
+    this.tabListeners = new pyjslib_List([]);
+    var panel = ui_VerticalPanel();
+    panel.add(this.tabBar);
+    panel.add(this.deck);
+    this.tabBar.setWidth("100%");
+    this.tabBar.addTabListener(this);
+    this.setWidget(panel);
+    this.setStyleName("gwt-TabPanel");
+    this.deck.setStyleName("gwt-TabPanelBottom");
+}
+__ui_TabPanel.prototype.add = function(w, tabText, asHTML) {
+    if (typeof asHTML == 'undefined') asHTML=false;
+    this.insert(w, tabText, asHTML, this.getWidgetCount());
+};
+__ui_TabPanel.prototype.addTabListener = function(listener) {
+    this.tabListeners.append(listener);
+};
+__ui_TabPanel.prototype.getDeckPanel = function() {
+    return this.deck;
+};
+__ui_TabPanel.prototype.getTabBar = function() {
+    return this.tabBar;
+};
+__ui_TabPanel.prototype.getWidget = function(index) {
+    return this.deck.getWidget(index);
+};
+__ui_TabPanel.prototype.getWidgetCount = function() {
+    return this.deck.getWidgetCount();
+};
+__ui_TabPanel.prototype.getWidgetIndex = function(child) {
+    return this.deck.getWidgetIndex(child);
+};
+__ui_TabPanel.prototype.insert = function(widget, tabText, asHTML, beforeIndex) {
+    if (typeof beforeIndex == 'undefined') beforeIndex=null;
+    if ((beforeIndex == null)) {
+    var beforeIndex = asHTML;
+    var asHTML = false;
+    }
+    this.tabBar.insertTab(tabText, asHTML, beforeIndex);
+    this.deck.insert(widget, beforeIndex);
+};
+__ui_TabPanel.prototype.__iter__ = function() {
+    alert("TODO: TabPanel.__iter__");
+};
+__ui_TabPanel.prototype.onBeforeTabSelected = function(sender, tabIndex) {
+
+        var __listener = this.tabListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (!(listener.onBeforeTabSelected(sender, tabIndex))) {
+    return false;
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    return true;
+};
+__ui_TabPanel.prototype.onTabSelected = function(sender, tabIndex) {
+    this.deck.showWidget(tabIndex);
+
+        var __listener = this.tabListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onTabSelected(sender, tabIndex);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_TabPanel.prototype.remove = function(widget) {
+
+        var __i = pyjslib_range(this.deck.getWidgetCount()).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    if ((this.deck.getWidget(i) == widget)) {
+    this.tabBar.removeTab(i);
+    this.deck.remove(widget);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_TabPanel.prototype.removeTabListener = function(listener) {
+    this.tabListeners.remove(listener);
+};
+__ui_TabPanel.prototype.selectTab = function(index) {
+    this.tabBar.selectTab(index);
+};
+pyjs_extend(__ui_StackPanel, __ui_ComplexPanel);
+__ui_StackPanel.prototype.__class__ = "ui_StackPanel";
+function ui_StackPanel() {
+    return new __ui_StackPanel();
+}
+function __ui_StackPanel() {
+    __ui_ComplexPanel.call(this);
+    this.body = null;
+    this.visibleStack = -1;
+    var table = DOM_createTable();
+    this.setElement(table);
+    this.body = DOM_createTBody();
+    DOM_appendChild(table, this.body);
+    DOM_setIntAttribute(table, "cellSpacing", 0);
+    DOM_setIntAttribute(table, "cellPadding", 0);
+    DOM_sinkEvents(table, __ui_Event.ONCLICK);
+    this.setStyleName("gwt-StackPanel");
+}
+__ui_StackPanel.prototype.add = function(widget, stackText, asHTML) {
+    if (typeof stackText == 'undefined') stackText="";
+    if (typeof asHTML == 'undefined') asHTML=false;
+    __ui_ComplexPanel.prototype.add.call(this, widget);
+    var index =  ( this.getWidgetCount() - 1 ) ;
+    var tr = DOM_createTR();
+    var td = DOM_createTD();
+    DOM_appendChild(this.body, tr);
+    DOM_appendChild(tr, td);
+    this.setStyleName(td, "gwt-StackPanelItem", true);
+    DOM_setIntAttribute(td, "__index", index);
+    DOM_setAttribute(td, "height", "1px");
+    var tr = DOM_createTR();
+    var td = DOM_createTD();
+    DOM_appendChild(this.body, tr);
+    DOM_appendChild(tr, td);
+    DOM_appendChild(td, widget.getElement());
+    DOM_setAttribute(td, "height", "100%");
+    DOM_setAttribute(td, "vAlign", "top");
+    this.setStackVisible(index, false);
+    if ((this.visibleStack == -1)) {
+    this.showStack(0);
+    }
+    if ((stackText != "")) {
+    this.setStackText( ( this.getWidgetCount() - 1 ) , stackText, asHTML);
+    }
+    return true;
+};
+__ui_StackPanel.prototype.onBrowserEvent = function(event) {
+    if ((DOM_eventGetType(event) == "click")) {
+    var index = this.getDividerIndex(DOM_eventGetTarget(event));
+    if ((index != -1)) {
+    this.showStack(index);
+    }
+    }
+};
+__ui_StackPanel.prototype.remove = function(child) {
+    if ((child.getParent() != this)) {
+    return false;
+    }
+    var index = this.getWidgetIndex(child);
+    var tr = DOM_getChild(this.body, index);
+    DOM_removeChild(this.body, tr);
+    return __ui_ComplexPanel.prototype.remove.call(this, child);
+};
+__ui_StackPanel.prototype.setStackText = function(index, text, asHTML) {
+    if (typeof asHTML == 'undefined') asHTML=false;
+    if ((index >= this.getWidgetCount())) {
+    return;
+    }
+    var td = DOM_getChild(DOM_getChild(this.body,  ( index * 2 ) ), 0);
+    if (asHTML) {
+    DOM_setInnerHTML(td, text);
+    }
+    else {
+    DOM_setInnerText(td, text);
+    }
+};
+__ui_StackPanel.prototype.showStack = function(index) {
+    if ((index >= this.getWidgetCount()) || (index == this.visibleStack)) {
+    return;
+    }
+    if ((this.visibleStack >= 0)) {
+    this.setStackVisible(this.visibleStack, false);
+    }
+    this.visibleStack = index;
+    this.setStackVisible(this.visibleStack, true);
+};
+__ui_StackPanel.prototype.getDividerIndex = function(elem) {
+    while ((elem != null) && !(DOM_compare(elem, this.getElement()))) {
+    var expando = DOM_getAttribute(elem, "__index");
+    if ((expando != null)) {
+    return pyjslib_int(expando);
+    }
+    var elem = DOM_getParent(elem);
+    }
+    return -1;
+};
+__ui_StackPanel.prototype.setStackVisible = function(index, visible) {
+    var tr = DOM_getChild(this.body,  ( index * 2 ) );
+    if ((tr == null)) {
+    return;
+    }
+    var td = DOM_getFirstChild(tr);
+    this.setStyleName(td, "gwt-StackPanelItem-selected", visible);
+    var tr = DOM_getChild(this.body,  (  ( index * 2 )  + 1 ) );
+    this.setVisible(tr, visible);
+    this.getWidget(index).setVisible(visible);
+};
+pyjs_extend(__ui_TextBoxBase, __ui_FocusWidget);
+__ui_TextBoxBase.prototype.__class__ = "ui_TextBoxBase";
+__ui_TextBoxBase.ALIGN_CENTER = __ui_TextBoxBase.prototype.ALIGN_CENTER = "center";
+__ui_TextBoxBase.ALIGN_JUSTIFY = __ui_TextBoxBase.prototype.ALIGN_JUSTIFY = "justify";
+__ui_TextBoxBase.ALIGN_LEFT = __ui_TextBoxBase.prototype.ALIGN_LEFT = "left";
+__ui_TextBoxBase.ALIGN_RIGHT = __ui_TextBoxBase.prototype.ALIGN_RIGHT = "right";
+function ui_TextBoxBase(element) {
+    return new __ui_TextBoxBase(element);
+}
+function __ui_TextBoxBase(element) {
+    this.changeListeners = new pyjslib_List([]);
+    this.clickListeners = new pyjslib_List([]);
+    this.currentEvent = null;
+    this.keyboardListeners = new pyjslib_List([]);
+    __ui_FocusWidget.call(this, element);
+    this.sinkEvents(__ui_Event.ONCHANGE | __ui_Event.KEYEVENTS | __ui_Event.ONCLICK);
+}
+__ui_TextBoxBase.prototype.addChangeListener = function(listener) {
+    this.changeListeners.append(listener);
+};
+__ui_TextBoxBase.prototype.addClickListener = function(listener) {
+    this.clickListeners.append(listener);
+};
+__ui_TextBoxBase.prototype.addKeyboardListener = function(listener) {
+    this.keyboardListeners.append(listener);
+};
+__ui_TextBoxBase.prototype.cancelKey = function() {
+    if ((this.currentEvent != null)) {
+    DOM_eventPreventDefault(this.currentEvent);
+    }
+};
+__ui_TextBoxBase.prototype.getCursorPos = function() {
+
+        try {
+            var elem = this.getElement();
+            var tr = elem.document.selection.createRange();
+            if (tr.parentElement().uniqueID != elem.uniqueID)
+                return -1;
+            return -tr.move("character", -65535);
+        }
+        catch (e) {
+            return 0;
+        }
+        
+};
+__ui_TextBoxBase.prototype.getSelectedText = function() {
+    var start = this.getCursorPos();
+    var length = this.getSelectionLength();
+    var text = this.getText();
+    return pyjslib_slice(text, start,  ( start + length ) );
+};
+__ui_TextBoxBase.prototype.getSelectionLength = function() {
+
+        try {
+            var elem = this.getElement();
+            var tr = elem.document.selection.createRange();
+            if (tr.parentElement().uniqueID != elem.uniqueID)
+                return 0;
+            return tr.text.length;
+        }
+        catch (e) {
+            return 0;
+        }
+        
+};
+__ui_TextBoxBase.prototype.getText = function() {
+    return DOM_getAttribute(this.getElement(), "value");
+};
+__ui_TextBoxBase.prototype.onBrowserEvent = function(event) {
+    __ui_FocusWidget.prototype.onBrowserEvent.call(this, event);
+    var type = DOM_eventGetType(event);
+    if ((type == "change")) {
+
+        var __listener = this.changeListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onChange) {
+    listener.onChange(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+};
+__ui_TextBoxBase.prototype.removeChangeListener = function(listener) {
+    this.changeListeners.remove(listener);
+};
+__ui_TextBoxBase.prototype.removeClickListener = function(listener) {
+    this.clickListeners.remove(listener);
+};
+__ui_TextBoxBase.prototype.removeKeyboardListener = function(listener) {
+    this.keyboardListeners.remove(listener);
+};
+__ui_TextBoxBase.prototype.selectAll = function() {
+    this.setSelectionRange(0, pyjslib_len(this.getText()));
+};
+__ui_TextBoxBase.prototype.setCursorPos = function(pos) {
+    this.setSelectionRange(pos, 0);
+};
+__ui_TextBoxBase.prototype.setKey = function(key) {
+    if ((currentEvent != null)) {
+    DOM_eventSetKeyCode(this.currentEvent, key);
+    }
+};
+__ui_TextBoxBase.prototype.setSelectionRange = function(pos, length) {
+
+        try {
+            var elem = this.getElement();
+            var tr = elem.createTextRange();
+            tr.collapse(true);
+            tr.moveStart('character', pos);
+            tr.moveEnd('character', length);
+            tr.select();
+        }
+        catch (e) {
+        }
+        
+};
+__ui_TextBoxBase.prototype.setText = function(text) {
+    DOM_setAttribute(this.getElement(), "value", text);
+};
+__ui_TextBoxBase.prototype.setTextAlignment = function(align) {
+    DOM_setStyleAttribute(this.getElement(), "textAlign", align);
+};
+pyjs_extend(__ui_TextBox, __ui_TextBoxBase);
+__ui_TextBox.prototype.__class__ = "ui_TextBox";
+function ui_TextBox() {
+    return new __ui_TextBox();
+}
+function __ui_TextBox() {
+    __ui_TextBoxBase.call(this, DOM_createInputText());
+    this.setStyleName("gwt-TextBox");
+}
+__ui_TextBox.prototype.getMaxLength = function() {
+    return DOM_getIntAttribute(this.getElement(), "maxLength");
+};
+__ui_TextBox.prototype.getVisibleLength = function() {
+    return DOM_getIntAttribute(this.getElement(), "size");
+};
+__ui_TextBox.prototype.setMaxLength = function(length) {
+    DOM_setIntAttribute(this.getElement(), "maxLength", length);
+};
+__ui_TextBox.prototype.setVisibleLength = function(length) {
+    DOM_setIntAttribute(this.getElement(), "size", length);
+};
+pyjs_extend(__ui_PasswordTextBox, __ui_TextBoxBase);
+__ui_PasswordTextBox.prototype.__class__ = "ui_PasswordTextBox";
+function ui_PasswordTextBox() {
+    return new __ui_PasswordTextBox();
+}
+function __ui_PasswordTextBox() {
+    __ui_TextBoxBase.call(this, DOM_createInputPassword());
+    this.setStyleName("gwt-PasswordTextBox");
+}
+pyjs_extend(__ui_TextArea, __ui_TextBoxBase);
+__ui_TextArea.prototype.__class__ = "ui_TextArea";
+function ui_TextArea() {
+    return new __ui_TextArea();
+}
+function __ui_TextArea() {
+    __ui_TextBoxBase.call(this, DOM_createTextArea());
+    this.setStyleName("gwt-TextArea");
+}
+__ui_TextArea.prototype.getCharacterWidth = function() {
+    return DOM_getIntAttribute(this.getElement(), "cols");
+};
+__ui_TextArea.prototype.getCursorPos = function() {
+
+        try {
+            var elem = this.getElement();
+            var tr = elem.document.selection.createRange();
+            var tr2 = tr.duplicate();
+            tr2.moveToElementText(elem);
+            tr.setEndPoint('StartToStart', tr2);
+            return tr.text.length;
+        }
+        catch (e) {
+            return 0;
+        }
+        
+};
+__ui_TextArea.prototype.getVisibleLines = function() {
+    return DOM_getIntAttribute(this.getElement(), "rows");
+};
+__ui_TextArea.prototype.setCharacterWidth = function(width) {
+    DOM_setIntAttribute(this.getElement(), "cols", width);
+};
+__ui_TextArea.prototype.setVisibleLines = function(lines) {
+    DOM_setIntAttribute(this.getElement(), "rows", lines);
+};
+pyjs_extend(__ui_TreeItem, __ui_UIObject);
+__ui_TreeItem.prototype.__class__ = "ui_TreeItem";
+function ui_TreeItem(html) {
+    return new __ui_TreeItem(html);
+}
+function __ui_TreeItem(html) {
+    if (typeof html == 'undefined') html=null;
+    this.children = new pyjslib_List([]);
+    this.itemTable = null;
+    this.contentElem = null;
+    this.imgElem = null;
+    this.childSpanElem = null;
+    this.open = false;
+    this.parent = null;
+    this.selected = false;
+    this.tree = null;
+    this.userObject = null;
+    this.setElement(DOM_createDiv());
+    this.itemTable = DOM_createTable();
+    this.contentElem = DOM_createSpan();
+    this.childSpanElem = DOM_createSpan();
+    this.imgElem = DOM_createImg();
+    var tbody = DOM_createTBody();
+    var tr = DOM_createTR();
+    var tdImg = DOM_createTD();
+    var tdContent = DOM_createTD();
+    DOM_appendChild(this.itemTable, tbody);
+    DOM_appendChild(tbody, tr);
+    DOM_appendChild(tr, tdImg);
+    DOM_appendChild(tr, tdContent);
+    DOM_setStyleAttribute(tdImg, "verticalAlign", "middle");
+    DOM_setStyleAttribute(tdContent, "verticalAlign", "middle");
+    DOM_setIntStyleAttribute(this.getElement(), "marginLeft", 16);
+    DOM_appendChild(this.getElement(), this.itemTable);
+    DOM_appendChild(this.getElement(), this.childSpanElem);
+    DOM_appendChild(tdImg, this.imgElem);
+    DOM_appendChild(tdContent, this.contentElem);
+    DOM_setAttribute(this.getElement(), "position", "relative");
+    DOM_setStyleAttribute(this.contentElem, "display", "inline");
+    DOM_setStyleAttribute(this.getElement(), "whiteSpace", "nowrap");
+    DOM_setAttribute(this.itemTable, "whiteSpace", "nowrap");
+    DOM_setStyleAttribute(this.childSpanElem, "whiteSpace", "nowrap");
+    DOM_setAttribute(this.imgElem, "src", this.imgSrc("tree_white.gif"));
+    this.setStyleName(this.contentElem, "gwt-TreeItem", true);
+    if ((html != null)) {
+    this.setHTML(html);
+    }
+}
+__ui_TreeItem.prototype.addNewItem = function(itemText) {
+    var ret = ui_TreeItem(itemText);
+    this.addItem(ret);
+    return ret;
+};
+__ui_TreeItem.prototype.addItem = function(item) {
+    item.setTree(this.tree);
+    item.setParentItem(this);
+    this.children.append(item);
+    DOM_appendChild(this.childSpanElem, item.getElement());
+    if ((pyjslib_len(this.children) == 1)) {
+    this.updateState();
+    }
+};
+__ui_TreeItem.prototype.getChild = function(index) {
+    if ((index < 0) || (index >= pyjslib_len(this.children))) {
+    return;
+    }
+    return this.children.__getitem__(index);
+};
+__ui_TreeItem.prototype.getChildCount = function() {
+    return pyjslib_len(this.children);
+};
+__ui_TreeItem.prototype.getChildIndex = function(child) {
+    return this.children.index(child);
+};
+__ui_TreeItem.prototype.getHTML = function() {
+    return DOM_getInnerHTML(this.contentElem);
+};
+__ui_TreeItem.prototype.getText = function() {
+    return DOM_getInnerText(this.contentElem);
+};
+__ui_TreeItem.prototype.getParentItem = function() {
+    return this.parent;
+};
+__ui_TreeItem.prototype.getState = function() {
+    return this.open;
+};
+__ui_TreeItem.prototype.getTree = function() {
+    return this.tree;
+};
+__ui_TreeItem.prototype.getUserObject = function() {
+    return this.userObject;
+};
+__ui_TreeItem.prototype.isSelected = function() {
+    return this.selected;
+};
+__ui_TreeItem.prototype.remove = function() {
+    if ((this.parent != null)) {
+    this.parent.removeItem(this);
+    }
+    else if ((this.tree != null)) {
+    this.tree.removeItem(this);
+    }
+};
+__ui_TreeItem.prototype.removeItem = function(item) {
+    if (!this.children.__contains__(item)) {
+    return;
+    }
+    item.setTree(null);
+    item.setParentItem(null);
+    this.children.remove(item);
+    DOM_removeChild(this.childSpanElem, item.getElement());
+    if ((pyjslib_len(this.children) == 0)) {
+    this.updateState();
+    }
+};
+__ui_TreeItem.prototype.removeItems = function() {
+    while ((this.getChildCount() > 0)) {
+    this.removeItem(this.getChild(0));
+    }
+};
+__ui_TreeItem.prototype.setHTML = function(html) {
+    DOM_setInnerHTML(this.contentElem, html);
+};
+__ui_TreeItem.prototype.setText = function(text) {
+    DOM_setInnerText(this.contentElem, text);
+};
+__ui_TreeItem.prototype.setSelected = function(selected) {
+    if ((this.selected == selected)) {
+    return;
+    }
+    this.selected = selected;
+    this.setStyleName(this.contentElem, "gwt-TreeItem-selected", selected);
+};
+__ui_TreeItem.prototype.setState = function(open, fireEvents) {
+    if (typeof fireEvents == 'undefined') fireEvents=true;
+    if (open && (pyjslib_len(this.children) == 0)) {
+    return;
+    }
+    this.open = open;
+    this.updateState();
+    if (fireEvents) {
+    this.tree.fireStateChanged(this);
+    }
+};
+__ui_TreeItem.prototype.setUserObject = function(userObj) {
+    this.userObject = userObj;
+};
+__ui_TreeItem.prototype.getChildren = function() {
+    return this.children;
+};
+__ui_TreeItem.prototype.getContentHeight = function() {
+    return DOM_getIntAttribute(this.itemTable, "offsetHeight");
+};
+__ui_TreeItem.prototype.getImageElement = function() {
+    return this.imgElem;
+};
+__ui_TreeItem.prototype.getTreeTop = function() {
+    var item = this;
+    var ret = 0;
+    while ((item != null)) {
+    ret += DOM_getIntAttribute(item.getElement(), "offsetTop");
+    var item = item.getParentItem();
+    }
+    return ret;
+};
+__ui_TreeItem.prototype.imgSrc = function(img) {
+    if ((this.tree == null)) {
+    return img;
+    }
+    var src =  ( this.tree.getImageBase() + img ) ;
+    return src;
+};
+__ui_TreeItem.prototype.setParentItem = function(parent) {
+    this.parent = parent;
+};
+__ui_TreeItem.prototype.setTree = function(tree) {
+    if ((this.tree == tree)) {
+    return;
+    }
+    this.tree = tree;
+
+        var __i = pyjslib_range(pyjslib_len(this.children)).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var child = this.children.__getitem__(i);
+    child.setTree(tree);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    this.updateState();
+};
+__ui_TreeItem.prototype.updateState = function() {
+    if ((pyjslib_len(this.children) == 0)) {
+    this.setVisible(this.childSpanElem, false);
+    DOM_setAttribute(this.imgElem, "src", this.imgSrc("tree_white.gif"));
+    return;
+    }
+    if (this.open) {
+    this.setVisible(this.childSpanElem, true);
+    DOM_setAttribute(this.imgElem, "src", this.imgSrc("tree_open.gif"));
+    }
+    else {
+    this.setVisible(this.childSpanElem, false);
+    DOM_setAttribute(this.imgElem, "src", this.imgSrc("tree_closed.gif"));
+    }
+};
+__ui_TreeItem.prototype.updateStateRecursive = function() {
+    this.updateState();
+
+        var __i = pyjslib_range(pyjslib_len(this.children)).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var child = this.children.__getitem__(i);
+    child.updateStateRecursive();
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+pyjs_extend(__ui_RootTreeItem, __ui_TreeItem);
+__ui_RootTreeItem.prototype.__class__ = "ui_RootTreeItem";
+function ui_RootTreeItem() {
+    return new __ui_RootTreeItem();
+}
+function __ui_RootTreeItem() {
+    __ui_TreeItem.call(this);
+}
+__ui_RootTreeItem.prototype.addItem = function(item) {
+    item.setTree(this.getTree());
+    item.setParentItem(null);
+    this.getChildren().append(item);
+};
+__ui_RootTreeItem.prototype.removeItem = function(item) {
+    if (!this.getChildren().__contains__(item)) {
+    return;
+    }
+    item.setTree(null);
+    this.getChildren().remove(item);
+};
+pyjs_extend(__ui_Tree, __ui_Widget);
+__ui_Tree.prototype.__class__ = "ui_Tree";
+function ui_Tree() {
+    return new __ui_Tree();
+}
+function __ui_Tree() {
+    __ui_Widget.call(this);
+    this.root = null;
+    this.curSelection = null;
+    this.focusListeners = new pyjslib_List([]);
+    this.mouseListeners = new pyjslib_List([]);
+    this.imageBase =  ( pygwt_getModuleBaseURL() + "/" ) ;
+    this.keyboardListeners = new pyjslib_List([]);
+    this.listeners = new pyjslib_List([]);
+    this.setElement(__ui_Focus.prototype.createFocusable.call(this));
+    this.sinkEvents(__ui_Event.ONMOUSEDOWN | __ui_Event.FOCUSEVENTS | __ui_Event.KEYEVENTS);
+    this.root = ui_RootTreeItem();
+    this.root.setTree(this);
+    DOM_setAttribute(this.getElement(), "overflow", "auto");
+    this.sinkEvents(__ui_Event.ONMOUSEDOWN | __ui_Event.ONKEYDOWN);
+    this.setStyleName("gwt-Tree");
+}
+__ui_Tree.prototype.addFocusListener = function(listener) {
+    this.focusListeners.append(listener);
+};
+__ui_Tree.prototype.addNewItem = function(itemText) {
+    var ret = ui_TreeItem(itemText);
+    this.addItem(ret);
+    return ret;
+};
+__ui_Tree.prototype.addItem = function(item) {
+    this.root.addItem(item);
+    DOM_appendChild(this.getElement(), item.getElement());
+};
+__ui_Tree.prototype.addKeyboardListener = function(listener) {
+    this.keyboardListeners.append(listener);
+};
+__ui_Tree.prototype.addTreeListener = function(listener) {
+    this.listeners.append(listener);
+};
+__ui_Tree.prototype.ensureSelectedItemVisible = function() {
+    if ((this.curSelection == null)) {
+    return;
+    }
+    var parent = this.curSelection.getParentItem();
+    while ((parent != null)) {
+    parent.setState(true);
+    var parent = parent.getParentItem();
+    }
+};
+__ui_Tree.prototype.getImageBase = function() {
+    return this.imageBase;
+};
+__ui_Tree.prototype.getItem = function(index) {
+    return this.root.getChild(index);
+};
+__ui_Tree.prototype.getItemCount = function() {
+    return this.root.getChildCount();
+};
+__ui_Tree.prototype.getSelectedItem = function() {
+    return this.curSelection;
+};
+__ui_Tree.prototype.getTabIndex = function() {
+    return __ui_Focus.prototype.getTabIndex.call(this, this.getElement());
+};
+__ui_Tree.prototype.moveSelectionDown = function(sel, dig) {
+    if ((sel == this.root)) {
+    return;
+    }
+    var parent = sel.getParentItem();
+    if ((parent == null)) {
+    var parent = this.root;
+    }
+    var idx = parent.getChildIndex(sel);
+    if (!(dig) || !(sel.getState())) {
+    if ((idx <  ( parent.getChildCount() - 1 ) )) {
+    this.onSelection(parent.getChild( ( idx + 1 ) ), true);
+    }
+    else {
+    this.moveSelectionDown(parent, false);
+    }
+    }
+    else if ((sel.getChildCount() > 0)) {
+    this.onSelection(sel.getChild(0), true);
+    }
+};
+__ui_Tree.prototype.moveSelectionUp = function(sel, climb) {
+    var parent = sel.getParentItem();
+    if ((parent == null)) {
+    var parent = this.root;
+    }
+    var idx = parent.getChildIndex(sel);
+    if ((idx > 0)) {
+    var sibling = parent.getChild( ( idx - 1 ) );
+    this.onSelection(this.findDeepestOpenChild(sibling), true);
+    }
+    else {
+    this.onSelection(parent, true);
+    }
+};
+__ui_Tree.prototype.onBrowserEvent = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "mousedown")) {
+    __ui_MouseListener.prototype.fireMouseEvent.call(this, this.mouseListeners, this, event);
+    this.elementClicked(this.root, DOM_eventGetTarget(event));
+    this.setFocus(true);
+    }
+    else if ((type == "mouseup") || (type == "mousemove") || (type == "mouseover") || (type == "mouseout")) {
+    __ui_MouseListener.prototype.fireMouseEvent.call(this, this.mouseListeners, this, event);
+    }
+    else if ((type == "blur") || (type == "focus")) {
+    __ui_FocusListener.prototype.fireFocusEvent.call(this, this.focusListeners, this, event);
+    }
+    else if ((type == "keydown")) {
+    if ((this.curSelection == null)) {
+    if ((this.root.getChildCount() > 0)) {
+    this.onSelection(this.root.getChild(0), true);
+    }
+    __ui_Widget.prototype.onBrowserEvent.call(this, event);
+    return;
+    }
+    var keycode = DOM_eventGetKeyCode(event);
+    if ((keycode == __ui_KeyboardListener.KEY_UP)) {
+    this.moveSelectionUp(this.curSelection, true);
+    DOM_eventPreventDefault(event);
+    }
+    else if ((keycode == __ui_KeyboardListener.KEY_DOWN)) {
+    this.moveSelectionDown(this.curSelection, true);
+    DOM_eventPreventDefault(event);
+    }
+    else if ((keycode == __ui_KeyboardListener.KEY_LEFT)) {
+    if (this.curSelection.getState()) {
+    this.curSelection.setState(false);
+    }
+    DOM_eventPreventDefault(event);
+    }
+    else if ((keycode == __ui_KeyboardListener.KEY_RIGHT)) {
+    if (!(this.curSelection.getState())) {
+    this.curSelection.setState(true);
+    }
+    DOM_eventPreventDefault(event);
+    }
+    }
+    else if ((type == "keypress") || (type == "keyup")) {
+    __ui_KeyboardListener.prototype.fireKeyboardEvent.call(this, this.keyboardListeners, this, event);
+    }
+    __ui_Widget.prototype.onBrowserEvent.call(this, event);
+};
+__ui_Tree.prototype.removeFocusListener = function(listener) {
+    this.focusListeners.remove(listener);
+};
+__ui_Tree.prototype.removeItem = function(item) {
+    this.root.removeItem(item);
+    DOM_removeChild(this.getElement(), item.getElement());
+};
+__ui_Tree.prototype.removeItems = function() {
+    while ((this.getItemCount() > 0)) {
+    this.removeItem(this.getItem(0));
+    }
+};
+__ui_Tree.prototype.removeKeyboardListener = function(listener) {
+    this.keyboardListeners.remove(listener);
+};
+__ui_Tree.prototype.removeTreeListener = function(listener) {
+    this.listeners.remove(listener);
+};
+__ui_Tree.prototype.setAccessKey = function(key) {
+    __ui_Focus.prototype.setAccessKey.call(this, this.getElement(), key);
+};
+__ui_Tree.prototype.setFocus = function(focus) {
+    if (focus) {
+    __ui_Focus.prototype.focus.call(this, this.getElement());
+    }
+    else {
+    __ui_Focus.prototype.blur.call(this, this.getElement());
+    }
+};
+__ui_Tree.prototype.setImageBase = function(baseUrl) {
+    this.imageBase = baseUrl;
+    this.root.updateStateRecursive();
+};
+__ui_Tree.prototype.setSelectedItem = function(item, fireEvents) {
+    if (typeof fireEvents == 'undefined') fireEvents=true;
+    if ((item == null)) {
+    if ((this.curSelection == null)) {
+    return;
+    }
+    this.curSelection.setSelected(false);
+    this.curSelection = null;
+    return;
+    }
+    this.onSelection(item, fireEvents);
+};
+__ui_Tree.prototype.setTabIndex = function(index) {
+    __ui_Focus.prototype.setTabIndex.call(this, this.getElement(), index);
+};
+__ui_Tree.prototype.onLoad = function() {
+    this.root.updateStateRecursive();
+};
+__ui_Tree.prototype.fireStateChanged = function(item) {
+
+        var __listener = this.listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onTreeItemStateChanged(item);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+};
+__ui_Tree.prototype.collectElementChain = function(chain, hRoot, hElem) {
+    if ((hElem == null) || DOM_compare(hElem, hRoot)) {
+    return;
+    }
+    this.collectElementChain(chain, hRoot, DOM_getParent(hElem));
+    chain.append(hElem);
+};
+__ui_Tree.prototype.elementClicked = function(root, hElem) {
+    var chain = new pyjslib_List([]);
+    this.collectElementChain(chain, this.getElement(), hElem);
+    var item = this.findItemByChain(chain, 0, root);
+    if ((item != null)) {
+    if (DOM_compare(item.getImageElement(), hElem)) {
+    this.onStateChanged(item);
+    return true;
+    }
+    else if (DOM_isOrHasChild(item.getElement(), hElem)) {
+    this.onSelection(item, true);
+    return true;
+    }
+    }
+    return false;
+};
+__ui_Tree.prototype.findDeepestOpenChild = function(item) {
+    if (!(item.getState())) {
+    return item;
+    }
+    return this.findDeepestOpenChild(item.getChild( ( item.getChildCount() - 1 ) ));
+};
+__ui_Tree.prototype.findItemByChain = function(chain, idx, root) {
+    if ((idx == pyjslib_len(chain))) {
+    return root;
+    }
+    var hCurElem = chain.__getitem__(idx);
+
+        var __i = pyjslib_range(root.getChildCount()).__iter__();
+        try {
+            while (true) {
+                var i = __i.next();
+                
+        
+    var child = root.getChild(i);
+    if (DOM_compare(child.getElement(), hCurElem)) {
+    var retItem = this.findItemByChain(chain,  ( idx + 1 ) , root.getChild(i));
+    if ((retItem == null)) {
+    return child;
+    }
+    return retItem;
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    return this.findItemByChain(chain,  ( idx + 1 ) , root);
+};
+__ui_Tree.prototype.onSelection = function(item, fireEvents) {
+    if ((item == this.root)) {
+    return;
+    }
+    if ((this.curSelection != null)) {
+    this.curSelection.setSelected(false);
+    }
+    this.curSelection = item;
+    if ((this.curSelection != null)) {
+    this.curSelection.setSelected(true);
+    if (fireEvents && pyjslib_len(this.listeners)) {
+
+        var __listener = this.listeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    listener.onTreeItemSelected(item);
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    }
+};
+__ui_Tree.prototype.onStateChanged = function(item) {
+    item.setState(!(item.getState()));
+    this.fireStateChanged(item);
+};
+__ui_Tree.prototype.addMouseListener = function(listener) {
+    this.mouseListeners.append(listener);
+};
+pyjs_extend(__ui_FocusPanel, __ui_SimplePanel);
+__ui_FocusPanel.prototype.__class__ = "ui_FocusPanel";
+function ui_FocusPanel(child) {
+    return new __ui_FocusPanel(child);
+}
+function __ui_FocusPanel(child) {
+    if (typeof child == 'undefined') child=null;
+    this.clickListeners = new pyjslib_List([]);
+    this.focusListeners = new pyjslib_List([]);
+    this.keyboardListeners = new pyjslib_List([]);
+    this.mouseListeners = new pyjslib_List([]);
+    __ui_SimplePanel.call(this, __ui_Focus.prototype.createFocusable.call(this));
+    this.sinkEvents(__ui_Event.FOCUSEVENTS | __ui_Event.KEYEVENTS | __ui_Event.ONCLICK | __ui_Event.MOUSEEVENTS);
+    if (child) {
+    this.add(child);
+    }
+}
+__ui_FocusPanel.prototype.addClickListener = function(listener) {
+    this.clickListeners.append(listener);
+};
+__ui_FocusPanel.prototype.addFocusListener = function(listener) {
+    this.focusListeners.append(listener);
+};
+__ui_FocusPanel.prototype.addKeyboardListener = function(listener) {
+    this.keyboardListeners.append(listener);
+};
+__ui_FocusPanel.prototype.addMouseListener = function(listener) {
+    this.mouseListeners.append(listener);
+};
+__ui_FocusPanel.prototype.getTabIndex = function() {
+    return __ui_Focus.prototype.getTabIndex.call(this, this.getElement());
+};
+__ui_FocusPanel.prototype.onBrowserEvent = function(event) {
+    var type = DOM_eventGetType(event);
+    if ((type == "click")) {
+
+        var __listener = this.clickListeners.__iter__();
+        try {
+            while (true) {
+                var listener = __listener.next();
+                
+        
+    if (listener.onClick) {
+    listener.onClick(this);
+    }
+    else {
+    listener(this);
+    }
+
+            }
+        } catch (e) {
+            if (e != StopIteration) {
+                throw e;
+            }
+        }
+        
+    }
+    else if ((type == "mousedown") || (type == "mouseup") || (type == "mousemove") || (type == "mouseover") || (type == "mouseout")) {
+    __ui_MouseListener.prototype.fireMouseEvent.call(this, this.mouseListeners, this, event);
+    }
+    else if ((type == "blur") || (type == "focus")) {
+    __ui_FocusListener.prototype.fireFocusEvent.call(this, this.focusListeners, this, event);
+    }
+    else if ((type == "keydown") || (type == "keypress") || (type == "keyup")) {
+    __ui_KeyboardListener.prototype.fireKeyboardEvent.call(this, this.keyboardListeners, this, event);
+    }
+};
+__ui_FocusPanel.prototype.removeClickListener = function(listener) {
+    this.clickListeners.remove(listener);
+};
+__ui_FocusPanel.prototype.removeFocusListener = function(listener) {
+    this.focusListeners.remove(listener);
+};
+__ui_FocusPanel.prototype.removeKeyboardListener = function(listener) {
+    this.keyboardListeners.remove(listener);
+};
+__ui_FocusPanel.prototype.removeMouseListener = function(listener) {
+    this.mouseListeners.remove(listener);
+};
+__ui_FocusPanel.prototype.setAccessKey = function(key) {
+    __ui_Focus.prototype.setAccessKey.call(this, this.getElement(), key);
+};
+__ui_FocusPanel.prototype.setFocus = function(focused) {
+    if (focused) {
+    __ui_Focus.prototype.focus.call(this, this.getElement());
+    }
+    else {
+    __ui_Focus.prototype.blur.call(this, this.getElement());
+    }
+};
+__ui_FocusPanel.prototype.setTabIndex = function(index) {
+    __ui_Focus.prototype.setTabIndex.call(this, this.getElement(), index);
+};
+__ui_Focus.prototype.__class__ = "ui_Focus";
+function ui_Focus() {
+    return new __ui_Focus();
+}
+function __ui_Focus() {
+}
+__ui_Focus.prototype.blur = function(elem) {
+
+        elem.blur();
+        
+};
+__ui_Focus.prototype.createFocusable = function() {
+
+        var e = $doc.createElement("DIV");
+        e.tabIndex = 0;
+        return e;
+        
+};
+__ui_Focus.prototype.focus = function(elem) {
+
+        elem.focus();
+        
+};
+__ui_Focus.prototype.getTabIndex = function(elem) {
+
+        return elem.tabIndex;
+        
+};
+__ui_Focus.prototype.setAccessKey = function(elem, key) {
+
+        elem.accessKey = key;
+        
+};
+__ui_Focus.prototype.setTabIndex = function(elem, index) {
+
+        elem.tabIndex = index;
+        
+};
+__JSONRPCExample.prototype.__class__ = "JSONRPCExample";
+function JSONRPCExample() {
+    return new __JSONRPCExample();
+}
+function __JSONRPCExample() {
+}
+__JSONRPCExample.prototype.onModuleLoad = function() {
+    this.TEXT_WAITING = "Waiting for response...";
+    this.TEXT_ERROR = "Server Error";
+    this.remote_php = EchoServicePHP();
+    this.remote_py = EchoServicePython();
+    this.status = ui_Label();
+    this.text_area = ui_TextArea();
+    this.text_area.setText("{'Test'} [\"String\"]");
+    this.text_area.setCharacterWidth(80);
+    this.text_area.setVisibleLines(8);
+    this.button_php = ui_Button("Send to PHP Service", this);
+    this.button_py = ui_Button("Send to Python Service", this);
+    var buttons = ui_HorizontalPanel();
+    buttons.add(this.button_php);
+    buttons.add(this.button_py);
+    buttons.setSpacing(8);
+    var info = "<h2>JSON-RPC Example</h2><p>This example demonstrates the calling of server services with <a href=\"http://json-rpc.org/\">JSON-RPC</a>.";
+    info += "<p>Enter some text below, and press a button to send the text to an Echo service on your server. An echo service simply sends the exact same text back that it receives.";
+    var panel = ui_VerticalPanel();
+    panel.add(ui_HTML(info));
+    panel.add(this.text_area);
+    panel.add(buttons);
+    panel.add(this.status);
+    ui_RootPanel().add(panel);
+};
+__JSONRPCExample.prototype.onClick = function(sender) {
+    this.status.setText(this.TEXT_WAITING);
+    if ((sender == this.button_php)) {
+    var id = this.remote_php.echo(this.text_area.getText(), this);
+    }
+    else {
+    var id = this.remote_py.echo(this.text_area.getText(), this);
+    }
+    if ((id < 0)) {
+    this.status.setText(this.TEXT_ERROR);
+    }
+};
+__JSONRPCExample.prototype.onRemoteResponse = function(response, request_info) {
+    this.status.setText(response);
+};
+__JSONRPCExample.prototype.onRemoteError = function(code, message, request_info) {
+    this.status.setText( (  (  ( "Server Error or Invalid Response: ERROR " + code )  + " - " )  + message ) );
+};
+pyjs_extend(__EchoServicePHP, __JSONService_JSONProxy);
+__EchoServicePHP.prototype.__class__ = "EchoServicePHP";
+function EchoServicePHP() {
+    return new __EchoServicePHP();
+}
+function __EchoServicePHP() {
+    __JSONService_JSONProxy.call(this, "services/EchoService.php", new pyjslib_List(["echo"]));
+}
+pyjs_extend(__EchoServicePython, __JSONService_JSONProxy);
+__EchoServicePython.prototype.__class__ = "EchoServicePython";
+function EchoServicePython() {
+    return new __EchoServicePython();
+}
+function __EchoServicePython() {
+    __JSONService_JSONProxy.call(this, "services/EchoService.py", new pyjslib_List(["echo"]));
+}
+
+
+function run() {
+    app = new JSONRPCExample();
+    app.onModuleLoad();
+}
+
+function pygwtOnLoad(onLoadError, name) {
+    if (onLoadError)
+        try {
+            run();
+        } catch (exception) {
+            onLoadError(name);
+        }
+    else {
+            run();
+    }
+}
+
+--></script>
+</body>
+</html>
+

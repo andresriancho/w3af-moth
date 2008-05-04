@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>document.location test</title>
+
+<script type="text/javascript">
+
+function redir( number )
+{
+	k = document;
+	k.location =  'http://loca' + 'lhost/w' + number + 'af/w3af.html';
+
+}
+
+</script>
+
+</head>
+<body>
+
+<h1>Redirection</h1>
+
+<a onmouseover="redir(4);" ID="Button5">Redirect to the w3af test page.</a>
+<h1 id="res"></h1>
+
+<a onclick="redir(3);">Another redirect</a>
+
+<!-- script src="moth-Overlay.js" -->
+
+</body>
+</html>

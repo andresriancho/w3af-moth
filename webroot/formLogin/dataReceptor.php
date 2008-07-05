@@ -5,7 +5,13 @@ if ( strcmp( $_COOKIE["magicValue"] , '0000-1111-2222-3333-4444') == 0 ){
 }
   
 
-if ( strcmp($_POST['user'],"salvatore.vassallo") == 0 && strcmp($_POST['pass'],"12345") == 0 ){ 
+if ( strcmp($_POST['pass'],"") == 0 ){
+        echo "fill the blanks <br>";
+        die();
+}   
+                                    
+
+if ( strcmp($_POST['user'],"admin") == 0 && strcmp($_POST['pass'],"1234f") == 0 ){ 
 	setcookie("magicValue", "0000-1111-2222-3333-4444", time()+3600);
 	setcookie("magicValue2", "0000-1111-2222-3333-4444", time()+3600);
 	

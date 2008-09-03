@@ -1,3 +1,5 @@
+<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+
 <? 
 
 function generateRnd($length = 8){
@@ -15,7 +17,7 @@ function generateRnd($length = 8){
   while ($i < $length){
 
       // pick a random character from the possible ones
-      $char = substr ($possible, mt_rand (0, strlen ($possible) - 1), 1);
+      $char = substr($possible, mt_rand (0, strlen ($possible) - 1), 1);
 
       // we don't want this character if it's already in the password
       if (!strstr ($password, $char))
@@ -23,8 +25,7 @@ function generateRnd($length = 8){
 	  $password .= $char;
 	  $i++;
 	}
-
-    }
+  }
 
   // done!
   return $password;
@@ -33,8 +34,6 @@ function generateRnd($length = 8){
 
 function errorHandler ($severity, $msg, $filename, $linenum)
 {
-
-  echo "error found :";
 
   if ($_GET['debug'])
     {
@@ -59,10 +58,10 @@ $result = mysql_query ("SELECT * FROM agenda where email ='".$_GET['email']."'",
 
 echo generateRnd() . "<br>";
 
-echo "Nombre: ".mysql_result ($result, 0, "nombre")."<br>";
-echo "Dirección: ".mysql_result ($result, 0, "direccion")."<br>";
-echo "Teléfono :".mysql_result ($result, 0, "telefono")."<br>";
-echo "E-Mail :".mysql_result ($result, 0, "email")."<br>";
+echo "<b>Nombre:</b> ".mysql_result($result, 0, "nombre")."<br>";
+echo "<b>Dirección:</b>  ".mysql_result($result, 0, "direccion")."<br>";
+echo "<b>Teléfono:</b> ".mysql_result($result, 0, "telefono")."<br>";
+echo "<b>E-Mail:</b> ".mysql_result($result, 0, "email")."<br>";
 
 echo generateRnd() . "<br>";
 

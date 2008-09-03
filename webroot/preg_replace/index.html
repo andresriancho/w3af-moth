@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+  <title>Regular expressions</title>
+ </head>
+
+ <body>
+ <div id="body">
+
+ <h1 id="preg">
+     Regular expression errors, that sometimes could allow remote code execution
+ </h1>
+    <ul>
+
+     <li>
+        I control all the regular expression (<a href="preg_all_regex.php?regex=/(\w+)%20(\d+),%20(\d+)/i">preg_all_regex.php?regex=/(\w+)%20(\d+),%20(\d+)/i</a>)<br/>
+     </li>
+
+     <li>
+        I control a section of the regular expression (<a href="preg_section_regex.php?search=result">preg_section_regex.php?search=result</a>)<br/>
+     </li>
+
+    </ul>
+
+ </div id="body">
+ </body>
+</html>

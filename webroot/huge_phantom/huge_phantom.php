@@ -3,6 +3,8 @@
 # This script creates A LOT of links that point to random urls
 # that are really this same script.
 
+# This script NEEDS a special mod_rewrite configuration!
+
 function random_letters ($numofletters) {
     $res = '';
     $literki = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'W');

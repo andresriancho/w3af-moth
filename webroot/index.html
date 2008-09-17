@@ -1,1 +1,98 @@
-the real index is in w3af.html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+  <title>w3af tests</title>
+ </head>
+
+ <body>
+ <div id="body">
+
+<img id=logo src='img/w3af.png' alt="w3af">
+
+<br/>
+<br/>
+<br/>
+
+This file contains links to all test scripts and files used by the w3af framework to perform unit tests. If you find any problem with these scripts, or you discover that w3af is not able to detect one type of XSS, Blind SQL injection, etc. please report a bug <a href="http://sourceforge.net/tracker/?group_id=170274&atid=853652">here</a>.<br/>
+
+ <h1 id="audit">
+     Tests related to audit plugins
+ </h1>
+	<a href="audit/blind_sql_injection/">Blind SQL Injection tests</a><br/>
+
+	<a href="audit/permanent-xss/test-permanentxss-reader.php?a=f00">test-permanentxss-reader.php</a><br/>
+	<a href="audit/permanent-xss/test-permanentxss-writer.php?a=g99&b=00">test-permanentxss-writer.php</a><br/>
+	<a href="audit/xss/test-xss.php?a=099&b=whoami">test-xss.php</a><br/>
+	<a href="audit/xss/test-javascriptxss.php?a=099&b=whoami">test-javascriptxss.php</a><br/>
+	<a href="audit/xss-forms/test-forms.html">test-forms.html</a><br/>
+	<a href="audit/xss-forms/test-forms2.html">test-forms2.html - a form with drop boxes</a><br/>
+
+	<a href="audit/sqli/sqli.php?tabla=agenda">sqli/sqli.php?tabla=agenda</a><br/>
+	<a href="audit/sqli/sqli2.php?nombre=apr">sqli/sqli2.php?nombre=apr</a><br/>
+	<a href="audit/sqli/test-forms.html">sqli/test-forms.html</a><br/>
+
+	<a href="audit/cgic/buffOverflow.cgi">Catch buffer overflows in cgic!</a><br/>
+	<a href="audit/cgic/formatString.cgi">Catch format string bugs.</a><br/>
+
+	<a href="audit/osCommanding/vulnerable.php?command=f0as9">osCommanding/vulnerable.php?command=f0as9</a><br/>
+	<a href="audit/osCommanding/vulnerable2.php?file=/etc/passwd">osCommanding/vulnerable2.php?file=/etc/passwd</a><br/>
+	<a href="audit/eval/">Detect if user input is evaluated</a> <br/>
+
+	<a href="audit/remoteFileInclusion/vulnerable.php?file=f0as9">remoteFileInclusion/vulnerable.php?file=f0as9</a><br/>
+	<a href="audit/localFileInclusion/vulnerable.php?file=f0as9">localFileInclusion/vulnerable.php?file=f0as9</a><br/>
+
+	<a href="audit/dav/">Test dav detection</a> <br/>
+	<a href="audit/globalRedirect/">Global redirect tests</a> <br/>
+	<a href="audit/phishingVector/phishingVector.php?url=http://www.google.com">Test the phishingVector plugin</a> <br/>
+	<a href="audit/preg_replace/">preg_replace injection</a> <br/>
+	<a href="audit/responseSplitting/responseSplitting.php?header=f00">Response Splitting test.</a><br/>
+	<a href="audit/xsrf/xsrf.php">XSRF</a><br/>
+	<a href="audit/fileUpload/">FileUpload tests.</a><br/>
+
+	<a href="audit/mailer/index.html">mailer plugin</a> <br/>
+
+ <h1 id="grep">
+     Tests related to grep plugins
+ </h1>
+	<a href="grep/grepPlugins/index.html">Test grep plugins!</a><br/>
+	<a href="grep/grepPlugins/domXss.html">dom xss</a> http://www.webappsec.org/projects/articles/071105.shtml <br/>
+
+
+
+
+
+ <h1 id="discovery">
+     Tests related to discovery plugins
+ </h1>
+	<a href="discovery/webSpider/1.html">Test the spider</a><br/>
+	<a href="discovery/spiderMan/">SpiderMan javascript test.</a><br/>
+	<a href="discovery/swf/secure/">"secure" swf</a> <br/>
+	<a href="discovery/googleSets-wordnet/">Google sets and wordnet tests</a> <br/>
+
+
+
+
+ <h1 id="bruteforce">
+     Tests related to bruteforce plugins
+ </h1>
+	<a href="bruteforce/basicAuthBrute/">Basic auth tests go here!</a><br/>
+	<a href="bruteforce/formLogin/formLogin.html">A form login</a><br/>
+
+
+
+
+
+ <h1 id="misc">
+     Framework Core tests
+ </h1>
+	<a href="core/timeAnalysis/analyze.php11111?a=a">analyze.php?a=a</a><br/>
+	<a href="core/pdfParser/1.pdf">pdf support</a> <br/>
+	<a href="core/fuzzFileContent/">Fuzz file content test.</a><br/>
+	<a href="core/magicQuotes/magicQuotes.php?gpc=pipipi">GPC magic quotes</a> <br/>
+	<a href="core/maxFileSize/">MAX file size test of xurllib.</a> <br/>
+
+
+</div id="body">
+</body>
+</html>

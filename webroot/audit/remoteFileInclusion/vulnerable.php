@@ -1,6 +1,6 @@
 Start--
 <?
-require ( $_GET[file] );
+require($_GET[file]);
 ?>
 --End
 

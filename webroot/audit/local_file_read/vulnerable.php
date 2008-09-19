@@ -1,5 +1,0 @@
-<?
-
-require ( $_REQUEST['file'] );
-
-?>

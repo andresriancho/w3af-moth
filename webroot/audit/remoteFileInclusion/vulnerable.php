@@ -1,7 +1,6 @@
-asdasdasd
+Start>>
 <?
-
 require ( $_GET[file] );
-
 ?>
-alksfjlaksjf
+<<End
+

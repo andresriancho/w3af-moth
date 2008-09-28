@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+  <title>Audit plugin tests</title>
+ </head>
+
+ <body>
+ <div id="body">
+
+<img id=logo src='/w3af/img/w3af.png' alt="w3af">
+
+<br/>
+<br/>
+<br/>
+
+This file contains links to all audit test scripts and files used by the w3af framework to perform unit tests. If you find any problem with these scripts, or you discover that w3af is not able to detect one type of XSS, Blind SQL injection, etc. please report a bug <a href="http://sourceforge.net/tracker/?group_id=170274&atid=853652">here</a>.<br/>
+
+ <h1 id="audit">
+     Audit plugins
+ </h1>
+	<a href="permanent-xss/test-permanentxss-reader.php?a=f00">test-permanentxss-reader.php</a><br/>
+	<a href="permanent-xss/test-permanentxss-writer.php?a=g99&b=00">test-permanentxss-writer.php</a><br/>
+	<a href="xss/">Cross Site Scripting</a><br/>
+	<a href="xss-forms/test-forms.html">test-forms.html</a><br/>
+	<a href="xss-forms/test-forms2.html">test-forms2.html - a form with drop boxes</a><br/>
+	<br/>
+
+	<a href="blind_sql_injection/">Blind SQL Injection tests</a><br/>
+	<a href="sql_injection/">SQL Injection tests</a><br/>
+	<br/>
+
+	<a href="cgic/buffOverflow.cgi">Catch buffer overflows in cgic!</a><br/>
+	<a href="cgic/formatString.cgi">Catch format string bugs.</a><br/>
+	<br/>
+
+	<a href="os_commanding/">OS Commanding</a><br/>
+	<a href="eval/">Detect if user input is evaluated</a> <br/>
+	<br/>
+
+	<a href="local_file_read/local_file_read.php?file=section.txt">Local File Read</a><br/>
+	<a href="localFileInclusion/vulnerable.php?file=section.php">Local File Inclusion</a><br/>
+	<a href="remoteFileInclusion/vulnerable.php?file=section.php">Remote File Inclusion</a><br/>
+	<br/>
+
+	<a href="dav/">Test DAV detection</a> <br/>
+	<a href="globalRedirect/">Global redirect tests</a> <br/>
+	<a href="phishingVector/phishingVector.php?url=http://www.google.com">Test the phishingVector plugin</a> <br/>
+	<a href="preg_replace/">preg_replace injection</a> <br/>
+	<a href="responseSplitting/responseSplitting.php?header=f00">Response Splitting test.</a><br/>
+	<a href="xsrf/xsrf.php">XSRF</a><br/>
+	<a href="fileUpload/">FileUpload tests.</a><br/>
+	<br/>
+
+	<a href="mailer/index.html">mailer plugin</a> <br/>
+	<br/>
+
+</div id="body">
+</body>
+</html>

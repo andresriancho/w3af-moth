@@ -15,7 +15,7 @@ $link = mysql_connect("localhost", "root" , "chauchas!");
 
 mysql_select_db("w3af_test", $link);
 
-$result = mysql_query("SELECT * FROM agenda where id =" . $_GET['id'] , $link);
+$result = mysql_query("SELECT * FROM users where id =" . $_GET['id'] , $link);
 
 echo "<i>don't get fooled by the 'static' response, the id parameter <b>is</b> injectable</i>";
 

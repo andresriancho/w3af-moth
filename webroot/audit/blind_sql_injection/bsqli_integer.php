@@ -15,14 +15,11 @@ $link = mysql_connect("localhost", "root" , "chauchas!");
 
 mysql_select_db("w3af_test", $link);
 
-#echo "SELECT * FROM agenda where id =" . $_GET['id'];
-#echo '<br/>';
+$result = mysql_query("SELECT * FROM users where id =" . $_GET['id'] , $link);
 
-$result = mysql_query("SELECT * FROM agenda where id =" . $_GET['id'] , $link);
-
-echo "<b>Nombre:</b> ".mysql_result($result, 0, "nombre")."<br>";
-echo "<b>Dirección:</b>  ".mysql_result($result, 0, "direccion")."<br>";
-echo "<b>Teléfono:</b> ".mysql_result($result, 0, "telefono")."<br>";
-echo "<b>E-Mail:</b> ".mysql_result($result, 0, "email")."<br>";
+echo "<b>Name:</b> ".mysql_result($result, 0, "name")."<br>";
+echo "<b>Address:</b>  ".mysql_result($result, 0, "address")."<br>";
+echo "<b>Phone:</b> ".mysql_result($result, 0, "phone")."<br>";
+echo "<b>Email:</b> ".mysql_result($result, 0, "email")."<br>";
 
 ?>

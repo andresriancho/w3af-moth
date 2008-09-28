@@ -15,11 +15,11 @@ $link = mysql_connect("localhost", "root", "chauchas!");
 mysql_select_db("w3af_test", $link);
 
 if ( $_GET['debug'] ) {
-echo "SELECT * FROM agenda where email ='" . $_GET['email'] ."'";
+echo "SELECT * FROM users where email ='" . $_GET['email'] ."'";
 echo "<br>";
 }
 
-$result = mysql_query("SELECT * FROM agenda where email ='" . $_GET['email'] ."'", $link);
+$result = mysql_query("SELECT * FROM users where email ='" . $_GET['email'] ."'", $link);
 
 echo "<i>don't get fooled by the 'static' response, the email parameter <b>is</b> injectable</i>";
 

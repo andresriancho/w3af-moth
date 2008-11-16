@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+  <title>Local file inclusion tests</title>
+ </head>
+
+ <body>
+ <div id="body">
+
+ <h1 id="lfi">
+	Local file inclusion tests
+ </h1>
+    <ol>
+
+     <li>
+        Trivial LFI (<a href="trivial_lfi.php?file=index.html">trivial_lfi.php?file=index.html</a>)<br/>
+     </li>
+
+     <li>
+        require( '/path/' . $user_controlled) LFI (<a href="lfi_1.php?file=index.html">lfi_1.php?file=index.html</a>)<br/>
+     </li>
+
+     <li>
+        require( '/path/' . $user_controlled . 'extension') LFI (<a href="lfi_2.php?file=index">lfi_2.php?file=index</a>)<br/>
+     </li>
+
+     <li>
+        A false positive LFI (<a href="false_positive.php?file=index">false_positive.php?file=index</a>)<br/>
+     </li>
+
+    </ol>
+
+ </div id="body">
+ </body>
+</html>

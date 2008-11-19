@@ -1,0 +1,5 @@
+<cross-domain-policy>
+        <allow-access-from domain="*" />               
+        <allow-access-from domain="google.com" />
+        <allow-access-from domain="yahoo.com" />
+</cross-domain-policy>

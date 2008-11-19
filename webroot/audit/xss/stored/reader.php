@@ -1,10 +1,8 @@
-<html>
+Start --
 
 <?
 
-echo 'aslfknasf09ansf;aosnf';
-
-$filename = "test-permanentxss.txt";
+$filename = "data.txt";
 $fp = fopen($filename, "r") or die("Couldn’t open $filename");
 while(!feof($fp))
 {
@@ -14,9 +12,6 @@ while(!feof($fp))
 
 fclose($fp);
 
-echo 'alsifnasf09aspfn;kl'
 ?>
 
-<a href="test123.html"> </a>
-
-</html>
+-- End

@@ -1,0 +1,15 @@
+g99
+g99
+g99
+g99
+g99
+HCvy7
+<SCrIPT>alert("ydpLX9mDGfpnp6FyE0aj8nyX0v1")</SCrIPT>
+<ScRIPT>a=/ydpLX9mDGfpnp6FyE0aj8nyX0v1/
+alert(a.source)</SCRiPT>
+<ScRIpT>alert(String.fromCharCode(88,83,83))</SCriPT>
+g99
+g99
+g99
+g99
+g99

@@ -1,4 +1,0 @@
-cap.cencosud.com.ar
-hace que el webspider loopee demasiadas veces, tendria que hacerlo mucho mas
-rapido y simple, con menos HEAD's.
-

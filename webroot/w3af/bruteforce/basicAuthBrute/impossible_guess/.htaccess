@@ -1,4 +1,4 @@
-AuthUserFile /var/www/w3af/bruteforce/basicAuthBrute/.htpasswd
+AuthUserFile /var/www/w3af/bruteforce/basicAuthBrute/impossible_access/.htpasswd
 AuthName "bu!"
 AuthType Basic
 <Limit GET>

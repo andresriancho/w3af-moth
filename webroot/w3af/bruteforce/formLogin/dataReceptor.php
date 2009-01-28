@@ -11,7 +11,7 @@ if ( strcmp($_POST['pass'],"") == 0 ){
 }   
                                     
 
-if ( strcmp($_POST['user'],"admin") == 0 && strcmp($_POST['pass'],"1234f") == 0 ){ 
+if ( strcmp($_POST['user'],"admin") == 0 && strcmp($_POST['pass'],"1234") == 0 ){ 
 	setcookie("magicValue", "0000-1111-2222-3333-4444", time()+3600);
 	setcookie("magicValue2", "0000-1111-2222-3333-4444", time()+3600);
 	

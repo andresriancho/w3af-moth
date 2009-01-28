@@ -1,7 +1,7 @@
 <html>
 
 <b>
-just some text
+Start--
 </b>
 <br/>
 
@@ -9,18 +9,21 @@ just some text
 
 if ( strcmp( $_GET["id"] , "21" ) == 0 ){ 
 
-	echo "Estas viendo la seccion de ventas" ."<br>";
+?>
+	Welcome to the sales section, we hope that you are a potential client! Please buy.
+<?
 }
 
 if ( strcmp( $_GET["id"] , "22" ) == 0 ){ 
 
-	echo "Estas viendo la seccion de compras" ."<br>";
+?>
+	Welcome mister provider, please click <a href="login.php">here</a> to login.
+<?
 }
 
 ?>
 <br/>
-<i>
-more text
-</i>
+
+--End
 
 </html>

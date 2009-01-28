@@ -13,11 +13,13 @@ Creating tables...<br/>
 
 $fp = fopen('../create_tables.sql', "r");
 
-$line = fgets($fp);
-while( !feof($fp) ){
-    echo $line . '<br/>';
-    mysql_query($line);
-    $line = fgets($fp);
+if ($fp){
+  $line = fgets($fp);
+  while( !feof($fp) ){
+      echo $line . '<br/>';
+      mysql_query($line);
+      $line = fgets($fp);
+  }
 }
 
 ?>

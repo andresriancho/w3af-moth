@@ -5,7 +5,7 @@
 <card>
 
 	<p>Username:
-		<go method="post" href="http://127.0.0.1/w3af/wmlParser/dataReceptor.php">
+		<go method="post" href="http://localhost/w3af/core/wml_parser/form_sql_injection.php">
 		<input name="user" type="text"/> FirstName:
 		<input name="firstname" type="text"/><input value="Submit" type="submit"/>
 		</go>

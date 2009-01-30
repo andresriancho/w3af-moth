@@ -7,7 +7,9 @@
 
 	<p>
 		<anchor>Next page
-		<go href="sql_injection_string.php?id=acho@cybsec.com"/> 
+		<go href="sql_injection_string.php"> 
+			<setvar name="name" value="andres"/>
+		</go>
 		</anchor>
 	</p>
 

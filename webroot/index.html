@@ -2,27 +2,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
  <head>
   <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
-  <title>w3af tests</title>
+  <title>:: moth homepage ::</title>
  </head>
 
- <body>
- <div id="body">
+<body>
 
-<img id=logo src='w3af/img/w3af.png' alt="w3af">
+<!-- ###### Header ###### -->
+<div id="top">
+    <div id="header">
+				<div id="headerTitle"><img src="/images/w3af.png" alt="w3af logo" align="left" border="0"></div>
+				<br />
+				<!-- ###### Navigation Bar ###### -->
+				<div id="navBar">          
+          <div id="navBarTitle">Table of Contents</div>
 
-<br/>
-<br/>
-<br/>
+					<a href="http://w3af.sf.net/">w3af homepage</a>
+					<a href="http://sourceforge.net/tracker/?group_id=170274&atid=853652">Report a bug</a>
+                    <br />
+					<a href="#w3af">w3af tests</a>
+					<a href="#wivet">wivet</a>
+					<a href="#SiteGenerator">SiteGenerator</a>
+					<a href="#vulnerable-web-applications">Web Applications</a>
+					<a href="#misc">Other files</a>
+                    <br />
 
-Welcome to the w3af test site! If you find a bug please report to <a href="http://sourceforge.net/tracker/?group_id=170274&atid=853652">here</a>.<br/>
+					<div class="navBarTitle" align="center">
+                    <a href="http://www.bonsai-sec.com/"><img src="/images/bonsai_tiny_75x75.png" alt="Bonsai - Information Security"></a>
+    </div>
+</div>
+<!-- ###### End Header ###### -->
+
+
+<div id="body">
+
+<br />
+<div align="center"><h3>Welcome to the moth homepage! </h3></div>
+<br />
+<br />
+<p>Moth is a VMware image with a set of vulnerable Web Applications, that you may use for testing Web 
+Application Security Scanners and Static Code Analysis tools (SCA).
+</p>
+
+<p>The motivation for creating this image came after reading "anantasec-report.pdf" which is included
+in this release ("anantasec/anantasec-report.pdf"). The main objective of this vmware image is to
+be able to test the w3af - Web Application Attack and Audit Framework and compare it with the
+commercial tools included in the report.</p>
+
+<p>Other tools like this are available (securibench to name one) but they lack
+one very important feature: a list of vulnerabilities that are included in the Web
+Applications! In our case, we use the results gathered in the anantasec
+report as our list of Web Application Vulnerabilities
+included in the release.</p>
 
  <h1 id="w3af">
      w3af tests
  </h1>
     This section has all the tests that are run in replacement of the standard unit-tests. <a href="w3af/">Click here!</a><br/>
 
- <h1 id="tests">
-     Misc files
+ <h1 id="wivet">
+     wivet
+ </h1>
+    <a href="wivet/">Click here</a> to access Wivet, WIVET is a benchmarking project that aims to statistically analyze web link extractors. In general,
+    web application vulnerability scanners fall into this category. These VAs, given a URL(s), try to extract as many input vectors as possibly they
+    can to increase the coverage of the attack surface.<br/>
+
+ <h1 id="SiteGenerator">
+     SiteGenerator
+ </h1>
+    OWASP SiteGenerator - Application Security Tool Benchmarking Environment. <a href="sitegenerator/">Click here</a> to
+ access one of the simplest websites that can be generated using SiteGenerator. The output language was JSP.<br/>
+
+ <h1 id="vulnerable-web-applications">
+     Vulnerable Web Applications
+ </h1>
+    This section contains most of the applications included in <a href="/vulnerable-web-applications/">anantasec's</a> Web Application Scanner comparison.
+
+ <h1 id="misc">
+     Other files
  </h1>
     Inside this directory you'll also find a collection of files that are also used by w3af to perform self-tests:<br/>
 

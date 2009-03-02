@@ -1,6 +1,6 @@
 Droping database...<br/>
 <?
-$link = mysql_connect("localhost", "root", "chauchas!");
+$link = mysql_connect("localhost", "root", "moth");
 mysql_select_db("w3af_test", $link);
 mysql_query("DROP database w3af_test;");
 ?>

@@ -1,7 +1,7 @@
 Start--
 <?
 
-$link = mysql_connect("localhost", "root", "chauchas!");
+$link = mysql_connect("localhost", "root", "moth");
 
 mysql_select_db("w3af_test", $link);
 

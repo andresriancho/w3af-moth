@@ -18,7 +18,7 @@
 	<br/>
 
 	<?
-		$link = mysql_connect("localhost", "root", "chauchas!");
+		$link = mysql_connect("localhost", "root", "moth");
 		mysql_select_db("w3af_test", $link);
 
 		$result = mysql_query("SELECT * FROM users where name ='" . $_POST['user'] ."'", $link);

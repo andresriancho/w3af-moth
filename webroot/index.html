@@ -7,31 +7,7 @@
 
 <body>
 
-<!-- ###### Header ###### -->
-<div id="top">
-    <div id="header">
-				<div id="headerTitle"><img src="/images/w3af.png" alt="w3af logo" align="left" border="0"></div>
-				<br />
-				<!-- ###### Navigation Bar ###### -->
-				<div id="navBar">          
-          <div id="navBarTitle">Table of Contents</div>
-
-					<a href="http://w3af.sf.net/">w3af homepage</a>
-					<a href="http://sourceforge.net/tracker/?group_id=170274&atid=853652">Report a bug</a>
-                    <br />
-					<a href="#w3af">w3af tests</a>
-					<a href="#wivet">wivet</a>
-					<a href="#SiteGenerator">SiteGenerator</a>
-					<a href="#vulnerable-web-applications">Web Applications</a>
-					<a href="#misc">Other files</a>
-                    <br />
-
-					<div class="navBarTitle" align="center">
-                    <a href="http://www.bonsai-sec.com/"><img src="/images/bonsai_tiny_75x75.png" alt="Bonsai - Information Security"></a>
-    </div>
-</div>
-<!-- ###### End Header ###### -->
-
+require_once('header.php');
 
 <div id="body">
 
@@ -55,25 +31,46 @@ report as our list of Web Application Vulnerabilities
 included in the release.</p>
 
  <h1 id="w3af">
-     w3af tests
+     w3af test scripts (PHP)
  </h1>
-    This section has all the tests that are run in replacement of the standard unit-tests. <a href="w3af/">Click here!</a><br/>
+    <p>This section has all the scripts that are run using the "./w3af_console -t"
+ command. The objective of these vulnerable scripts is to test w3af, there
+    is no intention to have a complete Web Application. There are three
+ different ways to access THE SAME vulnerable PHP scripts: </p>
+ <ul>
+ 	<li><a href="/w3af/">Directly, without any protection</a></li>
+ 	<li><a href="/mod_security/w3af/">Using mod_security</a></li>
+ 	<li><a href="/php-ids/w3af/">Using PHP-IDS</a></li>
+ </ul>
+
+    <p>For both the mod_security and php-ids versions of the test scripts, a
+    clear indication is shown when you are detected by the corresponding IDS
+    system: 
+    <a href="http://192.168.150.139/php-ids/w3af/audit/xss/simple_xss.php?text=1&test=><script>eval(window.name)</script>">PHP-IDS</a>
+     , <a href="http://192.168.150.139/mod_security/w3af/audit/xss/simple_xss_no_js.php?text=1' union select * from table where 1=1">mod_security</a> .</p>
 
  <h1 id="wivet">
-     wivet
+     wivet (PHP)
  </h1>
-    <a href="wivet/">Click here</a> to access Wivet, WIVET is a benchmarking project that aims to statistically analyze web link extractors. In general,
+    <p>WIVET is a benchmarking project that aims to statistically analyze web link extractors. In general,
     web application vulnerability scanners fall into this category. These VAs, given a URL(s), try to extract as many input vectors as possibly they
-    can to increase the coverage of the attack surface.<br/>
+    can to increase the coverage of the attack surface. There are three
+     different ways to access Wivet:</p>
+    <ul>
+        <li><a href="/wivet/">Directly, without any protection</a></li>
+        <li><a href="/mod_security/wivet/">Using mod_security</a></li>
+        <li><a href="/php-ids/wivet/">Using PHP-IDS</a></li>
+    </ul>
 
  <h1 id="SiteGenerator">
-     SiteGenerator
+     SiteGenerator (JSP)
  </h1>
-    OWASP SiteGenerator - Application Security Tool Benchmarking Environment. <a href="sitegenerator/">Click here</a> to
+    OWASP SiteGenerator - Application Security Tool Benchmarking Environment. <a
+ href="/sitegenerator/">Click here</a> to
  access one of the simplest websites that can be generated using SiteGenerator. The output language was JSP.<br/>
 
  <h1 id="vulnerable-web-applications">
-     Vulnerable Web Applications
+     Vulnerable Web Applications (PHP, Java, Ruby)
  </h1>
     This section contains most of the applications included in <a href="/vulnerable-web-applications/">anantasec's</a> Web Application Scanner comparison.
 

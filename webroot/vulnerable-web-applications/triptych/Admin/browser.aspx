@@ -1,0 +1,1 @@
+<%@ Page Language='C#' ResponseEncoding='iso-8859-1' src="admin.cs" Inherits="Stats.Browser" %>

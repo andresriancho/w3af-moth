@@ -1,0 +1,206 @@
+body,h1,h2,h3,h4,h5,h6,p,form,fieldset 
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	background-color: #004D81;
+	font-family: Verdana;
+	margin-top: 10px;
+}
+
+#container
+{
+	max-width: 1000px;
+	min-width: 750px;
+	width: 95%;
+}
+
+#containerLogin
+{
+	width: 250px;
+}
+
+#header 
+{
+	color: #FFFFFF;
+	font-weight: bold;
+	height: 85px;
+	text-align: left;
+}
+
+#header h1 
+{
+  	font-variant: small-caps;
+	padding-top: 20px;
+}
+
+#header h2 
+{
+	font-size: .8em;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+}
+
+#navigation 
+{
+  	background-color: #0080bf;
+	color: #FFFFFF;
+	font-size: 1em;
+	font-weight: bold;
+	height: 45px;
+  	line-height: 45px;
+}
+
+#navigation ul 
+{
+  	margin: 0;
+  	padding: 0;
+}
+
+#navigation li 
+{
+  	border-right: 2px solid #004D81;
+	float: left;
+  	list-style-type: none;
+	margin: 0;
+  	padding: 0;
+  	white-space: nowrap;
+}
+
+#navigation li a 
+{
+  	color: #FFFFFF;
+	display: block;
+	font-size: .8em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+  	padding: 0 18px;
+  	text-decoration: none;
+  	text-transform: uppercase;
+}
+
+#navigation li a:hover 
+{
+  	background-color: #00a8ff;
+	color: #FFFFFF;
+	display: block;
+	font-size: .8em;
+	font-variant: small-caps;
+	letter-spacing: 1px;
+  	padding: 0 18px;
+  	text-decoration: none;
+  	text-transform: uppercase;
+}
+
+.headerstyle
+{
+	font-size: .75em;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.itemstyle
+{
+	color: #0080BF;
+	font-size: .75em;
+	text-decoration: none;
+}
+
+.itemstyle a
+{
+	font-size: 1em;
+}
+
+.itemstyle a:link {color: #0080BF; text-decoration: none;}
+.itemstyle a:visited {color: #0080BF; text-decoration: none;}
+.itemstyle a:hover {color: #0080BF; text-decoration: underline;}
+
+.footerstyle
+{
+	color: #FFFFFF;
+	font-size: .75em;
+	text-decoration: none;
+}
+
+.footerstyle a
+{
+	font-size: 1em;
+}
+
+.footerstyle a:link {color: #FFFFFF; text-decoration: none;}
+.footerstyle a:visited {color: #FFFFFF; text-decoration: none;}
+.footerstyle a:hover {color: #FFFFFF; text-decoration: underline;}
+
+#content
+{
+	background-color: #FFFFFF;
+	padding: 20px;
+	text-align: left;
+}
+
+#content p
+{
+	color: #000000;
+	font-size: .75em;
+	padding: 3px 0 3px 0;
+}
+
+#content p a
+{
+	font-size: 1em;
+}
+
+#content p a:link {color: #005580; text-decoration:none;}
+#content p a:visited {color: #005580; text-decoration:none;}
+#content p a:hover {color: #00A8FF; text-decoration:underline;}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6
+{
+	color: #004D81;
+}
+
+.Button 
+{
+	background: #ECF9FF;
+	border: 1px solid #0080BF;
+	color: #0080BF;
+	cursor: pointer;
+	font-size: .75em;
+	font-family: Verdana;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding: 3px;
+}
+
+.Textarea 
+{
+	color: #000000;
+	background: #FFFFFF;
+	font-family: Verdana;
+	font-size: .75em;
+	font-weight: normal;
+}
+
+#footer 
+{
+	background-color: #004D81;
+	border-top: 10px solid #0080bf;
+	text-align: center;
+}
+
+#footer p 
+{
+	color: #FFFFFF;
+	font-size: .7em;
+	margin: 0;
+	padding: 10px 0 10px 0;
+	text-align: center;
+	
+}
+
+#footer p a:link {color: #FFFFFF; border: 0; margin: 0;  padding: 0; text-decoration:underline;}
+#footer p a:visited {color: #FFFFFF; border: 0; margin: 0;  padding: 0; text-decoration:underline;}
+#footer p a:hover {color: #00A8FF; border: 0; margin: 0;  padding: 0; text-decoration:underline;}

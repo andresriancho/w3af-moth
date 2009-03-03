@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>TriptychBlog v.9.0.1 :: Readme</title>
+<style type="text/css">
+<!--
+body {
+margin-top: 20px;
+background-color: #FFFFFF;
+}
+
+
+.Content {
+	font-family:Verdana;
+	color: #000000;
+	font-size: 12px;
+	text-align:left;
+	}
+	
+a.Content:link {color: #0080BF; text-decoration:underline;}
+a.Content:visited {color: #0080BF; text-decoration:underline;}
+a.Content:hover {color: #005580; text-decoration:underline;}
+	
+.Accent {
+	font-family:Verdana;
+	color: #0080BF;
+	font-size: 12px;
+	text-align:left;
+	}
+
+.Header {
+	font-family:Verdana;
+	color: #005580;
+	font-size: 14px;
+	font-weight:bold;
+	text-align:left;
+	}	
+	
+.Title {
+	font-family:Verdana;
+	color: #005580;
+	font-size: 24px;
+	font-weight:bold;
+	text-align:left;
+	}
+
+-->
+</style>
+</head>
+
+<body>
+<span class="Title">TriptychBlog v.9.0.1 Readme</span>
+<span class="Content"><br />
+TriptychBlog is open source source under the   <a href="http://www.gnu.org/licenses/gpl.txt" class="Content">GNU General Public License (GPL)</a>.</span><br />
+<br />
+  <span class="Header">Prerequisites</span><br />
+  <hr />
+ <span class="Content">1. Internet Information Services (IIS) 5.x-6.x must be installed, or equivalent. <br />
+  2. The Microsoft ASP.net 2.0 Framework is required in order to run TriptychBlog. The neccesary files can be downloaded <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=7ABD8C8F-287E-4C7E-9A4A-A4ECFF40FC8E&amp;displaylang=en" class="Content">here</a>. <br />
+  3. Administrator Permissions.<br />
+  4. Knowledge of IIS functionality. </span><br />
+    <br />
+    <span class="Header">Installation</span>
+<hr />
+<p class="Content">1. Copy all files within the folder <span class="Accent">&quot;TriptychBlog_v.9.0&quot;</span> to your desired directory <span class="Accent">(root).</span><br /> 
+2a. Open IIS and create an application for the root directory; name this application <span class="Accent">&quot;TriptychBlog_v.9.0&quot;</span> or TriptychBlog will not function. Also create an application for the directory <span class="Accent">&quot;Admin&quot;</span> which is found within the root directory name this application <span class="Accent">&quot;Admin_v.9.0&quot;</span>.<br />
+2b. If you wish to use the source files, you can name the application in IIS whatever you want. <br />
+  3. Open <span class="Accent">&quot;web.config&quot;</span> (Loacted in the root directory). Locate the line <span class="Accent">&lt;user name=&quot;root&quot; password=&quot;root&quot;/&gt;</span> and change the name and password fields to your desired login information. <br />
+  4. Right-Click on <span class="Accent">NewsData.mdb</span> (Located in the root directory) and go to properties. Select the <span class="Accent">&quot;Security&quot;</span> tab. Then select the user profile <span class="Accent">&quot;Users&quot;</span>, enusre that the read and write premissions are checked.<br />
+  5. Installation is now complete! Navigate to your installation directory and ensure that TriptychBlog loads. <br />
+  6. Once you are sure the installation was successful delete the confirmation post.  Then, this is very important, change the timezone to whatever you want, and then create your first post.  If at any point you want to change the timezone, you must change the date values in the database so keep this in mind.<br />
+  <br />
+  <span class="Header">Troubleshooting</span>
+
+<hr />
+<span class="Content">1. If you navigate to your installation directory and recieve the error:  </span><span class="Accent">&quot;Operation must use an updateable query.&quot;;</span><span class="Content"> Newsdata.mdb does not have the correct permissions.</span><br />
+<br />
+<span class="Header">Customization</span> 
+<hr />
+<p><span class="Content">1. All design related information is located in styles.css. All images are located in &quot;images&quot; Everything is fully customizable.<br />
+  2. If you desire to use the raw source files you will need to add src=&quot;XXXX.cs&quot; to each page, where XXXX is the name of the source file; either default.cs, or admin.cs. Or you can download a version that uses the source by default.<br />
+  3. To change the title of each page you will need to login to the Admin Panel and navigate to the options page. From there you should see the option to change your blog name. This change will be reflected within you page titles. If you wish to change the formatting of the page titles you will need to edit the &lt;title&gt; tag of each page you wish to change. <br />
+4. TriptychBlog.master is the template page which can be fully edited as long as the &lt;asp:contentplaceholder...&gt;&lt;/...&gt; tags remain in place.<br />
+5. To edit your blogroll and categories you need to login to the admin panel and navigate to the options page. From there you should see the approriate section that will allow you take change your blogroll and categories. Alternatively you can open </span><span class="Accent">&quot;config.xml&quot;</span><span class="Content"> and add another &lt;item&gt; section for each link or category following the template.
+</span><span class="Content"><br />
+7. To change the message displayed when comments are locked or protected open </span><span class="Accent">&quot;comments.aspx&quot;</span><span class="Content"> and find &lt;asp:Panel&gt; tag with an id of either protected or locked and edit the text within that tag.<br />
+8. To add links to the top of TriptychBlog open</span><span class="Accent"> &quot;TriptychBlog.master&quot;</span><span class="Content"> and locate the div with an id of Nav. Simply add another &lt;li&gt; tag with your link inside it.
+</span><br />
+  <br />
+<span class="Header">Change Log </span></p>
+<hr />
+  <p class="Content">Backup:<br />
+    ADDED:  backup.aspx which creates an xml with all your blog data<br />
+    ADDED:  Backup button in options.aspx of admin panel</p>
+  <p class="Content">Archive:<br />
+    ADDED:  Working Archive Side Panel to TriptychBlog.master<br />
+    ADDED: Year  and Month querystrings to main page (default.aspx)</p>
+  <p class="Content">Unified  Settings:<br />
+    ADDED:  config.xml which stores general settings, blogroll and category list<br />
+    ADDED:  DataGrids to options.aspx that allows categories, blogroll and settings to be  edited.<br />
+	CHANGED:  Merged blogroll.xml and category.xml into config.xml<br />
+	CHANGED: XML structure of blogroll and categories.</p>
+  <p class="Content">Stats:<br />
+    ADDED:  Stats.aspx to Admin Panel<br />
+    ADDED:  Browser Piechart to Stats.aspx<br />
+    ADDED:  TrafficData table to newsdata.mdb</p>
+  <p class="Content">Default  Skin:<br />
+    FIXED:  All declarations are in alphabetical order.<br />
+    CHANGED:  Header, Nav, Footer ID changed for new skin</p>
+  <p class="Content">Admin  Skin:<br />
+    ADDED: CSS  contentLogin Class for width of 250px for login.aspx<br />
+    ADDED:  CSS Button class, and Textarea class<br />
+    ADDED:  Set CSS navigation id text-align property to center<br />
+    CHANGED:  login.aspx to match visual style<br />
+    CHANGED:  CSS file for admin panel has been redone<br />
+    FIXED: No  Images needed for Admin Panel</p>
+  <p class="Content">Help:<br />
+    ADDED:  Help.aspx now reads from file on TriptychStudios&rsquo; server.</p>
+  <p class="Content">Update  Feeds:<br />
+    ADDED:  Feed namespace for RSS and ATOM Classes<br />
+    ADDED:  Format.ForURL Class<br />
+    CHANGED:  Class FormatForXML to ForXML<br />
+    FIXED:&nbsp; atom.aspx and rss.aspx now produce valid XML  files<br />
+    FIXED:&nbsp; atom.aspx and rss.aspx are closer to  validation</p>
+  <p class="Content">Other:<br />
+    REMOVED:  cat.aspx while adding Category querystring to main page (default.aspx)</p>
+  <hr />
+  <span class="Content">Copyright (c) <a href="http://triptychstudios.net" class="Content">TriptychStudios</a> 2007. All rights reserved.</span><br />
+  <span class="Content">Licensed under the GNU General Public License (GPL);  you may not use this file except in compliance with the License. You may obtain a copy of the License at <a href="http://www.gnu.org/licenses/gpl.txt" class="Content">http://www.gnu.org/licenses/gpl.txt</a>.</span>
+
+</body>
+</html>

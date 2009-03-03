@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <blogroll>
+        <title>Admin Panel</title>
+        <link>./Admin</link>
+    </blogroll>
+    <category>
+        <item>General</item>
+    </category>
+    <settings>
+        <title>Blog Title</title>
+        <description>Blog Description</description>
+        <language>English</language>
+        <display>10</display>
+        <recentdisplay>5</recentdisplay>
+        <hostip>0.0.0.0</hostip>
+        <timezone>GMT</timezone>
+        <version>.9.0.1</version>
+    </settings>
+</config>

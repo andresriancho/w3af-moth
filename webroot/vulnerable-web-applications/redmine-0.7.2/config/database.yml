@@ -1,0 +1,17 @@
+login: &login
+  adapter: mysql
+  socket: /var/run/mysqld/mysqld.sock
+  username: root
+  password: moth
+
+development:
+  database: redmine
+  <<: *login
+
+test:
+  database: redmine
+  <<: *login
+
+production:
+  database: redmine
+  <<: *login

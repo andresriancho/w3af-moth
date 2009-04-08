@@ -46,8 +46,8 @@ included in the release.</p>
     <p>For both the mod_security and php-ids versions of the test scripts, a
     clear indication is shown when you are detected by the corresponding IDS
     system: 
-    <a href="http://192.168.150.139/php-ids/w3af/audit/xss/simple_xss.php?text=1&test=><script>eval(window.name)</script>">PHP-IDS</a>
-     , <a href="http://192.168.150.139/mod_security/w3af/audit/xss/simple_xss_no_js.php?text=1' union select * from table where 1=1">mod_security</a> .</p>
+    <a href="/php-ids/w3af/audit/xss/simple_xss.php?text=1&test=><script>eval(window.name)</script>">PHP-IDS</a>
+     , <a href="/mod_security/w3af/audit/xss/simple_xss_no_js.php?text=1' union select * from table where 1=1">mod_security</a> .</p>
 
  <h1 id="wivet">
      wivet (PHP)
@@ -75,7 +75,7 @@ included in the release.</p>
     This section contains most of the applications included in <a href="/vulnerable-web-applications/">anantasec's</a> Web Application Scanner comparison.
 
  <h1 id="misc">
-     Other files
+     Other files and resources
  </h1>
     Inside this directory you'll also find a collection of files that are also used by w3af to perform self-tests:<br/>
 
@@ -87,7 +87,11 @@ included in the release.</p>
         <li><a href="intranet/">intranet/</a></li>
         <li><a href="icons/">icons/</a></li>
         <li><a href="python_test/">python_test/</a></li>
+        <li><a href="http://<? echo $_SERVER['SERVER_ADDR']; ?>:8080/manager/html">Tomcat manager</a> (moth/moth)</li>
     </ol>
+<br />
+<br />
+<br />
 
 </div id="body">
 </body>

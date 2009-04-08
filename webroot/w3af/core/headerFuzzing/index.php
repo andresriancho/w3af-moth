@@ -1,6 +1,6 @@
 <?
 
-echo 'Welcome!';
-echo 'Your user agent is: ' . $_SERVER['HTTP_USER_AGENT'];
+echo 'Welcome!<br/>';
+echo '<b>Your browser is:</b> ' . htmlentities($_SERVER['HTTP_USER_AGENT']) . "<br/>";
 
 ?>

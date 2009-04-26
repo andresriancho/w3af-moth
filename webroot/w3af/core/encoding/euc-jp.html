@@ -1,6 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <!--
+If you get an error like:
+A w3af/extras/testEnv/webroot/w3af/core/encoding/euc-jp/index.html
+svn: Can't convert string from 'UTF-8' to native encoding:
+
+you have to set your current locale appropriately:
+
+macbook:~ stefan$ export LC_CTYPE=en_US.UTF-8
+macbook:~ stefan$ locale
+LANG=
+LC_COLLATE="C"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="C"
+LC_MONETARY="C"
+LC_NUMERIC="C"
+LC_TIME="C"
+LC_ALL="C/en_US.UTF-8/C/C/C/C"
+macbook:~ stefan$ svn update
+ 
+ -->
  <head>
   <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
   <title>Character encoding tests</title>

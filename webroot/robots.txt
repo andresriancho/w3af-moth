@@ -1,3 +1,6 @@
 ALLOW: http://localhost/w3af/
 #f00!
 DISALLOW:http://localhost/w3af/audit/
+
+allow: /hidden/
+

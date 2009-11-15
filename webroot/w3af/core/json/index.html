@@ -1,0 +1,49 @@
+<html>
+
+<script src="prototype.js"></script>
+
+<script>
+
+	function on_click( what_to_retrieve ) {
+
+		var options = {
+			// función a llamar cuando reciba la respuesta
+			onSuccess: function(t) {
+				data = eval(t.responseText);
+				handle_data(data);
+			},
+			postBody: Object.toJSON(what_to_retrieve)
+		}
+
+	new Ajax.Request('GetCustomerData.php', options);
+	}
+
+
+
+	function handle_data( data ) {
+
+		container = document.getElementById("list");
+
+		text = Object.toJSON(data);
+
+		container.innerHTML = text;
+
+	}
+</script>
+
+
+<body>
+<h1>AJAX!</h1>
+
+<div id="Boton" onClick="on_click( Array ('CustomerId', 'name') )">Click here to retrieve id and name.</div>
+<div id="Boton" onClick="on_click( Array ('name') )">Click here to retrieve name.</div>
+
+
+<br><br>
+<div id=list>
+The response data will be shown here.
+</div>
+
+</body>
+
+</html>

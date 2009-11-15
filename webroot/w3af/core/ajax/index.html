@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+    <title>Customer Account Information</title>
+    <script type="text/javascript">
+        var url = "GetCustomerData.php?id="; // The server-side script
+	   function handleHttpResponse() {	
+		if (http.readyState == 4) {
+			  if(http.status==200) {
+			  	var results=http.responseText;
+			  document.getElementById('divCustomerInfo').innerHTML = results;
+			  }
+  			}
+		}
+		
+	    function requestCustomerInfo() {      
+            var sId = document.getElementById("txtCustomerId").value;
+			http.open("GET", url + escape(sId), true);
+			http.onreadystatechange = handleHttpResponse;
+			http.send(null);
+        }
+function getHTTPObject() {
+  var xmlhttp;
+ 
+  if(window.XMLHttpRequest){
+    xmlhttp = new XMLHttpRequest();
+  }
+  else if (window.ActiveXObject){
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    if (!xmlhttp){
+        xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+    }
+    
+}
+  return xmlhttp;
+
+  
+}
+var http = getHTTPObject(); // We create the HTTP Object
+</script>
+</head>
+<body>
+    <p>Enter customer ID number to retrieve information:</p>
+    <p>Customer ID: <input type="text" id="txtCustomerId" value="" /></p>
+    <p><input type="button" value="Get Customer Info" onclick="requestCustomerInfo()" /></p>
+    <div id="divCustomerInfo"></div>
+</body>
+</html>

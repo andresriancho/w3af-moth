@@ -50,7 +50,7 @@ if (empty($_POST)) { ?>
 Username:<br />
 <input type="text" name="username" /><br />
 Password:<br />
-<input type="text" name="password" /><br />
+<input type="text" name="password" /> <br /><br />
 
 <!-- pass a session id to the query string of the script to prevent ie caching -->
 <img src="securimage_show.php?sid=<?php echo md5(uniqid(time())); ?>"><br />

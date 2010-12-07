@@ -1,2 +1,2 @@
-http://localhost/w3af/discovery/
-http://localhost/w3af/i-do-not-exist/
+http://moth/w3af/discovery/
+http://moth/w3af/i-do-not-exist/

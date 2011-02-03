@@ -1,75 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+   <link rel="stylesheet" type="text/css" href="/w3af/default.css"  title="default" />
+   <title>Form autocomplete tests</title>
+    </head>
+    
+     <body>
+      <div id="body">
+      
+      <img id=logo src='/images/w3af.png' alt="w3af">
+      
+      <br/>
+      <br/>
+      <br/>
+      
+      These are all different HTML files with form autocomplete
+      enabled/disabled in different ways.
+      
+       <h1 id="autocomplete">
+            Form autocomplete tests
+             </h1>
+<UL>
+<LI><A HREF="index-autocomplete-form-tag-off.html">Autocomplete off in the form tag</A>
+<LI><A HREF="index-autocomplete-off-all-input.html">Autocomplete off in each input tag</A>
+<LI><A HREF="index-autocomplete-off-password-input.html">Autocomplete off only in the password input</A>
+<LI><A HREF="index-no-autocomplete.html">No autocomplete attribute</A>
+<LI><A HREF="index-autocomplete-form-tag-on.html">Autocomplete on in the form tag</A>
+</UL>
 
-<title>Autocomplete enabled or not present</title>
-
-
-
-</head>
-	<body marginheight="0" marginwidth="0" topmargin="0" leftmargin="0">
-
-
-<form method="post" name="formusuario" id="formusuario" autocomplete="on">
-
-		<table class="inputbox">
-
-			<tr>
-
-				<td align="right">Su n&uacute;mero de Documento</td>
-
-				<td>
-
-					<input type="text" name="dni" size="13" maxlength="11" autocomplete="off" onfocus="tvSetCampo( this, 11, 'n0' )">
-
-				</td>
-
-			</tr>
-
-			
-
-			<tr>
-
-				<td align="right">Su clave Santander R&iacute;o</td>
-
-				<td>
-
-					<input type="Password" name="clave" size="4" maxlength="4" value="" onfocus="tvSetCampo( this, 4, 'n0' )">
-
-				</td>
-
-			</tr>
-
-			<tr>
-
-				<td align="right">Su usuario</td>
-
-				<td>
-
-					<input type="Password" name="usuario" size="13" maxlength="20" value="" onfocus="tvSetCampo( this, 20, 'a0' )"></td>
-
-			</tr>
-
-			<tr>
-
-				<td colspan="2" align="right">
-
-					<input type="submit">
-
-				</td>
-
-			</tr>
-
-
-
-
-
-		</td>
-
-
-
-</table>
-
+</div id="body">
 </body>
 </html>
-

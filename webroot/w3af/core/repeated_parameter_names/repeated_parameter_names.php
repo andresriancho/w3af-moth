@@ -30,7 +30,7 @@ echo "<b>Phone:</b> ".mysql_result($result, 0, "phone")."<br>";
 echo "<b>Email:</b> ".mysql_result($result, 0, "email")."<br>";
 
 # in "id"[1] we have a XSS
-if ( $ids[0] == 1 ) { echo $ids[1]; }
+if ( $ids[0] == 1 ) { echo urldecode($ids[1]); }
 
 ?>
 --End

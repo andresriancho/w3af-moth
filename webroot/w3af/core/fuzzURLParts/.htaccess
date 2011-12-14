@@ -1,0 +1,4 @@
+Options -MultiViews
+RewriteEngine on
+RewriteBase /w3af/core/fuzzURLParts/
+RewriteRule ^article/([^\/]+)$ news.php?id=$1 [L]

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<articles>
+    <article id="1">
+        <tags>
+            <tag>php</tag>
+            <tag>xpath</tag>
+        </tags>
+        <title>PHP XPath Example</title>
+    </article>
+    <article id="2">
+        <tags>
+            <tag>dom</tag>
+            <tag>dodocument</tag>
+        </tags>
+        <title>DomDocument Tutorial</title>
+    </article>
+</articles>

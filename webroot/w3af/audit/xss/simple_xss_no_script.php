@@ -1,5 +1,5 @@
 <html>
-
+<a href="/x">link</a>
 Start--
 <?
 

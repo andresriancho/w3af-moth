@@ -19,7 +19,8 @@ echo "SELECT * FROM users where email ='" . $_GET['email'] ."'";
 echo "<br>";
 }
 
-$result = mysql_query("SELECT * FROM users where email ='" . $_GET['email'] ."'", $link);
+$result = mysql_query('SELECT * FROM users where email ="' . $_GET['email'] .'"', $link);
+mysql_result($result, 0, "name");
 
 echo "<i>don't get fooled by the 'static' response, the email parameter <b>is</b> injectable</i>";
 

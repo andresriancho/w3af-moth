@@ -1,4 +1,5 @@
 <?
-include("delay_random.php");
-delay_random(0,3);include("random.php");
+function delay_random($min, $max){
+  sleep( mt_rand($min, $max) );
+}
 ?>

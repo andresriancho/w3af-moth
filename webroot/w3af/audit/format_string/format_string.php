@@ -1,5 +1,5 @@
 <?
-if ( strstr( $_GET['id'] , '%n%n%n%n' ) !== FALSE  ){
+if ( strstr( $_GET['id'] , '%n%n%n%n' ) !== FALSE  || strstr( $_GET['id'] , '%25n%25n%25n%25n' ) !== FALSE ){
   echo "<title>500 Internal Server Error</title>\n";
 } 
 

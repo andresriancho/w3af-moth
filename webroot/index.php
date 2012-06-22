@@ -87,6 +87,7 @@ included in the release.</p>
         <li><a href="intranet/">intranet/</a></li>
         <li><a href="icons/">icons/</a></li>
         <li><a href="python_test/">python_test/</a></li>
+        <li><a href="/vulnerable-java-web-applications/struts-examples-1.1/">Vulnerable web applications protected with HDIV</a></li>
         <li><a href="http://<? echo $_SERVER['SERVER_ADDR']; ?>:8080/manager/html">Tomcat manager</a> (moth/moth)</li>
     </ol>
 <br />

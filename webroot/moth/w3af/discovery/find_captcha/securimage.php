@@ -132,7 +132,7 @@ class Securimage {
    *
    * @var bool
    */
-  var $use_wordlist  = true;
+  var $use_wordlist  = false;
 
   /**
    * Whether to use a GD font instead of a TTF font.<br />
@@ -692,9 +692,9 @@ class Securimage {
   function generateCode($len)
   {
     $code = '';
-
+    mt_srand();
     for($i = 1, $cslen = strlen($this->charset); $i <= $len; ++$i) {
-      $code .= strtoupper( $this->charset{rand(0, $cslen - 1)} );
+      $code .= strtoupper( $this->charset{mt_rand(0, $cslen - 1)} );
     }
     return $code;
   }

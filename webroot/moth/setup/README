@@ -1,0 +1,5 @@
+mysql -uroot -pmoth
+create database w3af_test;
+exit
+mysql -uroot -pmoth -hlocalhost w3af_test < w3af_test.sql
+

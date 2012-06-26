@@ -1,2 +1,2 @@
-http://moth/w3af/discovery/
+http://moth/hidden/
 http://moth/w3af/i-do-not-exist/

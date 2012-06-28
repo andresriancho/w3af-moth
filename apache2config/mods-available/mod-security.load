@@ -1,0 +1,2 @@
+LoadFile /usr/lib/x86_64-linux-gnu/libxml2.so.2
+LoadModule security2_module /usr/lib/apache2/modules/mod_security2.so

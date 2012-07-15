@@ -4,7 +4,7 @@ f00ness!
 
 <script language="javascript1.1">
   <!--
-      window.location.replace(" <? echo $_GET[url];?> ") ;
+      window.location.replace("<?= $_GET['url'] ?>") ;
   // -->
 </script>            
 

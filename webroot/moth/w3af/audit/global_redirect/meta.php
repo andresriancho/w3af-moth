@@ -1,9 +1,7 @@
 <html>
 
-f00ness!
+You're being redirected in 3 seconds, please wait...
 
-<META http-equiv="refresh" content="5;URL=<? echo $_GET[url];?>">
-
-Something
+<META http-equiv="refresh" content="3;URL=<?= $_GET['url'] ?>">
 
 </html>

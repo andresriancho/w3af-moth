@@ -1,0 +1,4 @@
+<html>
+    This is the message list:
+    <!--#include virtual="messages.shtml" -->
+</html>

@@ -9,7 +9,7 @@
 	</Directory>
 
 	<Directory /var/www/moth/>
-		Options Indexes FollowSymLinks MultiViews
+		Options Indexes FollowSymLinks MultiViews Includes
 		AllowOverride None
 		Order allow,deny
 		allow from all

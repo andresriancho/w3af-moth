@@ -39,37 +39,37 @@
 	#
 	# Authentication tests
 	# 
-	<Directory "/var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/">
+	<Directory "/var/www/moth/w3af/bruteforce/basic_auth/easy_guess/">
 	    AuthType Basic
 	    AuthName "moth authentication - basic"
-            AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/.htpasswd
+            AuthUserFile /var/www/moth/w3af/bruteforce/basic_auth/easy_guess/.htpasswd
             Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
         </Directory>
 
-        <Directory "/var/www/moth/w3af/bruteforce/digestAuthBrute/easy_guess/">
+        <Directory "/var/www/moth/w3af/bruteforce/digest_auth/easy_guess/">
 	    AuthType Digest
 	    AuthName "moth authentication - digest"
-	    AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/.htpasswd
+	    AuthUserFile /var/www/moth/w3af/bruteforce/basic_auth/easy_guess/.htpasswd
 	    Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
         </Directory>
 
-        <Directory "/var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/">
+        <Directory "/var/www/moth/w3af/bruteforce/basic_auth/impossible_guess/">
 	    AuthType Basic
 	    AuthName "moth authentication - basic"
-	    AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/.htpasswd
+	    AuthUserFile /var/www/moth/w3af/bruteforce/basic_auth/impossible_guess/.htpasswd
 	    Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
         </Directory>
 
-        <Directory "/var/www/moth/w3af/bruteforce/digestAuthBrute/impossible_guess/">
+        <Directory "/var/www/moth/w3af/bruteforce/digest_auth/impossible_guess/">
 	    AuthType Digest
 	    AuthName "moth authentication - digest"
-	    AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/.htpasswd
+	    AuthUserFile /var/www/moth/w3af/bruteforce/basic_auth/impossible_guess/.htpasswd
 	    Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None

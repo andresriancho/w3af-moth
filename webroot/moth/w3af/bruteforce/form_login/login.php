@@ -38,7 +38,7 @@ if ($user){
 echo "<br><br>";
 if ( isset( $_COOKIE["magicValue"] ) ){
     if ( strcmp( $_COOKIE["magicValue"] , '0000-1111-2222-3333-4444') == 0 ){
-        echo '<a href="onlyUsers.php">onlyUsers.php</a>';
+        echo '<a href="only-users.php">only-users.php</a>';
     }
 }
 

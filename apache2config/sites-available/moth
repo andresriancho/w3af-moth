@@ -85,8 +85,8 @@
         #
         # Poorly configured Limit
         #
-        <Location "/w3af/audit/htaccess_methods/">
-    	    <Limit GET>
+        <Location "/w3af/audit/htaccess_methods/restricted/">
+    	    <Limit GET POST>
 		order deny,allow
 		deny from all
 	    </Limit>

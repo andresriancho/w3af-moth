@@ -1,7 +1,9 @@
 <?
 
-if ( strcmp( $_COOKIE["magicValue"] , '0000-1111-2222-3333-4444') == 0 ){
-  echo '<a href="onlyUsers.php">onlyUsers.php</a>';
+if ( isset($_COOKIE["magicValue"]) ){
+  if ( strcmp( $_COOKIE["magicValue"] , '0000-1111-2222-3333-4444') == 0 ){
+    echo '<a href="only-users.php">only-users.php</a>';
+  }
 }
   
 
@@ -10,7 +12,6 @@ if ( strcmp($_POST['pass'],"") == 0 ){
         die();
 }   
                                     
-
 if ( strcmp($_POST['pass'],"1234") == 0 ){ 
 	setcookie("magicValue", "0000-1111-2222-3333-4444", time()+3600);
 	setcookie("magicValue2", "0000-1111-2222-3333-4444", time()+3600);

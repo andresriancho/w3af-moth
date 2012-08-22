@@ -11,7 +11,7 @@ Done...<br/>
 Creating tables...<br/>
 <?
 
-$fp = fopen('../create_tables.sql', "r");
+$fp = fopen('/var/www/moth/setup/w3af_test.sql', "r");
 
 if ($fp){
   $line = fgets($fp);

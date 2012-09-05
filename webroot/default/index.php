@@ -8,7 +8,7 @@ if ($handle = opendir('../')) {
 
     while (false !== ($entry = readdir($handle))) {
         if ( strpos($entry, '.') === false ){
-            echo "$server_ip    $entry<br />\n";
+            echo "$server_ip    <a href='http://$entry/'>$entry</a><br />\n";
         }
     }
 

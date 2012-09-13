@@ -18,24 +18,56 @@
      </li>
 
      <li>
-        Simple XSS - replace('javascript','') (<a href="simple_xss_no_js.php?text=1">simple_xss_no_js.php?text=1</a>)<br/>
+        Trivial filter XSS - replace('javascript','') (<a href="simple_xss_no_js.php?text=1">simple_xss_no_js.php?text=1</a>)<br/>
      </li>
 
      <li>
-        Simple XSS - replace('script','') (<a href="simple_xss_no_script.php?text=1">simple_xss_no_script.php?text=1</a>)<br/>
+        Trivial filter XSS - replace('script','') (<a href="simple_xss_no_script.php?text=1">simple_xss_no_script.php?text=1</a>)<br/>
      </li>
 
      <li>
-        Simple XSS - replace('script','') - II (<a href="simple_xss_no_script_2.php?text=1">simple_xss_no_script_2.php?text=1</a>)<br/>
+        Trivial filter XSS - replace('script','') - II (<a href="simple_xss_no_script_2.php?text=1">simple_xss_no_script_2.php?text=1</a>)<br/>
      </li>
 
      <li>
-        Simple XSS - without quotes (<a href="simple_xss_no_quotes.php?text=1">simple_xss_no_quotes.php?text=1</a>)<br/>
+        Trivial filter XSS - without quotes (<a href="simple_xss_no_quotes.php?text=1">simple_xss_no_quotes.php?text=1</a>)<br/>
      </li>
 
      <li>
         No tag XSS (<a href="no_tag_xss.php?text=1">no_tag_xss.php?text=1</a>)<br/>
      </li>
+     
+     <li>
+     	Complex XSS filter with blacklist (<a href="xss_filter.php?text=1">xss_filter.php?text=1</a>)<br>
+     </li>
+
+     <li>
+     	Another complex XSS filter with blacklist (<a href="xss_filter_2.php?text=1">xss_filter_2.php?text=1</a>)<br>
+     </li>
+
+     <li>
+     	Rewrite of xss_filter_2.php to address bypass (<a href="xss_filter_3.php?text=1">xss_filter_3.php?text=1</a>)<br>
+     </li>
+
+     <li>
+     	From macafeesecure.com (<a href="xss_filter_4.php?text=1">xss_filter_4.php?text=1</a>)<br>
+     </li>
+
+     <li>
+     	From macafeesecure.com used in a different HTML context (<a
+     	href="xss_filter_5.php?text=/images/w3af.png">xss_filter_5.php?text=/images/w3af.png</a>)<br>
+     </li>
+
+     <li>
+     	CodeIgniter PHP, reported broken CodeIgniter &lt;= 2.1.1 (<a
+     	href="xss_filter_6.php?text=1">xss_filter_6.php?text=1</a>)<br>
+     </li>
+
+     <li>
+     	CodeIgniter PHP (latest version 13 Sep 2012) (<a
+     	href="xss_filter_7.php?text=1">xss_filter_7.php?text=1</a>)<br>
+     </li>
+
 
     </li>
 
@@ -47,10 +79,7 @@
     <ol>
 
      <li>
-        Clean XSS from http://stackoverflow.com/questions/1336776/xss-filtering-function-in-php HTML5 (<a href="xss_clean.php?text=1">xss_clean.php?text=1</a>)<br/>
-     </li>
-     <li>
-        Clean XSS from http://stackoverflow.com/questions/1336776/xss-filtering-function-in-php HTML4 strict (<a href="xss_clean_4_strict.php?text=1">xss_clean_4_strict.php?text=1</a>)<br/>
+         See example above of broken CodeIgniter.
      </li>
 
     </ol>

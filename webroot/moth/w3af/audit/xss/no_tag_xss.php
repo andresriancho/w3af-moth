@@ -1,8 +1,5 @@
-<b>Only works on IE.</b>
-<br/>
-<br/>
-
-Start--
+Read HTML source code.
+<br>
 <?
 
 if ( ! strstr( $_GET[a], "<" ) ) {
@@ -10,5 +7,4 @@ if ( ! strstr( $_GET[a], "<" ) ) {
 }
 
 ?>
-<br/>
---End
+<br>

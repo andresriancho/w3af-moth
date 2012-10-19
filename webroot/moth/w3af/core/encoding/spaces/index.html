@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Spaces in URLs tests</title>
+ </head>
+
+ <body>
+ <div id="body">
+
+ <h2>Spaces in URLs tests</h2>
+    <ul>
+<br/>
+File name
+     <li>
+        <a href="start end.html">Space with ' '</a><br/>
+     </li>
+     <li>
+        <a href="start+end.html">Space with '+'</a><br/>
+     </li>
+     <li>
+        <a href="start%20end.html">Space with '%20'</a><br/>
+     </li>
+     <li>
+        <a href="start%2Bend.html">Encoded a + with %2B</a><br/>
+     </li>
+
+<br/><br/>
+Query string
+     <li>
+        <a href="foo.html?id=start end">Space with ' '</a><br/>
+     </li>
+     <li>
+        <a href="foo.html?id=start+end">Space with '+'</a><br/>
+     </li>
+     <li>
+        <a href="foo.html?id=start%20end">Space with '%20'</a><br/>
+     </li>
+     <li>
+        <a href="foo.html?id=start%2Bend">Encoded a + with %2B</a><br/>
+     </li>
+     <li>
+        <a href="foo.html?id=x*y/2==3">Math quiz</a><br/>
+     </li>
+     <li>
+        <a href="foo.html?id=x%2Ay/2%3D%3D3">Math quiz encoded</a><br/>
+     </li>
+
+<br/><br/>
+Form
+     <li>
+        <a href="form_input_plus_GET.html">Special chars in input hidden value
+        (GET)</a><br/>
+     </li>
+     <li>
+        <a href="form_input_plus_POST.html">Special chars in input hidden value
+        (POST)</a><br/>
+     </li>
+     
+   </ul>
+
+  <br/><br/>
+  <h2>Results</h2>
+  All results were verified using wireshark.
+  <h3>Firefox</h3>
+  	<ul>
+	  	<li>Requests start%20end.html</li>
+	  	<li>Requests start+end.html without any encoding</li>
+	  	<li>Requests start%20end.html</li>
+	  	<li>Requests start%2Bend.html</li><br/>
+	  	<li>Requests ?id=start%20end</li>
+	  	<li>Requests ?id=start+end</li>
+	  	<li>Requests ?id=start%20end</li>
+	  	<li>Requests ?id=start%2Bend</li>
+	</ul>
+  <h3>Opera</h3>
+  	<ul>
+	  	<li>Requests start%20end.html</li>
+	  	<li>Requests start+end.html without any encoding</li>
+	  	<li>Requests start%20end.html</li>
+	  	<li>Requests start%2Bend.html</li><br/>
+	  	<li>Requests ?id=start%20end</li>
+	  	<li>Requests ?id=start+end</li>
+	  	<li>Requests ?id=start%20end</li>
+	  	<li>Requests ?id=start%2Bend</li>
+	</ul>  
+
+ </div>
+ </body>
+</html>

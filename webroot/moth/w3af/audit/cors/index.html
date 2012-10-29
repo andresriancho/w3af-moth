@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+  <title>CORS tests</title>
+ </head>
+
+ <body>
+ <div id="body">
+
+ <h1 id="cors">
+     CORS tests
+ </h1>
+ 
+     Please keep in mind that you'll have to send specially crafted HTTP requests
+     in order to use these tests. Your browser won't be able to send them!
+
+    <ul>
+
+     <li>
+         Test script sending always the same "Access-Control-Allow-Origin"
+         response header value with HTTP 200 response code.
+         (<a href="cors_origin_1.php.php">cors_origin_1.php.php</a>)<br/>
+     </li>
+
+     <li>
+         Test script sending always the same "Access-Control-Allow-Origin"
+         response header value with HTTP 403 response code.
+         (<a href="cors_origin_2.php.php">cors_origin_2.php.php</a>)<br/>
+     </li>
+
+     <li>
+         Test script sending different "Access-Control-Allow-Origin"
+         response header (based on "Origin" request header) value with HTTP 200 response code.
+         (<a href="cors_origin_3.php.php">cors_origin_3.php.php</a>)<br/>
+     </li>
+
+     <li>
+         Test script sending different "Access-Control-Allow-Origin"
+         response header (based on "Origin" request header) value with HTTP 403 response code.
+         (<a href="cors_origin_4.php.php">cors_origin_4.php.php</a>)<br/>
+     </li>
+
+    </ul>
+
+ </div id="body">
+ </body>
+</html>

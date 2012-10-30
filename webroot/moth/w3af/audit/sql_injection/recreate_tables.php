@@ -1,27 +1,46 @@
-Droping database...<br/>
 <?
 $link = mysql_connect("localhost", "root", "moth");
-mysql_select_db("w3af_test", $link);
-mysql_query("DROP database w3af_test;");
-?>
 
-Done...<br/>
-<br/>
+if (mysql_query("CREATE DATABASE IF NOT EXISTS w3af_test", $link))
+{
+   echo "Database created<br/>";
+}else{
+   echo "Error creating database: " . mysql_error();
+}
+            
+mysql_select_db("w3af_test", $link);
+?>
 
 Creating tables...<br/>
 <?
 
-$fp = fopen('/var/www/moth/setup/w3af_test.sql', "r");
+// Temporary variable, used to store current query
+$templine = '';
 
-if ($fp){
-  $line = fgets($fp);
-  while( !feof($fp) ){
-      echo $line . '<br/>';
-      mysql_query($line);
-      $line = fgets($fp);
-  }
+// Read in entire file
+$filename = '/var/www/moth/setup/w3af_test.sql';
+$lines = file($filename);
+
+// Loop through each line
+foreach ($lines as $line)
+{
+    // Skip it if it's a comment
+    if (substr($line, 0, 2) == '--' || $line == '')
+        continue;
+                 
+    // Add this line to the current segment
+    $templine .= $line;
+    // If it has a semicolon at the end, it's the end of the query
+    if (substr(trim($line), -1, 1) == ';')
+    {
+       // Perform the query
+       mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+       // Reset temp variable to empty
+       $templine = '';
+    }
 }
-
 ?>
+                                                                    
+
 Done...<br/>
 

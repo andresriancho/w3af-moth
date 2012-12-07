@@ -4,7 +4,7 @@ $link = mysql_connect("localhost", "root", "moth");
 
 mysql_select_db("w3af_test", $link);
 
-$sql_stm = "SELECT * FROM users where name='" . $_GET["name"] . "'";
+$sql_stm = "SELECT * FROM users where name='" . $_REQUEST["name"] . "'";
 #echo $sql_stm;
 
 $result = mysql_query( $sql_stm, $link);

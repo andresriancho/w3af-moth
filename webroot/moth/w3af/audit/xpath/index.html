@@ -1,28 +1,48 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
-	</head>
+		<link rel="stylesheet" type="text/css" href="/w3af/default.css" title="default" />
+		<title>XPATH tests</title>
+      </head>
+     
 	<body>
-		<h1>Welcome to the XPATH testing website</h1>
-		<form name="f1" action="xpath-tag.php" method="post">
-			<input type="text" name="input" value="tags"/> <input type="submit" value="submit" />
-		</form>
-		<form name="f2" action="xpath-attr-single.php" method="post">
+	<h1>Welcome to the XPATH testing website</h1>
+	
+	XPATH Tag
+	<form name="f1" action="xpath-tag.php" method="post">
+		<input type="text" name="input" value="tags"/> <input type="submit" value="submit" />
+	</form><br>
+	
+	XPATH Attr single quote
+	<form name="f2" action="xpath-attr-single.php" method="post">
             <input type="text" name="input" value="1"/> <input type="submit" value="submit" />
-        </form>
- 		<form name="f3" action="xpath-attr-double.php" method="post">
+        </form><br>
+        
+        XPATH Attr double quote
+ 	<form name="f3" action="xpath-attr-double.php" method="post">
             <input type="text" name="input" value="1"/> <input type="submit" value="submit" />
-        </form>
-		<form name="f4" action="xpath-or.php" method="post">
-            <input type="text" name="input" value="xpath"/> <input type="submit" value="submit" />
-        </form>
-		<form name="f5" action="xpath-echo.php" method="post">
+        </form><br>
+
+	XPATH OR        
+	<form name="f4" action="xpath-or.php" method="post">
+            <input type="text" name="input" value="foo"/> <input type="submit" value="submit" />
+        </form><br>
+        
+        XPATH Echo (false positive test)
+	<form name="f5" action="xpath-echo.php" method="post">
             <input type="text" name="input" value="blah"/> <input type="submit" value="submit" />
-        </form>
+        </form><br>
+        
+        XPATH Random and 500 response code (false positive test)
         <form name="f6" action="xpath-random500.php" method="post">
             <input type="text" name="input" value="blah"/> <input type="submit" value="submit" />
-        </form>
+        </form><br>
+        
+        XPATH Empty response  (false positive test)
         <form name="f7" action="xpath-empty.php" method="post">
             <input type="text" name="input" value="something"/> <input type="submit" value="submit" />
-        </form>
+        </form><br>
+        
 	</body>
 </html>

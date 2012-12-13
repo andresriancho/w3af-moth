@@ -2,16 +2,16 @@
 <articles>
     <article id="1">
         <tags>
-            <tag>php</tag>
-            <tag>xpath</tag>
+            <tag>moth</tag>
+            <tag>vulnerability</tag>
         </tags>
-        <title>PHP XPath Example</title>
+        <title>XPATH Vulnerability demo</title>
     </article>
     <article id="2">
         <tags>
-            <tag>dom</tag>
-            <tag>dodocument</tag>
+            <tag>foo</tag>
+            <tag>bar</tag>
         </tags>
-        <title>DomDocument Tutorial</title>
+        <title>Spam Eggs</title>
     </article>
 </articles>

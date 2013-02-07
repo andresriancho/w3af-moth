@@ -118,11 +118,11 @@ font-size : 10px;
 
 </head><body>
 <div class="header">
-    <a href="http://sexyornot/index.php">
+    <a href="index.php">
     <img src="images/logo.png" alt="sexyornot" height="50" width="102"></a>
 </div>
 
 <div class="upban">
 <a id="top"></a>Are you&nbsp;<b>in</b>&nbsp;sexy or not?</div>
 <div class="body">
-    &nbsp;<a href="http://sexyornot/index.php">0 users online!</a><br><br>
+    &nbsp;<a href="index.php">0 users online!</a><br><br>

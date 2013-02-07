@@ -2,6 +2,7 @@
 include('../rnd_lib.php');
 echo 'Random string to make things harder: ' . rand_string(10);
 echo '<br>';
+session_start();
 ?>
 <form action="buy.php" method="post">
   <p>

@@ -4,7 +4,7 @@
  
   $token_age = time() - $_SESSION['token_time'];
 
-  if ($_POST['token'] == $_SESSION['token']){
+  if ($_REQUEST['token'] == $_SESSION['token']){
     if ($token_age <= 300){
       /* Less than five minutes has passed. */
       echo 'Thank you for the purchase of ' . intval($_REQUEST['shares']) . " shares.\n";

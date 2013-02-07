@@ -1,4 +1,5 @@
-<form action="buy.php" method="post">
+<? session_start(); ?>
+ <form action="buy.php" method="post">
   <p>
     Symbol: <input type="text" name="symbol" /><br />
     Shares: <input type="text" name="shares" /><br />

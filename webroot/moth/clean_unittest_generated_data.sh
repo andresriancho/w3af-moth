@@ -6,3 +6,6 @@ sudo git checkout w3af/audit/ssi/messages.shtml
 sudo git checkout w3af/audit/xss/stored/data.txt
 sudo chmod 777 w3af/audit/ssi/messages.shtml
 sudo chmod 777 w3af/audit/xss/stored/data.txt
+
+git status
+

@@ -1,12 +1,10 @@
-w3af's moth
-===========
+## w3af's moth
 
 A set of vulnerable PHP scripts used to test w3af's vulnerability detection features.
 
 The main repository for the [w3af project](https://github.com/andresriancho/w3af/) can be found [here](https://github.com/andresriancho/w3af/).
 
-History
-=======
+## History
 
 `Moth` was born as a test environment for the [w3af project](https://github.com/andresriancho/w3af/) can be found [here](https://github.com/andresriancho/w3af/). The code that lives in this repository was usually bundled in a Virtual Machine and used from there.
 
@@ -19,3 +17,7 @@ The decision was made while writing unittests for `w3af`, which needed to run ea
 Django-moth, received most of the attention and code. This is the repository which holds most of the test cases for the `w3af` framework.
 
 PHP-moth is a much smaller test suite which only contains test scripts for PHP-specific vulnerabilities.
+
+## Deprecation warning
+
+While you can still use this repository for testing your scanner, education or any other purpose, I don't guarantee that I'll fix bugs, issues, or improve it in any way.

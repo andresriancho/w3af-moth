@@ -18,6 +18,32 @@ Django-moth, received most of the attention and code. This is the repository whi
 
 PHP-moth is a much smaller test suite which only contains test scripts for PHP-specific vulnerabilities.
 
+## Installation
+
+```
+sudo -s -H
+apt-get update
+apt-get dist-upgrade
+
+# Enter "moth" as root password for mysql
+apt-get install lamp-server^
+echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf && sudo a2enconf fqdn
+
+# Get moth's source code
+apt-get install git
+cd /var/www/
+git clone https://github.com/andresriancho/w3af-moth.git
+
+# Set short tags in php.ini
+# short_open_tag=On
+
+# Setup mysql database
+mysql -uroot -pmoth
+create database w3af_test;
+exit
+mysql -uroot -pmoth -hlocalhost w3af_test < w3af_test.sql
+```
+
 ## Deprecation warning
 
 While you can still use this repository for testing your scanner, education or any other purpose, I don't guarantee that I'll fix bugs, issues, or improve it in any way.

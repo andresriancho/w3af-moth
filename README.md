@@ -34,8 +34,9 @@ apt-get install git
 cd /var/www/
 git clone https://github.com/andresriancho/w3af-moth.git
 
-# Set short tags in php.ini
+# Configure php.ini
 # short_open_tag=On
+# display_errors = On
 
 # Setup mysql database
 mysql -uroot -pmoth

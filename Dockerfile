@@ -10,7 +10,7 @@ RUN apt-get install -y openssh-server supervisor
 RUN mkdir -p /var/run/sshd
 RUN mkdir -p /var/log/supervisor
 
-RUN apt-get install -y lamp-server^ mysql-client
+RUN apt-get install -y lamp-server^ mysql-client joe
 
 RUN useradd ubuntu -d /home/ubuntu
 RUN mkdir -p /home/ubuntu/.ssh

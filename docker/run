@@ -1,29 +1,58 @@
 #!/bin/bash
 set -e
 
-# This script starts the database server.
-echo "Creating user root for databases loaded from w3af_test.sql"
+LOG="/var/log/mysql/error.log"
 
+StartMySQL ()
+{
+	# This function starts the database server
+	echo "Starting MySQL"
+
+	# Fix permissions and ownership of /var/lib/mysql
+	mkdir -p -m 700 /var/lib/mysql
+	chown -R mysql:mysql /var/lib/mysql
+
+	# Fix permissions and ownership of /run/mysqld
+	mkdir -p -m 0755 /run/mysqld
+	chown -R mysql:root /run/mysqld
+
+    /usr/bin/mysqld_safe > /dev/null 2>&1 &
+
+    # Loop checking if the server started
+    LOOP_LIMIT=10
+    for (( i=0 ; ; i++ )); do
+        if [ ${i} -eq ${LOOP_LIMIT} ]; then
+            echo "Time out. Error log is shown as below:"
+            tail -n 200 ${LOG}
+            exit 1
+        fi
+        echo "Waiting for confirmation of MySQL service startup, trying ${i}/${LOOP_LIMIT} ..."
+        sleep 5
+        mysql -uroot -e "status" > /dev/null 2>&1 && break
+    done
+}
+
+StartMySQL
+
+# Create user
+echo "Creating user root"
+
+mysql -uroot -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('moth');"
+mysql -uroot -pmoth -e "GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION"
+mysql -uroot -pmoth -e "FLUSH PRIVILEGES"
+
+# Data
 echo "Adding data into MySQL"
-/usr/sbin/mysqld & sleep 5
-
-mysql --default-character-set=utf8 < /var/www/webroot/moth/setup/w3af_test.sql
-mysqladmin shutdown
+mysql -uroot -pmoth -e "CREATE DATABASE moth"
+mysql -uroot -pmoth  moth < /var/www/moth/setup/w3af_test.sql
 echo "Finished"
 
-# Now the provided user credentials are added
-/usr/sbin/mysqld & sleep 5
-echo "Creating user"
-echo "CREATE USER 'root' IDENTIFIED BY 'moth'" | mysql --default-character-set=utf8
-echo "REVOKE ALL PRIVILEGES ON *.* FROM 'root'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
-echo "GRANT SELECT ON *.* TO 'root'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
-echo "finished"
-
-# And we restart the server to go operational
-mysqladmin shutdown
+# We stop the database now, so we can start it under supervisord control
+mysqladmin -uroot -pmoth shutdown
 
 # SSH configuration
 echo "root:MxqQt6iKUP6igE" | chpasswd
 echo "ubuntu:MxqQt6iKUP6igE" | chpasswd
+echo "Use root / MxqQt6iKUP6igE to connect to this host with SSH"
 
 exec supervisord -n

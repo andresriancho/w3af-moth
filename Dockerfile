@@ -19,8 +19,7 @@ RUN chown ubuntu:ubuntu /home/ubuntu/.ssh
 
 # Apache configuration from moth
 RUN rm -rf /etc/apache2/
-ADD apache2config/
-RUN mv apache2config /etc/apache2/
+ADD apache2config/ /etc/apache2/
 
 #
 # MySQL configuration
@@ -32,9 +31,6 @@ RUN apt-get -y install mysql-client mysql-server
 # otherwise our database would not be reachable from outside the container)
 RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
-# Remove pre-installed database
-RUN rm -rf /var/lib/mysql/*
-
 # Remove syslog configuration
 RUN rm /etc/mysql/conf.d/mysqld_safe_syslog.cnf
 
@@ -42,18 +38,18 @@ RUN rm /etc/mysql/conf.d/mysqld_safe_syslog.cnf
 ADD docker/my.cnf /etc/mysql/conf.d/my.cnf
 ADD docker/mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 
-# root can access from anywhere with moth password
-RUN mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION"
-RUN mysql -uroot -e "SET PASSWORD FOR 'root'@'%' = PASSWORD('moth')"
-
 # PHP configuration
 RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/apache2/php.ini
-RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/cli/php.ini
 RUN sed -ri 's/^error_reporting\s*=.*$/error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE/g' /etc/php5/apache2/php.ini
-RUN sed -ri 's/^error_reporting\s*=.*$/error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE/g' /etc/php5/cli/php.ini
+RUN sed -ri 's/^short_open_tag\s*=\s*Off/short_open_tag = On/g' /etc/php5/apache2/php.ini
 
 # Allow root to login
 RUN sed -ri 's/^PermitRootLogin.*$/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+# Webroot for moth
+RUN rm -rf /var/www/
+ADD webroot/ /var/www
+RUN chown -R root:root /var/www
 
 ADD docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD docker/run /usr/local/bin/

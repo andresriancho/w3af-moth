@@ -13,11 +13,6 @@
 		AllowOverride None
 		Order allow,deny
 		allow from all
-
-		AddHandler mod_python .psp
-		PythonHandler mod_python.psp
-		PythonDebug On
-
 	</Directory>
 
 	ErrorLog /var/log/apache2/error-intranet.log

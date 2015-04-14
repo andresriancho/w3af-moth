@@ -21,6 +21,12 @@ RUN chown ubuntu:ubuntu /home/ubuntu/.ssh
 RUN rm -rf /etc/apache2/
 ADD apache2config/ /etc/apache2/
 
+# Some modules are not enabled yet
+RUN rm -rf /etc/apache2/mods-enabled/jk.*
+RUN rm -rf /etc/apache2/mods-enabled/mod-security.*
+RUN rm -rf /etc/apache2/mods-enabled/python.*
+RUN rm -rf /etc/apache2/mods-enabled/ssl.*
+
 #
 # MySQL configuration
 #

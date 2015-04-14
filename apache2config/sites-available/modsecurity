@@ -5,9 +5,9 @@
 	#
 
 	# Enable mod-security only for the mod_security directory
-        <Location />
-            SecRuleEngine On
-        </Location>
+    <Location />
+        #SecRuleEngine On
+    </Location>
 	
 	DocumentRoot /var/www/moth/
 	ServerName modsecurity
@@ -23,9 +23,9 @@
 		Order allow,deny
 		allow from all
 
-		AddHandler mod_python .psp
-		PythonHandler mod_python.psp
-		PythonDebug On
+		#AddHandler mod_python .psp
+		#PythonHandler mod_python.psp
+		#PythonDebug On
 
 	</Directory>
 
@@ -37,8 +37,8 @@
 	LogLevel warn
 
 	# wavsep
-	JkMount /wavsep ajp13_worker
-	JkMount /wavsep/* ajp13_worker
+	#JkMount /wavsep ajp13_worker
+	#JkMount /wavsep/* ajp13_worker
 
 	#
 	# Authentication tests
@@ -46,55 +46,55 @@
 	<Directory "/var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/">
 	    AuthType Basic
 	    AuthName "moth authentication - basic"
-            AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/.htpasswd
-            Require valid-user
+        AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/.htpasswd
+        Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
-        </Directory>
+    </Directory>
 
-        <Directory "/var/www/moth/w3af/bruteforce/digestAuthBrute/easy_guess/">
+    <Directory "/var/www/moth/w3af/bruteforce/digestAuthBrute/easy_guess/">
 	    AuthType Digest
 	    AuthName "moth authentication - digest"
 	    AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/easy_guess/.htpasswd
 	    Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
-        </Directory>
+    </Directory>
 
-        <Directory "/var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/">
+    <Directory "/var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/">
 	    AuthType Basic
 	    AuthName "moth authentication - basic"
 	    AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/.htpasswd
 	    Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
-        </Directory>
+    </Directory>
 
-        <Directory "/var/www/moth/w3af/bruteforce/digestAuthBrute/impossible_guess/">
+    <Directory "/var/www/moth/w3af/bruteforce/digestAuthBrute/impossible_guess/">
 	    AuthType Digest
 	    AuthName "moth authentication - digest"
 	    AuthUserFile /var/www/moth/w3af/bruteforce/basicAuthBrute/impossible_guess/.htpasswd
 	    Require valid-user
 	    Options FollowSymLinks
 	    AllowOverride None
-        </Directory>
+    </Directory>
 
-        #
-        # Special 404 message
-        #
-        <Directory "/var/www/moth/w3af/bruteforce/">
-    	    ErrorDocument 404 /w3af/
-        </Directory>
+    #
+    # Special 404 message
+    #
+    <Directory "/var/www/moth/w3af/bruteforce/">
+	    ErrorDocument 404 /w3af/
+    </Directory>
 
-        #
-        # Poorly configured Limit
-        #
-        <Location "/w3af/audit/htaccess_methods/">
-    	    <Limit GET>
-		order deny,allow
-		deny from all
+    #
+    # Poorly configured Limit
+    #
+    <Location "/w3af/audit/htaccess_methods/">
+	    <Limit GET>
+			order deny,allow
+			deny from all
 	    </Limit>
-        </Location>
+    </Location>
 
 	RewriteEngine on
 	RewriteCond %{THE_REQUEST} !^(POST|GET)\ /.*\ HTTP/1\.1$ 

@@ -43,8 +43,8 @@ mysql -uroot -pmoth -e "FLUSH PRIVILEGES"
 
 # Data
 echo "Adding data into MySQL"
-mysql -uroot -pmoth -e "CREATE DATABASE moth"
-mysql -uroot -pmoth  moth < /var/www/moth/setup/w3af_test.sql
+mysql -uroot -pmoth -e "CREATE DATABASE w3af_test"
+mysql -uroot -pmoth w3af_test < /var/www/moth/setup/w3af_test.sql
 echo "Finished"
 
 # We stop the database now, so we can start it under supervisord control

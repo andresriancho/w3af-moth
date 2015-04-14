@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:10.04
 MAINTAINER Andres Riancho <andres.riancho@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -26,7 +26,7 @@ RUN mv apache2config /etc/apache2/
 # MySQL configuration
 #
 # Install mysql client and server
-RUN apt-get -y install mysql-client mysql-server curl
+RUN apt-get -y install mysql-client mysql-server
 
 # Enable remote access (default is localhost only, we change this
 # otherwise our database would not be reachable from outside the container)
@@ -41,11 +41,6 @@ RUN rm /etc/mysql/conf.d/mysqld_safe_syslog.cnf
 # Add MySQL configuration
 ADD docker/my.cnf /etc/mysql/conf.d/my.cnf
 ADD docker/mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
-
-# Add MySQL scripts
-ADD import_sql.sh /import_sql.sh
-ADD run.sh /run.sh
-RUN chmod 755 /*.sh
 
 # root can access from anywhere with moth password
 RUN mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION"

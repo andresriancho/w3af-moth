@@ -14,23 +14,16 @@ echo "Finished"
 # Now the provided user credentials are added
 /usr/sbin/mysqld & sleep 5
 echo "Creating user"
-echo "CREATE USER '$user' IDENTIFIED BY '$password'" | mysql --default-character-set=utf8
-echo "REVOKE ALL PRIVILEGES ON *.* FROM '$user'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
-echo "GRANT SELECT ON *.* TO '$user'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
+echo "CREATE USER 'root' IDENTIFIED BY 'moth'" | mysql --default-character-set=utf8
+echo "REVOKE ALL PRIVILEGES ON *.* FROM 'root'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
+echo "GRANT SELECT ON *.* TO 'root'@'%'; FLUSH PRIVILEGES" | mysql --default-character-set=utf8
 echo "finished"
 
 # And we restart the server to go operational
 mysqladmin shutdown
 
 # SSH configuration
-SERVER_PASSWORD=${SERVER_PASSWORD:-"MxqQt6iKUP6igE"}
-SERVER_KEY=${SERVER_KEY:-""}
-
-echo "root:$SERVER_PASSWORD" | chpasswd
-echo "ubuntu:$SERVER_PASSWORD" | chpasswd
-
-echo "$SERVER_KEY" > /home/ubuntu/.ssh/authorized_keys
-chown -R ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
-chmod 700 /home/ubuntu/.ssh/authorized_keys
+echo "root:MxqQt6iKUP6igE" | chpasswd
+echo "ubuntu:MxqQt6iKUP6igE" | chpasswd
 
 exec supervisord -n

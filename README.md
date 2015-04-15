@@ -5,6 +5,36 @@ A set of vulnerable PHP scripts used to test w3af's vulnerability detection feat
 The main repository for the [w3af project](https://github.com/andresriancho/w3af/) can
 be found [here](https://github.com/andresriancho/w3af/).
 
+## Usage
+
+The easiest way to use `w3af-moth` is to start a [docker](https://www.docker.com/) container:
+
+```bash
+sudo docker run -p 80:80 -p 2222:22 andresriancho/w3af-moth
+```
+
+And then add the following lines to your `/etc/hosts` file:
+```text
+127.0.0.1 intranet
+127.0.0.1 default
+127.0.0.1 moth
+```
+
+Please note that you can build the docker image yourself:
+```bash
+sudo docker build -t andresriancho/w3af-moth .
+```
+
+Or simply [get it from the registry](https://registry.hub.docker.com/u/andresriancho/w3af-moth/):
+```bash
+sudo docker pull andresriancho/w3af-moth
+```
+
+Use SSH to connect to `moth` with `root` and `MxqQt6iKUP6igE` as password:
+```bash
+ssh root@127.0.0.1 -p 2222
+```
+
 ## History
 
 `Moth` was born as a test environment for the [w3af project](https://github.com/andresriancho/w3af/)
@@ -24,33 +54,6 @@ Django-moth, received most of the attention and code. This is the repository whi
 cases for the `w3af` framework.
 
 PHP-moth is a much smaller test suite which only contains test scripts for PHP-specific vulnerabilities.
-
-## Installation
-
-```
-sudo -s -H
-apt-get update
-apt-get dist-upgrade
-
-# Enter "moth" as root password for mysql
-apt-get install lamp-server^
-echo "ServerName localhost" | sudo tee /etc/apache2/conf-available/fqdn.conf && sudo a2enconf fqdn
-
-# Get moth's source code
-apt-get install git
-cd /var/www/
-git clone https://github.com/andresriancho/w3af-moth.git
-
-# Configure php.ini
-# short_open_tag=On
-# display_errors = On
-
-# Setup mysql database
-mysql -uroot -pmoth
-create database w3af_test;
-exit
-mysql -uroot -pmoth -hlocalhost w3af_test < w3af_test.sql
-```
 
 ## Deprecation warning
 

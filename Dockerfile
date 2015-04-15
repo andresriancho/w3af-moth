@@ -53,6 +53,11 @@ RUN rm -rf /var/www/
 ADD webroot/ /var/www
 RUN chown -R root:root /var/www
 
+# And some specific configurations to make the app more vulnerable
+RUN rm -rf /var/www/moth/w3af/audit/xss/stored/data.txt
+RUN touch /var/www/moth/w3af/audit/xss/stored/data.txt
+RUN chown www-data: /var/www/moth/w3af/audit/xss/stored/data.txt
+
 ADD docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD docker/run /usr/local/bin/
 RUN chmod +x /usr/local/bin/run

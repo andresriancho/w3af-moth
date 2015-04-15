@@ -44,6 +44,7 @@ ADD docker/mysqld_charset.cnf /etc/mysql/conf.d/mysqld_charset.cnf
 RUN sed -ri 's/^display_errors\s*=\s*Off/display_errors = On/g' /etc/php5/apache2/php.ini
 RUN sed -ri 's/^error_reporting\s*=.*$/error_reporting = E_ALL \& ~E_DEPRECATED \& ~E_NOTICE/g' /etc/php5/apache2/php.ini
 RUN sed -ri 's/^short_open_tag\s*=\s*Off/short_open_tag = On/g' /etc/php5/apache2/php.ini
+RUN sed -ri 's|^auto_prepend_file\s*=\s*|auto_prepend_file = /var/www/moth/show_source.php|g' /etc/php5/apache2/php.ini
 
 # Allow root to login
 RUN sed -ri 's/^PermitRootLogin.*$/PermitRootLogin yes/g' /etc/ssh/sshd_config
